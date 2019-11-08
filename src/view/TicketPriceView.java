@@ -19,6 +19,15 @@ public class TicketPriceView {
 
     //This is the main control view
     public static void ticketPriceView() throws ParseException {
+        /**This method is basically an interface that consist of a menu which would accept an input from the admin based
+         * one the available option which allows the user to set what they want to set. The available options are:
+         * 1. Setting the base price
+         * 2. Setting the movie type charges
+         * 3. Setting the cinema type charges
+         * 4. Setting the charges for different citizen that are different age
+         * 5. Setting public holiday dates/ public holiday & weekend charges
+         * @throws ParseException
+         */
         while (true) {
             TicketPriceMenuView.systemConfigurationMenu();
             try {
@@ -52,6 +61,10 @@ public class TicketPriceView {
     //Movie Type Settings
     //Settings function for different movie type charges
     public static void movieTypeSettings(){
+        /**This method is basically an interface that consist of a menu which would accept an input from the admin based
+         * one the available options. A list of different movie types would be shown here and selecting it would allow
+         * the admin to change the charges for that specific movie type.
+         */
         while (true) {
             movieTypeChargesMenu();   //Display each movie type to set additional charges
             Scanner in = new Scanner(System.in);
@@ -75,6 +88,10 @@ public class TicketPriceView {
     //Cinema Type Settings
     //Settings function for different cinema type charges
     public static void cinemaTypeSettings(){
+        /**This method is basically an interface that consist of a menu which would accept an input from the admin based
+         * one the available options. A list of different cinema types would be shown here and selecting it would allow
+         * the admin to change the charges for that specific cinema type.
+         */
         while (true) {
             cinemaTypeChargesMenu();   //Display each cinema type to set additional charges
             Scanner in = new Scanner(System.in);
@@ -98,6 +115,11 @@ public class TicketPriceView {
     //Age Group Settings
     //Settings function for different age group charges
     public static void citizenCategorySettings(){
+        /**This method is basically an interface that consist of a menu which would accept an input from the admin based
+         * one the available options. A list of categories that applies to different citizen for special discounts would
+         * be shown here and selecting it would allow the admin to change the charges for that specific category. (e.g.
+         * Student Price, Senior Citizen, Child)
+         */
         while (true) {
             citizenCategoryMenu();   //Display each citizen category to set additional charges
             Scanner in = new Scanner(System.in);
@@ -121,6 +143,10 @@ public class TicketPriceView {
     //Public Holiday Settings
     //Settings function for adding public holiday dates
     public static void publicHolidaySettings() throws ParseException {
+        /**This method is basically an interface that consist of a menu which would accept an input from the admin based
+         * one the available options. A list of options would be shown here such as adding public holiday dates and
+         * setting the charges for public holiday and weekend.
+         */
         Scanner in = new Scanner(System.in);
         int opt;
         while (true){

@@ -14,14 +14,23 @@ public enum CinemaType {
     }
 
     public String getName() {
+        /**This method would return the name for the specific movie type
+         * @return               The name for the specific movie type
+         */
         return name;
     }
 
     public double getTicketPrice() {
+        /**This method would return the extra charges for the specific cinema type
+         * @return               The extra charges for the specific cinema type
+         */
         return prices;
     }
 
     public void setTicketPrice(double prices) {
+        /**This method would set the extra charges for the specific cinema type
+         * @param price          The extra charges for the specific cinema type
+         */
         this.prices = prices;
     }
 }
