@@ -32,15 +32,15 @@ public class ShowTime implements Model {
     public ShowTime(Movie movie, LocalDate dateOfMovie, LocalTime timeOfMovie, HashMap<Character, Seat[]> seatLayout,
                     Cineplex cineplex, Cinema cinema, MovieEnums.Language language, MovieEnums.Subtitle subtitle, MovieEnums.MovieType movieType) {
         /**This is a constructor for showtime
-         * @param movie                 The movie of the showtime
-         * @param dateOfMovie           The date of when the movie is showed for that showtime
-         * @param timeOfMovie           The time of when the movie is showed for that showtime
-         * @param seatLayout            The seat layout of the cinema for the showtime
-         * @param cineplex              The cineplex of the showtime
-         * @param cinema                The cinema of the showtime
-         * @param language              The language of the movie for that showtime
-         * @param subtitle              The subtitle of the movie for that showtime
-         * @param movieType             The type of the movie for that showtime
+         * @param movie                     The movie of the showtime
+         * @param dateOfMovie               The date of when the movie is showed for that showtime
+         * @param timeOfMovie               The time of when the movie is showed for that showtime
+         * @param seatLayout                The seat layout of the cinema for the showtime
+         * @param cineplex                  The cineplex of the showtime
+         * @param cinema                    The cinema of the showtime
+         * @param language                  The language of the movie for that showtime
+         * @param subtitle                  The subtitle of the movie for that showtime
+         * @param movieType                 The type of the movie for that showtime
          */
         this.movie = movie;
         this.dateOfMovie = dateOfMovie;
@@ -56,12 +56,12 @@ public class ShowTime implements Model {
     public ShowTime(Movie movie, LocalDate dateOfMovie, LocalTime timeOfMovie, HashMap<Character, Seat[]> seatLayout,
                     Cineplex cineplex, Cinema cinema) {
         /**This is a constructor for showtime
-         * @param movie                 The movie of the showtime
-         * @param dateOfMovie           The date of when the movie is showed for that showtime
-         * @param timeOfMovie           The time of when the movie is showed for that showtime
-         * @param seatLayout            The seat layout of the cinema for the showtime
-         * @param cineplex              The cineplex of the showtime
-         * @param cinema                The cinema of the showtime
+         * @param movie                     The movie of the showtime
+         * @param dateOfMovie               The date of when the movie is showed for that showtime
+         * @param timeOfMovie               The time of when the movie is showed for that showtime
+         * @param seatLayout                The seat layout of the cinema for the showtime
+         * @param cineplex                  The cineplex of the showtime
+         * @param cinema                    The cinema of the showtime
          */
         this.movie = movie;
         this.dateOfMovie = dateOfMovie;
@@ -76,77 +76,77 @@ public class ShowTime implements Model {
 
     public Movie getMovie() {
         /**This method will get and return the movie of the showtime
-         * @return          the movie of the showtime
+         * @return                          the movie of the showtime
          */
         return movie;
     }
 
     public void setMovie(Movie movie) {
         /**This method will set the movie to the showtime
-         * @param movie          the movie of the showtime
+         * @param movie                     the movie of the showtime
          */
         this.movie = movie;
     }
 
     public LocalDate getDateOfMovie() {
         /**This method will get and return the date of the movie of the showtime
-         * @return          the date of the movie for the showtime
+         * @return                          the date of the movie for the showtime
          */
         return dateOfMovie;
     }
 
     public void setDateOfMovie(LocalDate dateOfMovie) {
         /**This method will set the date of the movie of the showtime
-         * @param dateOfMovie          the date of the movie for the showtime
+         * @param dateOfMovie               the date of the movie for the showtime
          */
         this.dateOfMovie = dateOfMovie;
     }
 
     public LocalTime getTimeOfMovie() {
         /**This method will get and return the time of the movie of the showtime
-         * @return          the time of the movie for the showtime
+         * @return                          the time of the movie for the showtime
          */
         return timeOfMovie;
     }
 
     public void setTimeOfMovie(LocalTime timeOfMovie) {
         /**This method will set the time of the movie of the showtime
-         * @param timeOfMovie          the time of the movie for the showtime
+         * @param timeOfMovie               the time of the movie for the showtime
          */
         this.timeOfMovie = timeOfMovie;
     }
 
     public HashMap<Character, Seat[]> getSeatLayout() {
         /**This method will get and return the seat layout of the cinema for the showtime
-         * @return                      the seat layout for the showtime
+         * @return                          the seat layout for the showtime
          */
         return seatLayout;
     }
 
     public void setSeatLayout(HashMap<Character, Seat[]> seatLayout) {
         /**This method will set the seat layout of the cinema for the showtime
-         * @param seatLayout                      the seat layout for the showtime
+         * @param seatLayout                the seat layout for the showtime
          */
         this.seatLayout = seatLayout;
     }
 
     public Cinema getCinema() {
         /**This method will get the cinema of the showtime
-         * @return                  the cinema of the showtime
+         * @return                          the cinema of the showtime
          */
         return cinema;
     }
 
     public void setCinema(Cinema cinema) {
         /**This method will set the cinema of the showtime
-         * @param cinema                  the cinema of the showtime
+         * @param cinema                    the cinema of the showtime
          */
         this.cinema = cinema;
     }
 
     public Cineplex getCineplex() {
         /**This method will get the cineplex of the showtime
-         * @return                  the cineplex of the showtime
+         * @return                          the cineplex of the showtime
          */
         return cineplex;
     }

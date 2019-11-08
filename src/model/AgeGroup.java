@@ -33,7 +33,7 @@ public enum AgeGroup {
 
     public void setTicketPrice(double price){
         /**This method would set the amount of the discount for the specific age group
-         * @param price          The amount of the discount for the specific age group
+         * @param price         The amount of the discount for the specific age group
          */
         this.price = price;
     }

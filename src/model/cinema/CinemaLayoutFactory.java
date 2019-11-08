@@ -9,7 +9,7 @@ public class CinemaLayoutFactory {
 
     public static HashMap<Character, Seat[]> getCinemaLayout(Cinema cinema) {
         /**This method is used to get the cinema layout based on a given cinema
-         * @param cinema        the cinema selected to obtain the seat layout
+         * @param   cinema      the cinema selected to obtain the seat layout
          * @return              the layout of the cinema
          */
         HashMap<Character, Seat[]> layout = new HashMap<>();
@@ -25,9 +25,9 @@ public class CinemaLayoutFactory {
 
     public static HashMap<Character, Seat[]> getCinemaLayout(Cinema cinema, char maxRow, int maxCol) {
         /**This method is used to get the cinema layout based on a given cinema, maximum row and column
-         * @param cinema        the cinema selected to obtain the seat layout
-         * @param maxRow        the maximum number of seats for a row
-         * @param maxCol        the maximum number of seats for a column
+         * @param   cinema      the cinema selected to obtain the seat layout
+         * @param   maxRow      the maximum number of seats for a row
+         * @param   maxCol      the maximum number of seats for a column
          * @return              the layout of the cinema
          */
         HashMap<Character, Seat[]> layout = new HashMap<>();

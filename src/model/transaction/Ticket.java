@@ -26,9 +26,9 @@ public class Ticket implements Model {
 
     public Ticket(Movie movie, MovieEnums.MovieType movieType, CinemaType cinemaType) {
         /**This is the constructor for ticket
-         * @param movie             The movie selected based on the showtime for the ticket
-         * @param movieType         The type of movie selected based on the showtime for the ticket
-         * @param cinemaType        The cinema type selected based on the showtime for the ticket
+         * @param movie                 The movie selected based on the showtime for the ticket
+         * @param movieType             The type of movie selected based on the showtime for the ticket
+         * @param cinemaType            The cinema type selected based on the showtime for the ticket
          */
         this.movie = movie;
         this.movieType = movieType;
@@ -44,9 +44,9 @@ public class Ticket implements Model {
          * 3. The age group (STUDENT, SENIOR CITIZEN, CHILD)
          * 4. Public Holiday
          * 5. Weekends
-         * @param isHoliday         if that selected date is a holiday?
-         * @param isWeekend         if that selected date is a weekend?
-         * @return                  the final price of the ticket after the calculation depending on the given criteria
+         * @param isHoliday             if that selected date is a holiday?
+         * @param isWeekend             if that selected date is a weekend?
+         * @return                      the final price of the ticket after the calculation depending on the given criteria
          */
         double ticketPrice = basePrice;
         ticketPrice += cinemaType.getTicketPrice();
@@ -63,28 +63,28 @@ public class Ticket implements Model {
     public void setAgeGroup(AgeGroup ageGroup){
         /**This method will set which category is the customer based on their age which may provide certain discounts to
          * them if they fall into certain categories such as a student, senior citizen or a child.
-         * @param ageGroup          The category of the customer (STUDENT_PRICE, SENIOR_CITIZEN, CHILD)
+         * @param ageGroup              The category of the customer (STUDENT_PRICE, SENIOR_CITIZEN, CHILD)
          */
         this.ageGroup = ageGroup;
     }
 
     public Movie getMovie() {
         /**This method will return the specific movie of the ticket
-         * @return              the specific movie of the ticket
+         * @return                      the specific movie of the ticket
          */
         return movie;
     }
 
     public MovieEnums.MovieType getMovieType() {
         /**This method will return the type of movie for the ticket
-         * @return              the type of movie for the ticket
+         * @return                      the type of movie for the ticket
          */
         return movieType;
     }
 
     public CinemaType getCinemaType() {
         /**This method will return the type of cinema for the ticket
-         * @return              the type of cinema for the ticket
+         * @return                      the type of cinema for the ticket
          */
         return cinemaType;
     }

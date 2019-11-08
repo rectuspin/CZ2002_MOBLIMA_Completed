@@ -19,7 +19,7 @@ public class MovieEnums implements Model {
 
         public String toString() {
             /**This method would return the description of each movie rating
-             * @return          The description of each movie rating
+             * @return              The description of each movie rating
              */
             return description;
         }
