@@ -116,8 +116,6 @@ public class SerializedDB implements Serializable {
         this.bookings = bookings;
     }
 
-
-=======
     public double getPublicHolidayCharges() {
         /**This method is used to return the extra public holiday charges for a ticket
          * @return The public holiday charges value

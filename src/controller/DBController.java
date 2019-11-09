@@ -201,10 +201,7 @@ public class DBController {
         SerializedDB defaultPrices = (SerializedDB) generalTypePriceDB.get(0);
 
         //Loads all the prices from the data into the system
-        setBasePrice(defaultPrices.getBasePrice());
-        setPublicHolidayCharges(defaultPrices.getPublicHolidayCharges());
-        setPublicHolidayDates(defaultPrices.getPublicHolidayDates());
-        setWeekendCharges(defaultPrices.getWeekendCharges());
+        setAllPrices(defaultPrices.getBasePrice(),defaultPrices.getWeekendCharges(), defaultPrices.getPublicHolidayCharges(),defaultPrices.getPublicHolidayDates());
 
         //Declaration of variable
         int i;

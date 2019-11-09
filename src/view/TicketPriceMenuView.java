@@ -32,57 +32,57 @@ public class TicketPriceMenuView {
             System.out.print("| There is no public holidays currently...             |\n");
         }else {
             for (PublicHoliday publicHoliday : getPublicHolidayDates()) {
-                System.out.format("| %-30s %21s |\n", publicHoliday.getPublicHolidayDate().format(dateFormat),
+                System.out.format("| %-27s | %-22s |\n", publicHoliday.getPublicHolidayDate().format(dateFormat),
                         publicHoliday.getPublicHolidayName());
             }
         }
 
-        System.out.println("========================================================");
-
         if(isBack) {
-            System.out.println("[1 Back]");
+            System.out.println( "|                                                      |");
+            System.out.println( "| (1) Back                                             |");
+            System.out.println( "========================================================");
             if (backOption()) {
                 return;
             }
         }
+        System.out.println( "========================================================");
+
     }
 
     public static void movieTypeChargesMenu(){
         /**This method is a menu that would show a list of different movie type that is added by the admin.
          */
         System.out.print("\n");
-        System.out.print(   "===========================================================\n"+
-                            "|                    Movie Type Charge                    |\n"+
-                            "===========================================================\n");
+        System.out.print(   "===================================================\n"+
+                            "|     Movie Type                  | Extra Charges |\n"+
+                            "===================================================\n");
         int backNo = 0;
         for (int i = 0; i < MovieEnums.MovieType.values().length; i++){
-            System.out.format( "| %-54s  |\n", "(" + (i+1) + ") " + MovieEnums.MovieType.values()[i] +
-                                " (Current Charges: " +
-                                String.format("%.2f", MovieEnums.MovieType.values()[i].getTicketPrice()) + ")");
+            System.out.format( "| %-30s  | %9s     |\n", "(" + (i+1) + ") " + MovieEnums.MovieType.values()[i],
+                                String.format("%.2f", MovieEnums.MovieType.values()[i].getTicketPrice()));
             backNo++;
         }
-        System.out.format("| %-54s  |\n", "(" + (backNo+1) + ") " +
-                            "Back");
-        System.out.print("===========================================================\n");
+
+        System.out.format("| (" + (backNo+1) + ") Back                        |               |\n");
+        System.out.print("===================================================\n");
     }
 
     public static void cinemaTypeChargesMenu(){
         /**This method is a menu that would show a list of different cinema type that is added by the admin.
          */
         System.out.print("\n");
-        System.out.print(   "============================================================\n"+
-                            "|                    Cinema Type Charge                    |\n"+
-                            "============================================================\n");
+        System.out.print(   "===================================================\n"+
+                            "|     Cinema Type                 | Extra Charges |\n"+
+                            "===================================================\n");
         int backNo = 0;
         for (int i = 0; i < CinemaType.values().length; i++){
-            System.out.format( "| %-55s  |\n","(" + (i+1) + ") " + CinemaType.values()[i] +
-                                " (Current Charges: " +
-                                String.format("%.2f", CinemaType.values()[i].getTicketPrice()) + ")");
+            System.out.format( "| %-30s  | %9s     |\n", "(" + (i+1) + ") " + CinemaType.values()[i],
+                    String.format("%.2f", CinemaType.values()[i].getTicketPrice()));
             backNo++;
         }
-        System.out.format("| %-55s  |\n", "(" + (backNo+1) + ") " +
-                "Back");
-        System.out.print("============================================================\n");
+
+        System.out.format("| (" + (backNo+1) + ") Back                        |               |\n");
+        System.out.print("===================================================\n");
     }
 
     public static void citizenCategoryMenu(){
@@ -90,19 +90,18 @@ public class TicketPriceMenuView {
          * citizen age that is added by the admin.
          */
         System.out.print("\n");
-        System.out.print(   "============================================================\n"+
-                            "|                     Citizen Discount                     |\n"+
-                            "============================================================\n");
+        System.out.print(   "===================================================\n"+
+                            "|     Citizen Type                |    Discount   |\n"+
+                            "===================================================\n");
         int backNo = 0;
         for (int i = 1; i < AgeGroup.values().length; i++){
-            System.out.format( "| %-55s  |\n","(" + i + ") " + AgeGroup.values()[i] +
-                    " (Current Discount: " +
-                    String.format("%.2f", AgeGroup.values()[i].getTicketPrice()) + ")");
+            System.out.format( "| %-30s  | %9s     |\n", "(" + (i) + ") " + AgeGroup.values()[i],
+                    String.format("%.2f", AgeGroup.values()[i].getTicketPrice()));
             backNo++;
         }
-        System.out.format("| %-55s  |\n", "(" + (backNo+1) + ") " +
-                "Back");
-        System.out.print("============================================================\n");
+
+        System.out.format("| (" + (backNo+1) + ") Back                        |               |\n");
+        System.out.print("===================================================\n");
     }
 
 
@@ -157,7 +156,7 @@ public class TicketPriceMenuView {
                             "| %-55s |\n" +
                             "| %-55s |\n" +
                             "===========================================================\n",
-                            "(1) Set Base Price (Current Price: " + String.format("%.2f", getBasePrice()) + ")",
+                            "(1) Set Base Price (Current Price: SGD " + String.format("%.2f", getBasePrice()) + ")",
                             "(2) Movie Type Charges",
                             "(3) Cinema Type Charges",
                             "(4) Special Citizen Discount" ,
@@ -184,10 +183,10 @@ public class TicketPriceMenuView {
                     return true;
                 }
                 else{
-                    System.out.println("[System: Invalid Input]");
+                    System.out.println("\n[System: Invalid Input]\n");
                 }
             } catch(Exception e){
-                System.out.println("[System: Invalid Input]");
+                System.out.println("\n[System: Invalid Input]\n");
             }
         }
     }
