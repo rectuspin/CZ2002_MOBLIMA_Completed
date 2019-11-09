@@ -52,10 +52,11 @@ public class SerializedDB implements Serializable {
         return cineplexes;
     }
 
-    public ArrayList<Movie> getMovies() {
+
         /**This method is used to return the movies list
          * @return An array list of movies
          */
+    public ArrayList<Movie> getMovies() {
         return movies;
     }
 
@@ -115,6 +116,8 @@ public class SerializedDB implements Serializable {
         this.bookings = bookings;
     }
 
+
+=======
     public double getPublicHolidayCharges() {
         /**This method is used to return the extra public holiday charges for a ticket
          * @return The public holiday charges value

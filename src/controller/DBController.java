@@ -28,6 +28,14 @@ import static service.TicketPriceService.*;
   - add/get sales
  */
 
+/*This is a DBController (Database Controller) class where it will handle all database related task such as
+  - create, read, update and delete
+  - add/remove cinema
+  - add/remove cineplex
+  - add/remove showtimes
+  - add/get sales
+ */
+
 public class DBController {
     private SerializedDB serializedDB = SerializedDB.getInstance();
     private static DBController dbController = null;
@@ -72,7 +80,7 @@ public class DBController {
     public List readDB(String DBName) throws IOException {
         /**This method is defined to read data from .dat file
          * @param  DBName       The name of the database that wants to be read
-         * @return A list of stored items in the .dat file
+         * @return              A list of stored items in the .dat file
          * @throws IOException  If the file is not found
          */
         String dir = "src/database/";

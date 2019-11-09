@@ -16,6 +16,7 @@ public class TicketPriceService {
     private static double weekendCharges;
     private static double basePrice; //Universal Base Price
 
+  
     public static void setMovieTypeCharges(int opt, double prices) {
         /**This method will set the extra charges for a specific movie type
          * @param opt                  The selected movie type which is given by the user
@@ -107,11 +108,13 @@ public class TicketPriceService {
         return date.format(dateFormat).equals("Sun") || date.format(dateFormat).equals("Sat");
     }
 
+
     public static boolean addPublicHolidayDates(String name, LocalDate date) {
-        /**This method will add the public holiday dates given by the user to the publicHolidayDates list that consist
+         /**This method will add the public holiday dates given by the user to the publicHolidayDates list that consist
          * of all the public holiday dates.
          * @param name                 The name for the public holiday
          * @param date                 The date in the ticket when the movie will show
+
          * @return true if succeed in adding the public holiday date
          * @return false if there is a duplicate date which results in failure of adding the public holiday
          *                             date

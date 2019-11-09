@@ -18,6 +18,7 @@ public enum AgeGroup {
         this.price = price;
     }
 
+
     public String getGroupType() {
         /**This method would return the name for the specific age group
          * @return The name of the specific group type

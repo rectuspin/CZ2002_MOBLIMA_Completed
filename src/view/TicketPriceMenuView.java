@@ -23,9 +23,11 @@ public class TicketPriceMenuView {
         System.out.print("\n");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("EEEE, dd/MM/yyyy");
 
+
         System.out.print("========================================================\n" +
                 "|                 Public Holiday Dates                 |\n" +
                 "========================================================\n");
+
         if (getPublicHolidayDates().size()== 0){
             System.out.print("| There is no public holidays currently...             |\n");
         }else {
@@ -34,7 +36,9 @@ public class TicketPriceMenuView {
                         publicHoliday.getPublicHolidayName());
             }
         }
+
         System.out.println("========================================================");
+
         if(isBack) {
             System.out.println("[1 Back]");
             if (backOption()) {
