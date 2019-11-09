@@ -1,6 +1,7 @@
 package service;
 
 import model.AgeGroup;
+import model.PublicHoliday;
 import model.cinema.CinemaType;
 import model.movie.MovieEnums;
 
@@ -10,7 +11,8 @@ import java.util.ArrayList;
 
 public class TicketPriceService {
 
-    private static ArrayList<LocalDate> publicHolidayDates = new ArrayList<LocalDate>();
+    //private static ArrayList<LocalDate> publicHolidayDates = new ArrayList<LocalDate>();
+    private static ArrayList<PublicHoliday> publicHolidayDates = new ArrayList<PublicHoliday>();
     private static double publicHolidayCharges;
     private static double weekendCharges;
     private static double basePrice; //Universal Base Price
@@ -48,17 +50,18 @@ public class TicketPriceService {
          */
         return publicHolidayCharges; }
 
-    public static void setPublicHolidayDates(ArrayList<LocalDate> publicHolidays){
+    public static void setPublicHolidayDates(ArrayList<PublicHoliday> publicHolidays){
         /**This method will update the public holiday dates
          * @param publicHolidays       An array list containing dates of each public holiday
          */
         publicHolidayDates = publicHolidays; }
 
-    public static ArrayList<LocalDate> getPublicHolidayDates(){
+    public static ArrayList<PublicHoliday> getPublicHolidayDates(){
         /**This method will return an array list of public holiday dates
          * @return                     An array list containing dates of each public holiday
          */
         return publicHolidayDates; }
+
 
     public static void setWeekendCharges(double charges){
         /**This method will set the extra charges during weekends
@@ -98,22 +101,25 @@ public class TicketPriceService {
         return false;
     }
 
-    public static boolean addPublicHolidayDates(LocalDate date){
+    public static boolean addPublicHolidayDates(String name, LocalDate date){
         /**This method will add the public holiday dates given by the user to the publicHolidayDates list that consist
          * of all the public holiday dates.
+         * @param name                 The name for the public holiday
          * @param date                 The date in the ticket when the movie will show
          * @return                     true if succeed in adding the public holiday date
          * @return                     false if there is a duplicate date which results in failure of adding the public holiday
          *                             date
          */
-        for (LocalDate d : publicHolidayDates){
-            if (d.equals(date)){
+        for (PublicHoliday publicHoliday : publicHolidayDates){
+            if (publicHoliday.getPublicHolidayDate().equals(date)){
                 return false;
             }
         }
-        publicHolidayDates.add(date);
+        PublicHoliday publicHoliday = new PublicHoliday(name, date);
+        publicHolidayDates.add(publicHoliday);
         return true;
     }
+
 
     public static boolean removePublicHolidayDates(LocalDate date){
         /**This method will remove the public holiday dates given by the user from the publicHolidayDates list that
@@ -122,24 +128,24 @@ public class TicketPriceService {
          * @return                     true if succeed in removing the public holiday date
          * @return                     false if there is no such date in the publicHolidayDates list
          */
-        for (LocalDate d : publicHolidayDates){
-            if (d.equals(date)){
-                publicHolidayDates.remove(date);
+        for (PublicHoliday publicHoliday : publicHolidayDates){
+            if (publicHoliday.getPublicHolidayDate().equals(date)){
+                publicHolidayDates.remove(publicHoliday);
                 return true;
             }
         }
         return false;
     }
 
-    //Checks if the selected date matches with dates in publicHolidayDates array
+
     public static boolean isHoliday(LocalDate date){
         /**This method will check if the date provided is a holiday.
          * @param date                 The date in the ticket when the movie will show
          * @return                     true if it is a public holiday
          * @return                     false if it is not a public holiday
          */
-        for (LocalDate d : publicHolidayDates){
-            if (date.equals(d)){
+        for (PublicHoliday publicHoliday : publicHolidayDates){
+            if (date.equals(publicHoliday.getPublicHolidayDate())){
                 return true;
             }
         }

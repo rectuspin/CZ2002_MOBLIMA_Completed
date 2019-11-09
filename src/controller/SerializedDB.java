@@ -1,5 +1,6 @@
 package controller;
 
+import model.PublicHoliday;
 import model.account.Admin;
 import model.account.Customer;
 import model.cinema.Cineplex;
@@ -27,7 +28,7 @@ public class SerializedDB implements Serializable {
     private ArrayList<Admin> admins;
     private ArrayList<Customer> customers;
     private ArrayList<Booking> bookings;
-    private ArrayList<LocalDate> publicHolidayDates;
+    private ArrayList<PublicHoliday> publicHolidayDates;
     private HashMap<String, Integer> sales;
     private double publicHolidayCharges;
     private double weekendCharges;
@@ -134,13 +135,13 @@ public class SerializedDB implements Serializable {
          */
         return basePrice; }
 
-    public ArrayList<LocalDate> getPublicHolidayDates(){
+    public ArrayList<PublicHoliday> getPublicHolidayDates(){
         /**This method is used to return the list of public holiday dates
          * @return              An array list of public holiday dates
          */
         return publicHolidayDates; }
 
-    public void setTicketPricing(ArrayList<LocalDate> publicHolidayDates, double publicHolidayCharges, double weekendCharges, double basePrice){
+    public void setTicketPricing(ArrayList<PublicHoliday> publicHolidayDates, double publicHolidayCharges, double weekendCharges, double basePrice){
         /**This methods will set the public holiday and weekend charges. It would also set the base price and the public
          * holiday dates with an array list.
          * @param publicHolidayDates        The array list containing the public holiday dates

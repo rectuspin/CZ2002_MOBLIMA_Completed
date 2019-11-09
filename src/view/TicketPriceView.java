@@ -35,7 +35,8 @@ public class TicketPriceView {
                 Scanner in = new Scanner(System.in);
                 int opt = in.nextInt();
                 if (opt == 1){
-                    System.out.print("Please input a base price: ");
+                    System.out.println("> Set Base Price: ");
+                    System.out.print("   Enter Price: ");
                     double price = in.nextDouble();
                     setBasePrice(price);
                 }
@@ -71,7 +72,8 @@ public class TicketPriceView {
             System.out.print("Option: ");
             int opt = in.nextInt();   //Select an option of which movie type to be selected
             if (0 < opt && opt <= MovieEnums.MovieType.values().length) {
-                System.out.print("Extra Charges Amount: ");
+                System.out.println("> Movie Type Charges: " + MovieEnums.MovieType.values()[opt-1]);
+                System.out.print("   New Charges: ");
                 double charges = in.nextDouble();   //Input the amount for the extra charges
                 setMovieTypeCharges(opt, charges);   //Sets the charges for each movie type
                 System.out.println("[System: Movie Type Charges Set Successfully]");
@@ -98,7 +100,8 @@ public class TicketPriceView {
             System.out.print("Option: ");
             int opt = in.nextInt();   //Select an option of which cinema type to be selected
             if (0 < opt && opt <= CinemaType.values().length) {
-                System.out.print("Extra Charges Amount: ");
+                System.out.println("> Cinema Type Charges: " + CinemaType.values()[opt-1]);
+                System.out.print("   New Charges: ");
                 double charges = in.nextDouble();   //Input the amount for the extra charges
                 setCinemaTypeCharges(opt, charges);   //Sets the charges for each cinema type
                 System.out.println("[System: Cinema Type Charges Set Successfully]");
@@ -126,7 +129,8 @@ public class TicketPriceView {
             System.out.print("Option: ");
             int opt = in.nextInt();   //Select an option of which  citizen category to be selected
             if (0 < opt && opt <= AgeGroup.values().length-1) {
-                System.out.print("Discount Amount: ");
+                System.out.println("> Special Citizen Discount: " + AgeGroup.values()[opt]);
+                System.out.print("   Discount Amount: ");
                 double discount = in.nextDouble();   //Input the amount for the extra charges
                 setAgeGroupCharges(opt, discount);   //Sets the charges for each citizen category
                 System.out.println("[System: Special Citizen Discounts Set Successfully]");
@@ -159,11 +163,14 @@ public class TicketPriceView {
             else if (opt == 2){
                 //Takes date as a string input
                 try {
-                    System.out.print("Please input a date to add(e.g. DD/MM/YYYY): ");
+                    System.out.println("> Add a Public Holiday");
+                    System.out.print("   Public Holiday's title: ");
+                    String name = in.next();
+                    System.out.print("   Public Holiday's date (e.g. DD/MM/YYYY): ");
                     String Date = in.next();
                     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate date = LocalDate.parse(Date, dateFormat);            //Adds the date into the array for reference
-                    if (addPublicHolidayDates(date)){
+                    if (addPublicHolidayDates(name, date)){
                         System.out.println("[System: Public Holiday has been added!]");
                     }else{
                         System.out.println("[System: Duplicated Date detected!]");
@@ -176,7 +183,8 @@ public class TicketPriceView {
             else if (opt == 3){
                 try {
                     TicketPriceMenuView.publicHolidayList(false);
-                    System.out.print("Please input a date to remove (e.g. DD/MM/YYYY): ");
+                    System.out.println("> Remove a Public Holiday");
+                    System.out.print("   Public Holiday's date (e.g. DD/MM/YYYY): ");
                     String Date = in.next();
                     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate date = LocalDate.parse(Date, dateFormat);            //Adds the date into the array for reference
@@ -191,15 +199,15 @@ public class TicketPriceView {
                 }
             }
             else if (opt == 4){
-                System.out.println("Current Charges Amount: " + String.format("%.2f", getPublicHolidayCharges()));
-                System.out.print("Extra Charges Amount: ");
+                System.out.println("> Set Public Holiday Charges [Current Charges: " + String.format("%.2f", getPublicHolidayCharges())+ "]");
+                System.out.print("   New Charges: ");
                 double charges = in.nextDouble();
                 setPublicHolidayCharges(charges);
                 System.out.println("[System: Public Holiday Charges Set Successfully]");
             }
             else if (opt == 5){
-                System.out.println("Current Charges Amount: " + String.format("%.2f", getWeekendCharges()));
-                System.out.print("Extra Charges Amount: ");
+                System.out.println("> Set Weekend Charges [Current Charges: " + String.format("%.2f", getWeekendCharges())+ "]");
+                System.out.print("   New Charges: ");
                 double charges = in.nextDouble();
                 setWeekendCharges(charges);
                 System.out.println("[System: Weekend Charges Set Successfully]");

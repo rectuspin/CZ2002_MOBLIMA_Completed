@@ -1,6 +1,7 @@
 package view;
 
 import model.AgeGroup;
+import model.PublicHoliday;
 import model.cinema.CinemaType;
 import model.movie.MovieEnums;
 
@@ -24,17 +25,18 @@ public class TicketPriceMenuView {
         System.out.print("\n");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("EEEE, dd/MM/yyyy");
 
-        System.out.print(   "==================================================\n"+
-                            "|              Public Holiday Dates              |\n"+
-                            "==================================================\n");
+        System.out.print(   "========================================================\n"+
+                            "|                 Public Holiday Dates                 |\n"+
+                            "========================================================\n");
         if (getPublicHolidayDates().size()== 0){
-            System.out.print("| There is no public holidays currently...       |\n");
+            System.out.print("| There is no public holidays currently...             |\n");
         }else {
-            for (LocalDate d : getPublicHolidayDates()) {
-                System.out.format("| " + d.format(dateFormat) + "%28s\n", "|");
+            for (PublicHoliday publicHoliday : getPublicHolidayDates()) {
+                System.out.format("| %-30s %21s |\n", publicHoliday.getPublicHolidayDate().format(dateFormat),
+                        publicHoliday.getPublicHolidayName());
             }
         }
-        System.out.println( "==================================================");
+        System.out.println( "========================================================");
         if(isBack) {
             System.out.println("[1 Back]");
             if (backOption()) {
