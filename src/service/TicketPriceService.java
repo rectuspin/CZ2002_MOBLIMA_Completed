@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class TicketPriceService {
 
-    //private static ArrayList<LocalDate> publicHolidayDates = new ArrayList<LocalDate>();
     private static ArrayList<PublicHoliday> publicHolidayDates = new ArrayList<PublicHoliday>();
     private static double publicHolidayCharges;
     private static double weekendCharges;
@@ -87,7 +86,6 @@ public class TicketPriceService {
          */
         return basePrice; }
 
-    //Checks if the selected day matches with given date
     public static boolean isWeekend(LocalDate date){
         /**This method will determine if the provided day is a weekend and returns true if it is
          * @param date                 The date in the ticket when the movie will show
@@ -136,7 +134,6 @@ public class TicketPriceService {
         }
         return false;
     }
-
 
     public static boolean isHoliday(LocalDate date){
         /**This method will check if the date provided is a holiday.

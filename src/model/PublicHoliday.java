@@ -1,7 +1,5 @@
 package model;
 
-import controller.SerializedDB;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
