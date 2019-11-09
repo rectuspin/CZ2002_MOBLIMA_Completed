@@ -19,10 +19,6 @@ public class Movie implements Model {
     private Float overallRating = null;
     private ArrayList<Review> reviews;
 
-    //
-    public Movie(){}
-    //
-
     public Movie(String title, String director, ArrayList<String> cast, String synopsis) {
         //this.uuid = UUID.fromString(title); Error in this code
         this.title = title;

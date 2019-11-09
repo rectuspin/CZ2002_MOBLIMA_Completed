@@ -29,17 +29,6 @@ public class ShowTime implements Model {
 
     private MovieEnums.MovieType movieType;
 
-
-    //
-        public ShowTime(){}
-    //Remove on final (Just for testing purposes!)
-    public ShowTime(Movie movie, Cinema cinema, Cineplex cineplex){
-        this.movie = movie;
-        this.movieType = MovieEnums.MovieType.DIGITAL;
-        this.cinema = cinema;
-        this.cineplex = cineplex;
-    }// Just for testing will be removed!
-
     public ShowTime(Movie movie, LocalDate dateOfMovie, LocalTime timeOfMovie, HashMap<Character, Seat[]> seatLayout,
                     Cineplex cineplex, Cinema cinema, MovieEnums.Language language, MovieEnums.Subtitle subtitle, MovieEnums.MovieType movieType) {
         /**This is a constructor for showtime
