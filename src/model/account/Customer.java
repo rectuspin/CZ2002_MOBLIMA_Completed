@@ -29,21 +29,21 @@ public class Customer implements Model {
 
     public String getCustomerName() {
         /**This method will get and return the customer's name
-         * @return              The name of the customer
+         * @return The name of the customer
          */
         return customerName;
     }
 
     public String getEmail() {
         /**This method will get and return the customer's email
-         * @return              The email of the customer
+         * @return The email of the customer
          */
         return email;
     }
 
     public int getMobileNumber() {
         /**This method will get and return the customer's mobile number
-         * @return              The mobile number of the customer
+         * @return The mobile number of the customer
          */
         return mobileNumber;
     }

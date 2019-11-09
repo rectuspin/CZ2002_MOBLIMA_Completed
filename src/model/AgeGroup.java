@@ -18,15 +18,17 @@ public enum AgeGroup {
         this.price = price;
     }
 
-    public String getGroupType(){
+
+    public String getGroupType() {
         /**This method would return the name for the specific age group
-         * @return              The name of the specific group type
+         * @return The name of the specific group type
          */
-        return this.groupType; }
+        return this.groupType;
+    }
 
     public double getTicketPrice(){
         /**This method would return the amount of the discount for the specific age group
-         * @return              The amount of the discount for the specific age group
+         * @return The amount of the discount for the specific age group
          */
         return this.price;
     }

@@ -34,7 +34,7 @@ public class Ticket implements Model {
         this.movieType = movieType;
         this.cinemaType = cinemaType;
         this.basePrice = getBasePrice();
-        this.ageGroup = ageGroup.STANDARD;
+        this.ageGroup = AgeGroup.STANDARD;
     }
 
     public double getTicketCharges(boolean isHoliday, boolean isWeekend) {
@@ -46,7 +46,7 @@ public class Ticket implements Model {
          * 5. Weekends
          * @param isHoliday             if that selected date is a holiday?
          * @param isWeekend             if that selected date is a weekend?
-         * @return                      the final price of the ticket after the calculation depending on the given criteria
+         * @return the final price of the ticket after the calculation depending on the given criteria
          */
         double ticketPrice = basePrice;
         ticketPrice += cinemaType.getTicketPrice();
@@ -70,21 +70,21 @@ public class Ticket implements Model {
 
     public Movie getMovie() {
         /**This method will return the specific movie of the ticket
-         * @return                      the specific movie of the ticket
+         * @return the specific movie of the ticket
          */
         return movie;
     }
 
     public MovieEnums.MovieType getMovieType() {
         /**This method will return the type of movie for the ticket
-         * @return                      the type of movie for the ticket
+         * @return the type of movie for the ticket
          */
         return movieType;
     }
 
     public CinemaType getCinemaType() {
         /**This method will return the type of cinema for the ticket
-         * @return                      the type of cinema for the ticket
+         * @return the type of cinema for the ticket
          */
         return cinemaType;
     }

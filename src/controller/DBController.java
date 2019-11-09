@@ -19,7 +19,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import static service.TicketPriceService.*;
-import static service.TicketPriceService.setWeekendCharges;
+
+/*This is a DBController (Database Controller) class where it will handle all database related task such as
+  - create, read, update and delete
+  - add/remove cinema
+  - add/remove cineplex
+  - add/remove showtimes
+  - add/get sales
+ */
 
 /*This is a DBController (Database Controller) class where it will handle all database related task such as
   - create, read, update and delete
@@ -90,7 +97,7 @@ public class DBController {
 
     public HashMap<String, Cineplex> getCineplexes() {
         /**This method is defined to get the array of stored cineplex
-         * @return     An array of cineplex from the database
+         * @return An array of cineplex from the database
          */
         return serializedDB.getCineplexes();
     }
@@ -169,7 +176,7 @@ public class DBController {
     public static DBController getInstance()
     {
         /**This method is to return an instance of its own
-         * @return:    An instance of DBController
+         * @return: An instance of DBController
          */
         if (dbController == null)
             dbController = new DBController();
@@ -271,7 +278,7 @@ public class DBController {
 
     public HashMap<String, Integer> getSales(){
         /**This method is defined to get the array of the sales
-         * @return      An array list of sales for each movie
+         * @return An array list of sales for each movie
          */
         return serializedDB.getSales();
     }
@@ -279,7 +286,7 @@ public class DBController {
     public Integer getSalesFigure(String movieName){
         /**This method is defined to get the sales for a given movie
          * @param movieName  the movie name used to get the number of sales
-         * @return:           the number of sales for the specified movie
+         * @return: the number of sales for the specified movie
          */
         return serializedDB.getSalesFigure(movieName);
     }

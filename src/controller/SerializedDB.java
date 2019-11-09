@@ -8,8 +8,6 @@ import model.movie.Movie;
 import model.transaction.Booking;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -49,15 +47,16 @@ public class SerializedDB implements Serializable {
 
     public HashMap<String, Cineplex> getCineplexes() {
         /**This method is used to return the cineplexes list
-         * @return              An array list of cineplexes
+         * @return An array list of cineplexes
          */
         return cineplexes;
     }
 
-    public ArrayList<Movie> getMovies(){
+
         /**This method is used to return the movies list
-         * @return              An array list of movies
+         * @return An array list of movies
          */
+    public ArrayList<Movie> getMovies() {
         return movies;
     }
 
@@ -77,7 +76,7 @@ public class SerializedDB implements Serializable {
 
     protected ArrayList<Admin> getAdmins() {
         /**This method is used to return the admin list
-         * @return              An array list containing a list of admin would be returned
+         * @return An array list containing a list of admin would be returned
          */
         return admins;
     }
@@ -91,7 +90,7 @@ public class SerializedDB implements Serializable {
 
     protected ArrayList<Customer> getCustomers() {
         /**This method is used to return the list of customer
-         * @return              An array list containing a list of customers would be returned
+         * @return An array list containing a list of customers would be returned
          */
         return customers;
     }
@@ -105,7 +104,7 @@ public class SerializedDB implements Serializable {
 
     protected ArrayList<Booking> getBookings() {
         /**This method is used to get the list of bookings
-         * @return              An array list containing a list of bookings would be returned
+         * @return An array list containing a list of bookings would be returned
          */
         return bookings;
     }
@@ -117,31 +116,37 @@ public class SerializedDB implements Serializable {
         this.bookings = bookings;
     }
 
-    public double getPublicHolidayCharges(){
+
+=======
+    public double getPublicHolidayCharges() {
         /**This method is used to return the extra public holiday charges for a ticket
-         * @return              The public holiday charges value
+         * @return The public holiday charges value
          */
-        return publicHolidayCharges; }
+        return publicHolidayCharges;
+    }
 
-    public double getWeekendCharges(){
+    public double getWeekendCharges() {
         /**This method is used to return the extra weekend charges for a ticket
-         * @return              The weekend charges value
+         * @return The weekend charges value
          */
-        return weekendCharges;}
+        return weekendCharges;
+    }
 
-    public double getBasePrice(){
+    public double getBasePrice() {
         /**This method is used to return the base price of the ticket
-         * @return              The base price value
+         * @return The base price value
          */
-        return basePrice; }
+        return basePrice;
+    }
 
-    public ArrayList<PublicHoliday> getPublicHolidayDates(){
+    public ArrayList<PublicHoliday> getPublicHolidayDates() {
         /**This method is used to return the list of public holiday dates
-         * @return              An array list of public holiday dates
+         * @return An array list of public holiday dates
          */
-        return publicHolidayDates; }
+        return publicHolidayDates;
+    }
 
-    public void setTicketPricing(ArrayList<PublicHoliday> publicHolidayDates, double publicHolidayCharges, double weekendCharges, double basePrice){
+    public void setTicketPricing(ArrayList<PublicHoliday> publicHolidayDates, double publicHolidayCharges, double weekendCharges, double basePrice) {
         /**This methods will set the public holiday and weekend charges. It would also set the base price and the public
          * holiday dates with an array list.
          * @param publicHolidayDates        The array list containing the public holiday dates
@@ -158,7 +163,7 @@ public class SerializedDB implements Serializable {
     public static SerializedDB getInstance()
     {
         /**This method is to return an instance of its own
-         * @return:             An instance of SerializedDB
+         * @return: An instance of SerializedDB
          */
         if (serializedDB == null)
             serializedDB = new SerializedDB();
@@ -176,7 +181,7 @@ public class SerializedDB implements Serializable {
 
     public HashMap<String, Integer> getSales(){
         /**This method is defined to get the array of the sales
-         * @return              An array list of sales for each movie
+         * @return An array list of sales for each movie
          */
         return sales;
     }
@@ -184,7 +189,7 @@ public class SerializedDB implements Serializable {
     public Integer getSalesFigure(String movieName){
         /**This method is defined to get the sales for a given movie
          * @param   movieName   the movie name used to get the number of sales
-         * @return:             the number of sales for the specified movie
+         * @return: the number of sales for the specified movie
          */
         return sales.get(movieName);
     }

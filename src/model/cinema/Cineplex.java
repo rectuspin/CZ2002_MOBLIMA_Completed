@@ -22,7 +22,7 @@ public class Cineplex implements Model {
 
     public String getName() {
         /**This method would return the name of the cineplex
-         * @return              The name of the cineplex
+         * @return The name of the cineplex
          */
         return name;
     }
@@ -36,7 +36,7 @@ public class Cineplex implements Model {
 
     public ArrayList<Cinema> getCinemas() {
         /**This method would return the list of cinemas
-         * @return              The array list consisting the list of cinemas
+         * @return The array list consisting the list of cinemas
          */
         return cinemas;
     }
@@ -50,7 +50,7 @@ public class Cineplex implements Model {
 
     public HashMap<LocalDate, ArrayList<ShowTime>> getShowTimes() {
         /**This method is defined to get and return the showtime that are set and configured by the admin
-         * @return              The list of showtime for different movies
+         * @return The list of showtime for different movies
          */
         return showTimes;
     }

@@ -76,7 +76,7 @@ public class ShowTime implements Model {
 
     public Movie getMovie() {
         /**This method will get and return the movie of the showtime
-         * @return                          the movie of the showtime
+         * @return the movie of the showtime
          */
         return movie;
     }
@@ -90,7 +90,7 @@ public class ShowTime implements Model {
 
     public LocalDate getDateOfMovie() {
         /**This method will get and return the date of the movie of the showtime
-         * @return                          the date of the movie for the showtime
+         * @return the date of the movie for the showtime
          */
         return dateOfMovie;
     }
@@ -104,7 +104,7 @@ public class ShowTime implements Model {
 
     public LocalTime getTimeOfMovie() {
         /**This method will get and return the time of the movie of the showtime
-         * @return                          the time of the movie for the showtime
+         * @return the time of the movie for the showtime
          */
         return timeOfMovie;
     }
@@ -118,7 +118,7 @@ public class ShowTime implements Model {
 
     public HashMap<Character, Seat[]> getSeatLayout() {
         /**This method will get and return the seat layout of the cinema for the showtime
-         * @return                          the seat layout for the showtime
+         * @return the seat layout for the showtime
          */
         return seatLayout;
     }
@@ -132,7 +132,7 @@ public class ShowTime implements Model {
 
     public Cinema getCinema() {
         /**This method will get the cinema of the showtime
-         * @return                          the cinema of the showtime
+         * @return the cinema of the showtime
          */
         return cinema;
     }
@@ -146,7 +146,7 @@ public class ShowTime implements Model {
 
     public Cineplex getCineplex() {
         /**This method will get the cineplex of the showtime
-         * @return                          the cineplex of the showtime
+         * @return the cineplex of the showtime
          */
         return cineplex;
     }
@@ -160,7 +160,7 @@ public class ShowTime implements Model {
 
     public MovieEnums.Language getLanguage() {
         /**This method will get and return the language of the movie for the showtime
-         * @return                          the language of the movie that is shown in the specific showtime
+         * @return the language of the movie that is shown in the specific showtime
          */
         return language;
     }
@@ -174,7 +174,7 @@ public class ShowTime implements Model {
 
     public MovieEnums.Subtitle getSubtitle() {
         /**This method will get and return the subtitle of the movie for the showtime
-         * @return                          the subtitle of the movie that is shown in the specific showtime
+         * @return the subtitle of the movie that is shown in the specific showtime
          */
         return subtitle;
     }
@@ -188,7 +188,7 @@ public class ShowTime implements Model {
 
     public MovieEnums.MovieType getMovieType() {
         /**This method will get the type of movie for the showtime
-         * @return                          the type of movie for the showtime
+         * @return the type of movie for the showtime
          */
         return movieType;
     }
@@ -203,7 +203,7 @@ public class ShowTime implements Model {
     @Override
     public String toString() {
         /**This method will return the format of how the showtime will be displayed
-         * @return                          the format of how the details of the showtime will be displayed
+         * @return the format of how the details of the showtime will be displayed
          */
         return "ShowTime{" +
                 "movie=" + movie +
