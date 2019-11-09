@@ -15,14 +15,14 @@ public enum CinemaType {
 
     public String getName() {
         /**This method would return the name for the specific movie type
-         * @return               The name for the specific movie type
+         * @return The name for the specific movie type
          */
         return name;
     }
 
     public double getTicketPrice() {
         /**This method would return the extra charges for the specific cinema type
-         * @return               The extra charges for the specific cinema type
+         * @return The extra charges for the specific cinema type
          */
         return prices;
     }

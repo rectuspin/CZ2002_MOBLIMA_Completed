@@ -9,7 +9,7 @@ public class SerializeDB {
         /**This is a method used to read a serialized object from .dat file. It will read the data based on the given
          * file name.
          * @param   filename    The file name of the .dat database to be loaded into the application
-         * @return              The data that was written into the .dat database
+         * @return The data that was written into the .dat database
          */
         List pDetails = null;
         FileInputStream fis = null;

@@ -22,15 +22,15 @@ public class Seat implements Model {
 
     public String toString() {
         /**This method will return a string that is formatted to show if the seat is occupied or not occupied
-         * @return              A string formatted that shows if a seat is occupied or unoccupied
+         * @return A string formatted that shows if a seat is occupied or unoccupied
          */
         return isOccupied ? "[X]" : "[ ]";
     }
 
     public boolean makeBooking() {
         /**This method will change the status of the seat to occupied where it means that the seat has been booked
-         * @return              true if the selected seat is unoccupied
-         * @return              false id the selected seat is occupied already
+         * @return true if the selected seat is unoccupied
+         * @return false id the selected seat is occupied already
          */
         if (!isOccupied) {
             isOccupied = true;
@@ -42,8 +42,8 @@ public class Seat implements Model {
     public boolean cancelBooking() {
         /**This method will change the status of the seat to unoccupied where it means that the booked seat has been
          * cancelled
-         * @return              true if the selected seat is occupied
-         * @return              false id the selected seat is unoccupied
+         * @return true if the selected seat is occupied
+         * @return false id the selected seat is unoccupied
          */
         if (isOccupied) {
             isOccupied = false;

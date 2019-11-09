@@ -19,7 +19,7 @@ public class MovieEnums implements Model {
 
         public String toString() {
             /**This method would return the description of each movie rating
-             * @return              The description of each movie rating
+             * @return The description of each movie rating
              */
             return description;
         }
@@ -55,7 +55,7 @@ public class MovieEnums implements Model {
 
         public double getTicketPrice() {
             /**This method would return the extra charges for the specific movie type
-             * @return               The extra charges for the specific movie type
+             * @return The extra charges for the specific movie type
              */
             return prices;
         }

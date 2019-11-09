@@ -68,7 +68,7 @@ public class Booking implements Model {
 
     public ArrayList<Ticket> getTickets() {
         /**This method will return a list of tickets that was selected in the booking
-         * @return                            An array list of tickets
+         * @return An array list of tickets
          */
         return tickets;
     }
@@ -77,7 +77,7 @@ public class Booking implements Model {
         /**This method will get the total price of the booking based on the number of tickets and the price of each
          * ticket
          * @param date                        The date when the booking is made
-         * @return                            The total price of the booking
+         * @return The total price of the booking
          */
         price = 0;
         for (Ticket ticket : tickets) {
@@ -87,7 +87,7 @@ public class Booking implements Model {
     }
     public LocalDate getDateOfBooking() {
         /**This method will return the date of the booking
-         * @return                            The date when the booking is made
+         * @return The date when the booking is made
          */
         return dateOfBooking;
     }
@@ -101,7 +101,7 @@ public class Booking implements Model {
 
     public LocalTime getTimeOfBooking() {
         /**This method will return the date of booking
-         * @return                            The time when the booking is made
+         * @return The time when the booking is made
          */
         return timeOfBooking;
     }
@@ -115,7 +115,7 @@ public class Booking implements Model {
 
     public Cineplex getCineplex() {
         /**This method will return the cineplex of the specific booking
-         * @return                            The cineplex where the movie is shown for the booking
+         * @return The cineplex where the movie is shown for the booking
          */
         return cineplex;
     }
@@ -129,7 +129,7 @@ public class Booking implements Model {
 
     public Cinema getCinema() {
         /**This method will get the cinema of the movie for that specific booking
-         * @return                            The cinema where the movie is showed
+         * @return The cinema where the movie is showed
          */
         return cinema;
     }
@@ -157,7 +157,7 @@ public class Booking implements Model {
 
     public Seat[] getSeats() {
         /**This method will return the seats for the booking
-         * @return                            The seats of the cinema
+         * @return The seats of the cinema
          */
         return seats;
     }
@@ -169,10 +169,11 @@ public class Booking implements Model {
         this.seats = seats;
     }
 
-    public String getTransactionID(){
+    public String getTransactionID() {
         /**This method will return the transaction ID of the booking
          * @param transactionID               The transaction ID of the booking
          */
-        return transactionID;}
+        return transactionID;
+    }
 
 }

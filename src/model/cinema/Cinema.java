@@ -42,7 +42,7 @@ public class Cinema implements Model {
 
     public String getName() {
         /**This method will return the name of the cinema
-         * @return              The name of the cinema
+         * @return The name of the cinema
          */
         return name;
     }
@@ -63,35 +63,35 @@ public class Cinema implements Model {
 
     public HashMap<Character, Seat[]> copyCinemaLayout() {
         /**This method will clone the layout of the cinema
-         * @return              The clone version of the cinema layout
+         * @return The clone version of the cinema layout
          */
         return (HashMap<Character, Seat[]>) (cinemaLayout.clone());
     }
 
     public HashMap<Character, Seat[]> getCinemaLayout() {
         /**This method will return the layout of the cinema
-         * @return              The cinema layout
+         * @return The cinema layout
          */
         return cinemaLayout;
     }
 
     public char getMaxRow() {
         /**This method will return the maximum row of a cinema
-         * @return              The maximum row number in the cinema
+         * @return The maximum row number in the cinema
          */
         return maxRow;
     }
 
     public int getMaxCol() {
         /**This method will return the maximum column of a cinema
-         * @return              The maximum column number in the cinema
+         * @return The maximum column number in the cinema
          */
         return maxCol;
     }
 
     public CinemaType getCinemaType() {
         /**This method will return the type of cinema
-         * @return              The type of cinema
+         * @return The type of cinema
          */
         return cinemaType;
     }
@@ -106,7 +106,7 @@ public class Cinema implements Model {
     @Override
     public String toString() {
         /**This method will return the format of how the cinema should be printed out
-         * @return              The format of printing the cinema information
+         * @return The format of printing the cinema information
          */
         return "Cinema{" +
                 "name='" + name + '\'' +
