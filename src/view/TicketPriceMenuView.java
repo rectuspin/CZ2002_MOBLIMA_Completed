@@ -5,8 +5,6 @@ import model.PublicHoliday;
 import model.cinema.CinemaType;
 import model.movie.MovieEnums;
 
-
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -25,9 +23,11 @@ public class TicketPriceMenuView {
         System.out.print("\n");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("EEEE, dd/MM/yyyy");
 
-        System.out.print(   "========================================================\n"+
-                            "|                 Public Holiday Dates                 |\n"+
-                            "========================================================\n");
+
+        System.out.print("========================================================\n" +
+                "|                 Public Holiday Dates                 |\n" +
+                "========================================================\n");
+
         if (getPublicHolidayDates().size()== 0){
             System.out.print("| There is no public holidays currently...             |\n");
         }else {
@@ -36,6 +36,7 @@ public class TicketPriceMenuView {
                         publicHoliday.getPublicHolidayName());
             }
         }
+
         if(isBack) {
             System.out.println( "|                                                      |");
             System.out.println( "| (1) Back                                             |");
@@ -169,8 +170,8 @@ public class TicketPriceMenuView {
         /**This method is used to allow the menu to go back to the previous interface. It would ask the user if they
          * would like to go back and if an invalid input is provided it will keep asking the user for the correct input
          * and an error message would be shown
-         * @return              true if user inputted 1
-         * @return              false if user inputted something other than 1
+         * @return true if user inputted 1
+         * @return false if user inputted something other than 1
          */
         int opt;
         while (true) {

@@ -4,12 +4,10 @@ import model.AgeGroup;
 import model.cinema.CinemaType;
 import model.movie.MovieEnums;
 
-
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-
 
 import static service.TicketPriceService.*;
 import static view.TicketPriceMenuView.*;
