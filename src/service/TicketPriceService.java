@@ -16,32 +16,69 @@ public class TicketPriceService {
     private static double weekendCharges;
     private static double basePrice; //Universal Base Price
 
-    public static void setMovieTypeCharges(int opt, double prices){
+    public static void setAllPrices(double price, double weekendCharge, double publicHolidayCharge, ArrayList<PublicHoliday> publicHolidayDate){
+        /**This method will set all the prices during startup of the application
+         * @param price                 the base price of the ticket
+         * @param weekendCharge         the extra charges during the weekends
+         * @param publicHolidayCharge   the extra charges during public holidays
+         * @param publicHolidayDate     the list of dates of each public holiday
+         */
+        publicHolidayDates = publicHolidayDate;
+        publicHolidayCharges = publicHolidayCharge;
+        weekendCharges = weekendCharge;
+        basePrice = price;
+    }
+
+    public static void setMovieTypeCharges(int opt, double prices) {
         /**This method will set the extra charges for a specific movie type
          * @param opt                  The selected movie type which is given by the user
          * @param prices               The charges for the specific movie type
          */
-        MovieEnums.MovieType.values()[opt-1].setTicketPrice(prices); }
+        if (prices < 0) {
+            System.out.println("[System: Negative Input Detected!]");
+        } else {
+            MovieEnums.MovieType.values()[opt - 1].setTicketPrice(prices);
+            System.out.println("[System: Movie Type Charges Set Successfully]");
+        }
+    }
 
-    public static void setCinemaTypeCharges(int opt, double prices){
+    public static void setCinemaTypeCharges(int opt, double prices) {
         /**This method will set the extra charges for a specific cinema type
          * @param opt                  The selected cinema type which is given by the user
          * @param prices               The charges for the specific cinema type
          */
-        CinemaType.values()[opt-1].setTicketPrice(prices); }
+        if (prices < 0) {
+            System.out.println("[System: Negative Input Detected!]");
+        } else {
+            CinemaType.values()[opt - 1].setTicketPrice(prices);
+            System.out.println("[System: Cinema Type Charges Set Successfully]");
+        }
+    }
 
-    public static void setAgeGroupCharges(int opt, double prices){
+    public static void setAgeGroupCharges(int opt, double prices) {
         /**This method will set the discounts for a specific age group
          * @param opt                  The selected age group which is given by the user
          * @param prices               The discount for the specific age group
          */
-        AgeGroup.values()[opt].setTicketPrice(prices);}
+        if (prices < 0) {
+            System.out.println("[System: Negative Input Detected!]");
+        } else {
+            AgeGroup.values()[opt].setTicketPrice(prices);
+            System.out.println("[System: Special Citizen Discounts Set Successfully]");
+        }
+    }
 
-    public static void setPublicHolidayCharges(double charges){
+    public static void setPublicHolidayCharges(double charges) {
         /**This method will set the extra charges during public holiday
          * @param charges              The extra charges during public holiday
          */
-        publicHolidayCharges = charges; }
+        if (charges < 0) {
+            System.out.println("[System: Negative Input Detected!]");
+        } else {
+            publicHolidayCharges = charges;
+            System.out.println("[System: Public Holiday Charges Set Successfully]");
+        }
+    }
 
     public static double getPublicHolidayCharges(){
         /**This method will return the extra charges during public holidays
@@ -62,11 +99,17 @@ public class TicketPriceService {
         return publicHolidayDates; }
 
 
-    public static void setWeekendCharges(double charges){
+    public static void setWeekendCharges(double charges) {
         /**This method will set the extra charges during weekends
          * @param charges              The extra charges that occurs during weekends
          */
-        weekendCharges = charges; }
+        if (charges < 0) {
+            System.out.println("[System: Negative Input Detected!]");
+        } else {
+            weekendCharges = charges;
+            System.out.println("[System: Weekend Charges Set Successfully]");
+        }
+    }
 
     public static double getWeekendCharges(){
         /**This method will return the extra charges during weekends
@@ -78,7 +121,13 @@ public class TicketPriceService {
         /**This method will set the base price of the ticket
          * @param price                The base price of the ticket
          */
-        basePrice = price; }
+        if(price < 0){
+            System.out.println("[System: Negative Input Detected!]");
+        }else{
+            basePrice = price;
+            System.out.println("[System: Base Price Set Successfully]");
+        }
+    }
 
     public static double getBasePrice(){
         /**This method will return the base price of the ticket
@@ -99,23 +148,29 @@ public class TicketPriceService {
         return false;
     }
 
-    public static boolean addPublicHolidayDates(String name, LocalDate date){
+    public static void addPublicHolidayDates(String name, LocalDate date){
         /**This method will add the public holiday dates given by the user to the publicHolidayDates list that consist
          * of all the public holiday dates.
          * @param name                 The name for the public holiday
          * @param date                 The date in the ticket when the movie will show
-         * @return                     true if succeed in adding the public holiday date
-         * @return                     false if there is a duplicate date which results in failure of adding the public holiday
-         *                             date
+         * @return                     if there is a duplicated date found in the database
+         * @return                     if the date provided is before the present date
          */
+        if(date.isBefore(LocalDate.now())){
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            System.out.println("[System: Date not added]");
+            System.out.println("[System: " + date.format(dateFormat) + " is before today's date, " + LocalDate.now().format(dateFormat) + "]");
+            return;
+        }
         for (PublicHoliday publicHoliday : publicHolidayDates){
             if (publicHoliday.getPublicHolidayDate().equals(date)){
-                return false;
+                System.out.println("[System: Duplicated Date detected!]");
+                return;
             }
         }
         PublicHoliday publicHoliday = new PublicHoliday(name, date);
         publicHolidayDates.add(publicHoliday);
-        return true;
+        System.out.println("[System: Public Holiday has been added!]");
     }
 
 
