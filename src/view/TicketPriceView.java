@@ -49,6 +49,7 @@ public class TicketPriceView {
                 } else if (opt == 5) {
                     publicHolidaySettings();
                 } else if (opt == 6) {
+                    commit();
                     return;
                 }else {
                     System.out.println("\n[System: Invalid Input]");

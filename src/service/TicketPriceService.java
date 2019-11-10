@@ -1,5 +1,7 @@
 package service;
 
+import controller.DBController;
+import controller.SerializedDB;
 import model.AgeGroup;
 import model.PublicHoliday;
 import model.cinema.CinemaType;
@@ -12,21 +14,22 @@ import java.util.ArrayList;
 public class TicketPriceService {
 
     private static ArrayList<PublicHoliday> publicHolidayDates = new ArrayList<PublicHoliday>();
+    private static SerializedDB serializedDB = SerializedDB.getInstance();
     private static double publicHolidayCharges;
     private static double weekendCharges;
     private static double basePrice; //Universal Base Price
 
-    public static void setAllPrices(double price, double weekendCharge, double publicHolidayCharge, ArrayList<PublicHoliday> publicHolidayDate){
+    public static void setAllPrices(){
         /**This method will set all the prices during startup of the application
          * @param price                 the base price of the ticket
          * @param weekendCharge         the extra charges during the weekends
          * @param publicHolidayCharge   the extra charges during public holidays
          * @param publicHolidayDate     the list of dates of each public holiday
          */
-        publicHolidayDates = publicHolidayDate;
-        publicHolidayCharges = publicHolidayCharge;
-        weekendCharges = weekendCharge;
-        basePrice = price;
+        publicHolidayDates = serializedDB.getPublicHolidayDates();
+        publicHolidayCharges = serializedDB.getPublicHolidayCharges();
+        weekendCharges = serializedDB.getWeekendCharges();
+        basePrice = serializedDB.getBasePrice();
     }
 
     public static void setMovieTypeCharges(int opt, double prices) {
@@ -205,5 +208,10 @@ public class TicketPriceService {
             }
         }
         return false;
+    }
+
+    public static void commit(){
+        DBController dbController = DBController.getInstance();
+        dbController.commitTicketDetails();
     }
 }

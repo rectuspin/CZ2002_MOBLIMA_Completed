@@ -9,7 +9,7 @@ import static view.TicketPriceView.ticketPriceView;
 
 public class SetTicketChargesTest {
     public static void main(String[] args) throws ParseException, IOException {
-        DBController DBService = new DBController();
+        DBController DBService = DBController.getInstance();
      /*   DBService.createDB("CinemaTypePriceDB");
         DBService.createDB("MovieTypePriceDB");
         DBService.createDB("TicketPriceInfoDB");*/
