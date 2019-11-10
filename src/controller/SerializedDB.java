@@ -1,15 +1,19 @@
 package controller;
 
+import model.AgeGroup;
 import model.PublicHoliday;
 import model.account.Admin;
 import model.account.Customer;
+import model.cinema.CinemaType;
 import model.cinema.Cineplex;
 import model.movie.Movie;
+import model.movie.MovieEnums;
 import model.transaction.Booking;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /*This is the database (SerializedDatabase) where it will store all the data into a temporary database when the
   application is running. This class is mainly used to:
@@ -31,7 +35,9 @@ public class SerializedDB implements Serializable {
     private double publicHolidayCharges;
     private double weekendCharges;
     private double basePrice;
-
+    private List movieType;
+    private List cinemaType;
+    private List ageGroup;
 
     public SerializedDB(){
         /**This constructor is for the SerializedDB
@@ -43,6 +49,48 @@ public class SerializedDB implements Serializable {
         bookings = new ArrayList<>();
         publicHolidayDates = new ArrayList<>();
         sales = new HashMap<>();
+        movieType = new ArrayList<>();
+        cinemaType = new ArrayList<>();
+        ageGroup = new ArrayList<>();
+    }
+
+    public List getMovieType(){
+        /**This method is used to return the movieType enum list
+         * @return A movieType enum list is return
+         */
+        return movieType;
+    }
+
+    public List getCinemaType(){
+        /**This method is used to return the cinemaType enum list
+         * @return A cinemaType enum list is return
+         */
+        return cinemaType;
+    }
+
+    public List getAgeGroup(){
+        /**This method is used to return the ageGroup enum list
+         * @return A ageGroup enum list is return
+         */
+        return ageGroup;
+    }
+
+    public void setEnum(){
+        /**This method is used to set all the enums in the serializedDB
+         */
+        for (MovieEnums.MovieType m : MovieEnums.MovieType.values()){
+            movieType.add(m.getTicketPrice());
+        }
+
+        //Saves all the different cinema type pricing into the database
+        for (CinemaType c : CinemaType.values()){
+            cinemaType.add(c.getTicketPrice());
+        }
+
+        //Saves all the different cinema type pricing into the database
+        for (AgeGroup group : AgeGroup.values()){
+            ageGroup.add(group.getTicketPrice());
+        }
     }
 
     public HashMap<String, Cineplex> getCineplexes() {
@@ -51,7 +99,6 @@ public class SerializedDB implements Serializable {
          */
         return cineplexes;
     }
-
 
         /**This method is used to return the movies list
          * @return An array list of movies
@@ -165,9 +212,17 @@ public class SerializedDB implements Serializable {
          */
         if (serializedDB == null)
             serializedDB = new SerializedDB();
-
         return serializedDB;
     }
+
+    public static void setInstance(SerializedDB S)
+    {
+        /**This method is to return an instance of its own
+         * @return: An instance of SerializedDB
+         */
+        serializedDB = S;
+    }
+
 
     public void addSales(String movieName, int numOfTickets){
         /**This method is defined to increment the sales each time based on the number of tickets for each booking

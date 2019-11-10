@@ -1,5 +1,7 @@
 package model.cinema;
 
+import controller.SerializedDB;
+
 public enum CinemaType {
     STANDARD("Standard", 0),
     PLATINUM_MOVIE_SUITES("Suites", 0),
@@ -33,4 +35,5 @@ public enum CinemaType {
          */
         this.prices = prices;
     }
+
 }

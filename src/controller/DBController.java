@@ -1,6 +1,7 @@
 package controller;
 
 import model.AgeGroup;
+import model.PublicHoliday;
 import model.cinema.Cinema;
 import model.cinema.CinemaType;
 import model.cinema.Cineplex;
@@ -17,16 +18,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import static service.TicketPriceService.*;
-
-/*This is a DBController (Database Controller) class where it will handle all database related task such as
-  - create, read, update and delete
-  - add/remove cinema
-  - add/remove cineplex
-  - add/remove showtimes
-  - add/get sales
- */
 
 /*This is a DBController (Database Controller) class where it will handle all database related task such as
   - create, read, update and delete
@@ -61,7 +55,7 @@ public class DBController {
     }
 
     //Updates the data with a given list
-    public void updateDB(List list, String DBName) throws IOException {
+    public void updateDB(SerializedDB serializedDB, String DBName) throws IOException {
         /**This method is defined to write data to .dat file
          * @param DBName    The name of the database that wants to be update
          * @param list      A list of stored items to be stored into the .dat file
@@ -72,26 +66,26 @@ public class DBController {
         if(!myFile.exists()) {
             myFile.createNewFile();
         }else {
-            SerializeDB.writeSerializedObject(dir + DBName + ".dat", list);
+            SerializeDB.writeSerializedObject(dir + DBName + ".dat", serializedDB);
         }
     }
 
     //Gets the data from the DB
-    public List readDB(String DBName) throws IOException {
+    public SerializedDB readDB(String DBName) throws IOException {
         /**This method is defined to read data from .dat file
          * @param  DBName       The name of the database that wants to be read
          * @return              A list of stored items in the .dat file
          * @throws IOException  If the file is not found
          */
         String dir = "src/database/";
-        List list = new ArrayList();
+        SerializedDB serializedDB = new SerializedDB();
         File myFile = new File(dir + DBName + ".dat");
         if(!myFile.exists()) {
             myFile.createNewFile();
         }else {
-            list = SerializeDB.readSerializedObject(dir + DBName + ".dat");
+            serializedDB = SerializeDB.readSerializedObject(dir + DBName + ".dat");
         }
-        return list;
+        return serializedDB;
     }
 
 
@@ -188,44 +182,54 @@ public class DBController {
         /**This method is defined to load all the data from the database into the system
          * @throws IOException  If the file is not found
          */
-
         DBController dbController = DBController.getInstance();
 
         //Retrieve all the data from database to list
-        List generalTypePriceDB = dbController.readDB("GeneralTypePriceDB");
-        List movieTypePriceDB = dbController.readDB("MovieTypePriceDB");
-        List cinemaTypePriceDB = dbController.readDB("CinemaTypePriceDB");
-        List citizenTypePriceDB = dbController.readDB("CitizenTypePriceDB");
-
-        //Convert to SerializedDB data type
-        SerializedDB defaultPrices = (SerializedDB) generalTypePriceDB.get(0);
+        SerializedDB serializedDBObj = dbController.readDB("SerializedDB");
 
         //Loads all the prices from the data into the system
-        setAllPrices(defaultPrices.getBasePrice(),defaultPrices.getWeekendCharges(), defaultPrices.getPublicHolidayCharges(),defaultPrices.getPublicHolidayDates());
+        serializedDB.setTicketPricing(serializedDBObj.getPublicHolidayDates(), serializedDBObj.getPublicHolidayCharges(), serializedDBObj.getWeekendCharges(), serializedDBObj.getBasePrice());
+        serializedDB.setCineplexes(serializedDBObj.getCineplexes());
+        serializedDB.setAdmins(serializedDBObj.getAdmins());
+        serializedDB.setBookings(serializedDBObj.getBookings());
+        serializedDB.setCustomers(serializedDBObj.getCustomers());
+        loadEnums(serializedDBObj);
+        setAllPrices();
 
+    }
+
+    public void loadEnums(SerializedDB serializedDBObj){
+        /**This method is defined to load the enums to the temporary database where it stores that data when the system
+         * is running
+         * @param serializedDBObj  The data extracted from the database
+         */
         //Declaration of variable
         int i;
 
         //Loads all the movie type prices into the system
         i = 0;
         for (MovieEnums.MovieType m : MovieEnums.MovieType.values()) {
-            m.setTicketPrice((double) movieTypePriceDB.get(i));
+            m.setTicketPrice((double) serializedDBObj.getMovieType().get(i));
             i++;
         }
 
         //Loads all the cinema type prices into the system
         i = 0;
         for (CinemaType c : CinemaType.values()) {
-            c.setTicketPrice((double) cinemaTypePriceDB.get(i));
+            c.setTicketPrice((double) serializedDBObj.getCinemaType().get(i));
             i++;
         }
 
         //Loads all the discount prices for different citizen of different age group into the system
         i = 0;
         for (AgeGroup group : AgeGroup.values()) {
-            group.setTicketPrice((double) citizenTypePriceDB.get(i));
+            group.setTicketPrice((double) serializedDBObj.getAgeGroup().get(i));
             i++;
         }
+    }
+
+    public void setEnums(){
+        serializedDB.setEnum();
     }
 
     public void saveTicketPriceInfoDatabase() throws IOException {
@@ -235,34 +239,7 @@ public class DBController {
         DBController dbController = DBController.getInstance();
 
         //Saves all the base/holiday/weekend pricing and holiday dates into the database
-        SerializedDB ticketPrices = new SerializedDB();
-        ticketPrices.setTicketPricing(getPublicHolidayDates(), getPublicHolidayCharges(), getWeekendCharges(), getBasePrice());
-        List generalTicketPriceDB = new ArrayList();
-        generalTicketPriceDB.add(ticketPrices);
-
-        //Saves all the different movie type pricing into the database
-        List movieTypeDB = new ArrayList();
-        for (MovieEnums.MovieType m : MovieEnums.MovieType.values()){
-            movieTypeDB.add(m.getTicketPrice());
-        }
-
-        //Saves all the different cinema type pricing into the database
-        List cinemaTypeDB = new ArrayList();
-        for (CinemaType c : CinemaType.values()){
-            cinemaTypeDB.add(c.getTicketPrice());
-        }
-
-        //Saves all the different cinema type pricing into the database
-        List ageGroupDB = new ArrayList();
-        for (AgeGroup group : AgeGroup.values()){
-            ageGroupDB.add(group.getTicketPrice());
-        }
-
-        //Save all the current changes into each database
-        dbController.updateDB(generalTicketPriceDB, "GeneralTypePriceDB");
-        dbController.updateDB(movieTypeDB, "MovieTypePriceDB");
-        dbController.updateDB(cinemaTypeDB, "CinemaTypePriceDB");
-        dbController.updateDB(ageGroupDB, "CitizenTypePriceDB");
+        dbController.updateDB(serializedDB, "SerializedDB");
     }
 
     //
@@ -286,6 +263,11 @@ public class DBController {
          * @return: the number of sales for the specified movie
          */
         return serializedDB.getSalesFigure(movieName);
+    }
+
+    public void commitTicketDetails() {
+        setEnums();
+        serializedDB.setTicketPricing(getPublicHolidayDates(), getPublicHolidayCharges(), getWeekendCharges(), getBasePrice());
     }
 }
 
