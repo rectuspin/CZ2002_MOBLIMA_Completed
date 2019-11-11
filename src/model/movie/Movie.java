@@ -3,10 +3,8 @@ package model.movie;
 import model.Model;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class Movie implements Model {
-    private UUID uuid;
     private String title;
     private String director;
     private ArrayList<String> cast;
@@ -42,13 +40,6 @@ public class Movie implements Model {
         reviews = new ArrayList<>();
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
 
     public String getTitle() {
         return title;

@@ -14,5 +14,13 @@ public class Admin implements Model {
 
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
 
 }

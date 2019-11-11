@@ -135,6 +135,10 @@ public class SerializedDB implements Serializable {
         this.admins = admins;
     }
 
+    protected void addCustomer(Customer customer) {
+        customers.add(customer);
+    }
+
     protected ArrayList<Customer> getCustomers() {
         /**This method is used to return the list of customer
          * @return An array list containing a list of customers would be returned

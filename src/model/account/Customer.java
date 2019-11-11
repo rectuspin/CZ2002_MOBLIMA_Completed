@@ -11,41 +11,56 @@ import java.util.ArrayList;
     - email address
  */
 public class Customer implements Model {
-    private String customerName;
-    private String email;
-    private int mobileNumber;
+    private String userName;
+    private String password;
+    private String mobileNumber;
+    private String emailAddress;
+    //    private int mobileNumber;
     private ArrayList<Booking> bookingHistory = new ArrayList<Booking>();
 
-    public Customer(String customerName, String email, int mobileNumber) {
+    public Customer(String userName, String password, String mobileNumber, String emailAddress) {
         /**This constructor for Customer
-         * @param customerName          The name of the customer
-         * @param email                 The email of the customer
-         * @param mobileNumber          The mobile number of the customer
+         * @param username    The username of the customer
+         * @param password         The password of the customer
+         * @param mobileNumber  The mobileNumber of the customer
+         * @param emailAddress  The emailAddress of the customer
          */
-        this.customerName = customerName;
-        this.email = email;
+        this.userName = userName;
+        this.password = password;
+        this.mobileNumber = mobileNumber;
+        this.emailAddress = emailAddress;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 
-    public String getCustomerName() {
-        /**This method will get and return the customer's name
-         * @return The name of the customer
-         */
-        return customerName;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public String getEmail() {
-        /**This method will get and return the customer's email
-         * @return The email of the customer
-         */
-        return email;
-    }
-
-    public int getMobileNumber() {
-        /**This method will get and return the customer's mobile number
-         * @return The mobile number of the customer
-         */
-        return mobileNumber;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public void addBookingHistory(Booking booking) {
@@ -55,4 +70,9 @@ public class Customer implements Model {
          */
         bookingHistory.add(booking);
     }
+
+    public ArrayList<Booking> getBookingHistory() {
+        return bookingHistory;
+    }
+
 }

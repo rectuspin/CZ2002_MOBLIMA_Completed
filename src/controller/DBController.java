@@ -1,7 +1,8 @@
 package controller;
 
 import model.AgeGroup;
-import model.PublicHoliday;
+import model.account.Admin;
+import model.account.Customer;
 import model.cinema.Cinema;
 import model.cinema.CinemaType;
 import model.cinema.Cineplex;
@@ -17,8 +18,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
 
 import static service.TicketPriceService.*;
 
@@ -88,6 +87,21 @@ public class DBController {
         return serializedDB;
     }
 
+    public void addCustomer(Customer customer) {
+        serializedDB.addCustomer(customer);
+    }
+
+    public ArrayList<Customer> getCustomer() {
+        return serializedDB.getCustomers();
+    }
+
+    public ArrayList<Admin> getAdmin() {
+        return serializedDB.getAdmins();
+    }
+
+    public ArrayList<Movie> getMovies() {
+        return serializedDB.getMovies();
+    }
 
     public HashMap<String, Cineplex> getCineplexes() {
         /**This method is defined to get the array of stored cineplex
@@ -177,6 +191,7 @@ public class DBController {
 
         return dbController;
     }
+
 
     public void loadTicketPriceInfoDatabase() throws ParseException, IOException {
         /**This method is defined to load all the data from the database into the system

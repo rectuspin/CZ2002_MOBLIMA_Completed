@@ -1,4 +1,7 @@
-package test;
+package view;
+
+import controller.ChangeMovieListing;
+import controller.ChangeShowtimeListing;
 
 import java.io.*;
 import java.util.HashMap;
@@ -6,10 +9,10 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class jSrc {
+public class AdminView {
 
 
-    public static void main(String[] args) {
+    public static void adminMainMenuView() {
         Scanner sc = new Scanner(System.in);
         int choice, temp;
         int ticket_price;
@@ -26,13 +29,13 @@ public class jSrc {
 
         //main page
         do {
-            System.out.println("(1) Login");
-            System.out.println("(2) Create an account");
-            System.out.println("(3) ");
+            System.out.println("(1) Login");                        // admin login
+            System.out.println("(2) Create an account");            // create account
+            System.out.println("(3) ");                             // additional functionalities
             System.out.println("(4) ");
             System.out.println("(5) ");
             System.out.println("(6) ");
-            System.out.println("(7) Exit");
+            System.out.println("(7) Exit");                         // exit
             System.out.println("\n Enter the number of your choice:");
             choice = sc.nextInt();
             switch (choice) {
@@ -96,8 +99,8 @@ public class jSrc {
                                 System.out.println("**Admin Account Logged In!**\n");
 
                                 System.out.println("(1)Configure setting");
-                                System.out.println("(2)Create movie listing ");
-                                System.out.println("(3)Create cinema showtimes");
+                                System.out.println("(2)Change movie listing ");
+                                System.out.println("(3)Change cinema showtimes");
                                 System.out.println("(4)Go back");
 
                                 choice = sc.nextInt();
@@ -106,10 +109,53 @@ public class jSrc {
                                         //configure setting
                                         break;
                                     case 2:
-                                        //create movie listing
+                                        //change movie listing
+
+                                        ChangeMovieListing changeMovieListing = new ChangeMovieListing();
+                                        do {
+                                            System.out.println("(1)Create Movie listing");
+                                            System.out.println("(2)Update Movie listing");
+                                            System.out.println("(3)Remove Movie listing");
+                                            System.out.println("(4)Go back");
+                                            switch (choice) {
+                                                case 1:
+                                                    ChangeMovieListing.Create();
+                                                    break;
+                                                case 2:
+                                                    ChangeMovieListing.Update(ChangeMovieListing.list);
+                                                    break;
+                                                case 3:
+                                                    ChangeMovieListing.Remove(ChangeMovieListing.list);
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                            choice = sc.nextInt();
+                                        } while (choice < 3);
                                         break;
                                     case 3:
-                                        //Create cinema showtimes
+                                        //Change cinema showtimes
+                                        ChangeShowtimeListing changeShowtimeListing = new ChangeShowtimeListing();
+                                        do {
+                                            System.out.println("(1)Create Showtime listing");
+                                            System.out.println("(2)Update Showtime listing");
+                                            System.out.println("(3)Remove Showtime listing");
+                                            System.out.println("(4)Go back");
+                                            switch (choice) {
+                                                case 1:
+                                                    ChangeShowtimeListing.Create();
+                                                    break;
+                                                case 2:
+                                                    ChangeShowtimeListing.Update(ChangeShowtimeListing.list);
+                                                    break;
+                                                case 3:
+                                                    ChangeShowtimeListing.Remove(ChangeShowtimeListing.list);
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                            choice = sc.nextInt();
+                                        } while (choice < 3);
                                         break;
                                 }
                             } while (choice < 3);
@@ -167,38 +213,41 @@ public class jSrc {
                         } catch (FileNotFoundException e) {
                             System.out.println("File Read Error!" + e.getMessage());
                             System.exit(0);
-                        } catch (IOException e) {
-                            System.out.println("IO Error!" + e.getMessage());
-                            e.printStackTrace();
-                            System.exit(0);
+//                        } catch (IOException e) {
+//                            System.out.println("IO Error!" + e.getMessage());
+//                            e.printStackTrace();
+//                            System.exit(0);
+//                        }
                         }
-                    }
-                    while (sameUserID == true);
+                        while (sameUserID == true) ;
 
 
-                    try {
-                        PrintWriter pw = new PrintWriter(new FileWriter("login_data.txt", true));
-                        pw.printf("\n" + input_id + "=" + input_pw);
+                        try {
+                            PrintWriter pw = new PrintWriter(new FileWriter("login_data.txt", true));
+                            pw.printf("\n" + input_id + "=" + input_pw);
 
-                        pw.flush();
-                        pw.close();
-                        //fos.close();
-                    } catch (Exception e) {
-                    }
-                    System.out.println("done");
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-                case 7:
-                    break;
+                            pw.flush();
+                            pw.close();
+                            //fos.close();
+                        } catch (Exception e) {
+                        }
+                        System.out.println("done");
+                        break;
+//                        case 3:
+//                            break;
+//                        case 4:
+//                            break;
+//                        case 5:
+//                            break;
+//                        case 6:
+//                            break;
+//                        case 7:
+//                            break;
+
+
+                    } while (choice < 7);
+                    sc.close();
             }
         } while (choice < 7);
-        sc.close();
     }
 }

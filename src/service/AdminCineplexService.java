@@ -10,7 +10,6 @@ import model.movie.MovieEnums;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AdminCineplexService {
@@ -21,6 +20,7 @@ public class AdminCineplexService {
     public AdminCineplexService(Admin admin) {
         this.admin = admin;
     }
+
 
     public Admin getAdmin() {
         return admin;
