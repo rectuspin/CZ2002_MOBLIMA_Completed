@@ -13,7 +13,6 @@ import model.transaction.Booking;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -220,7 +219,6 @@ public class DBController {
             }
             setAllPrices();
         } catch(IOException e){
-            System.out.println("test");
             serializedDB = new SerializedDB();
         }
     }
