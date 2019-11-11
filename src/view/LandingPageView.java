@@ -1,5 +1,7 @@
 package view;
 
+import controller.SerializedDB;
+
 import java.util.Scanner;
 
 import static service.AccountService.*;

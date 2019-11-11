@@ -1,6 +1,7 @@
 package service;
 
 import controller.DBController;
+import controller.SerializedDB;
 import model.account.Admin;
 import model.account.Customer;
 
@@ -40,8 +41,9 @@ public class AccountService {
 
         ArrayList<String> usernames = new ArrayList<>();
         ArrayList<String> passwords = new ArrayList<>();
-
         for (Customer customer : customers) {
+            System.out.println(customer.getUserName());
+            System.out.println(customer.getPassword());
             usernames.add(customer.getUserName());
             passwords.add(customer.getPassword());
         }

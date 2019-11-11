@@ -1,3 +1,4 @@
+/*
 package test;
 
 import controller.DBController;
@@ -10,9 +11,11 @@ import static view.TicketPriceView.ticketPriceView;
 public class SetTicketChargesTest {
     public static void main(String[] args) throws ParseException, IOException {
         DBController DBService = DBController.getInstance();
-     /*   DBService.createDB("CinemaTypePriceDB");
+     */
+/*   DBService.createDB("CinemaTypePriceDB");
         DBService.createDB("MovieTypePriceDB");
-        DBService.createDB("TicketPriceInfoDB");*/
+        DBService.createDB("TicketPriceInfoDB");*//*
+
         //Implement it at the code where the program is just starting up
         try {
             DBService.loadTicketPriceInfoDatabase();
@@ -29,3 +32,4 @@ public class SetTicketChargesTest {
         DBService.saveTicketPriceInfoDatabase();
     }
 }
+*/

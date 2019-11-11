@@ -1,8 +1,10 @@
 import controller.DBController;
 
+import java.security.spec.ECField;
 import java.util.Scanner;
 
 import static view.LandingPageView.*;
+import static view.TicketPriceView.ticketPriceView;
 
 public class MoblimaApp {
     private static final Scanner scanner = new Scanner(System.in);
@@ -11,6 +13,7 @@ public class MoblimaApp {
         int choice = 0;
         boolean stillRunning = true;
         DBController dbController = DBController.getInstance();
+        dbController.load();
         while (stillRunning) {
             System.out.println("Welcome to MOvie Booking and LIsting Management Application (MOBLIMA)\n");
             System.out.println("Enter your options: ");
@@ -23,6 +26,11 @@ public class MoblimaApp {
             switch (choice) {
                 case 1:
                     adminLogin();
+                   /* try {
+                        ticketPriceView();
+                    }catch(Exception e){
+                        System.out.println("[System: Error in launching Ticket Price Menu]");
+                    }*/
                     break;
                 case 2:
                     customerLogin();
@@ -36,7 +44,7 @@ public class MoblimaApp {
                 case 5:
                     stillRunning = false;
                     System.out.println("bye");
-
+                    dbController.save();
                     break;
 
             }
