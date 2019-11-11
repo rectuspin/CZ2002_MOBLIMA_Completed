@@ -250,4 +250,12 @@ public class SerializedDB implements Serializable {
          */
         return sales.get(movieName);
     }
+
+    public void addMovies(Movie movie){
+        this.movies.add(movie);
+    }
+
+    public void setMovies(ArrayList<Movie> movies){
+        this.movies = movies;
+    }
 }

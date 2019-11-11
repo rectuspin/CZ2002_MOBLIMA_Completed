@@ -26,6 +26,7 @@ public class Movie implements Model {
         reviews = new ArrayList<>();
     }
 
+    //Not used currently
     public Movie(String title, String director, ArrayList<String> cast, String synopsis, MovieEnums.Language language, MovieEnums.Subtitle subtitle, MovieEnums.MovieStatus movieStatus, MovieEnums.MovieRating movieRating, MovieEnums.MovieType movieType) {
         //this.uuid = UUID.fromString(title); Error in this code
         this.title = title;

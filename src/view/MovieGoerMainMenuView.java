@@ -28,7 +28,7 @@ public class MovieGoerMainMenuView {
         int number = 1;
         try {
             for (Movie movie : movies) {
-                System.out.printf("[%d] %s\n", number, movie.getTitle());
+                System.out.format("[%d] %s\n", number, movie.getTitle());
             }
         } catch (NullPointerException e) {
 //        if (Array.getLength(moviesList) < 0) {

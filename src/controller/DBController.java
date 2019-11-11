@@ -32,6 +32,10 @@ public class DBController {
     private SerializedDB serializedDB = SerializedDB.getInstance();
     private static DBController dbController = null;
 
+    private DBController(){
+
+    }
+
     public void createDB(String DBName) throws IOException {
         /**This method is defined to create the .dat file
          * @param  DBName       The name of the database that wants to be created
@@ -211,6 +215,7 @@ public class DBController {
             serializedDB.setAdmins(serializedDBObj.getAdmins());
             serializedDB.setBookings(serializedDBObj.getBookings());
             serializedDB.setCustomers(serializedDBObj.getCustomers());
+            serializedDB.setMovies(serializedDBObj.getMovies());
 
             try {
                 loadEnums(serializedDBObj);
@@ -301,6 +306,10 @@ public class DBController {
     public void commitTicketDetails() {
         setEnums();
         serializedDB.setTicketPricing(getPublicHolidayDates(), getPublicHolidayCharges(), getWeekendCharges(), getBasePrice());
+    }
+
+    public void addMovies(Movie movie){
+        serializedDB.addMovies(movie);
     }
 }
 
