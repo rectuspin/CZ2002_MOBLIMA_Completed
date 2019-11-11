@@ -121,6 +121,56 @@ public class ChangeMovieListing {
         }
     }
 
+    public static void Remove() {
+        /**This method is used to remove a movie listing from the application
+         */
+        ArrayList<Movie> movies = dbController.getMovies();
+        int i = 1;
+        Scanner sc = new Scanner(System.in);
+            System.out.println( "\n====================================\n" +
+                                "|               Movies             |\n" +
+                                "====================================");
+        if (movies.size() == 0){
+            System.out.println( "| There is no movies currently...  |" );
+            System.out.println( "| (1) Back                         |");
+            System.out.println( "====================================");
+            if (backOption()) {
+                return;
+            }
+        }else {
+            for (Movie movie : movies) {
+                System.out.println("[" + i + "] " + movie.getTitle());
+                i++;
+            }
+            System.out.println("====================================");
+            System.out.print("Which movie do you want to remove?: ");
+
+            int option = sc.nextInt();
+            movies.remove(option - 1);
+        }
+    }
+
+    public static ArrayList<String> addCast(){
+        /**This method is used to edit the cast of the movie
+         * @return a list of cast that acts in the movie
+         */
+        ArrayList<String> movieCast = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        try {
+            System.out.print("Number Of Cast: ");
+            int n = sc.nextInt();
+            sc.nextLine();
+            for (int i = 0; i < n; i++) {
+                System.out.print("Movie's Cast " + (i+1) + " : ");
+                String cast = sc.nextLine();
+                movieCast.add(cast);
+            }
+        } catch (Exception e) {
+            System.out.println("[System: Invalid Input]");
+        }
+        return movieCast;
+    }
+
     public static void movieLanguageSettings(ArrayList<Movie> movies, int movieOption){
         /**This method is used to display the available languages and select the language for the movie
          * @param movies The list that consist of all the movies
@@ -214,6 +264,7 @@ public class ChangeMovieListing {
          * @param movies The list that consist of all the movies
          * @param movieOption The selection of which movie type is for the movie
          */
+
         Scanner sc = new Scanner(System.in);
         System.out.print(   "====================================\n" +
                             "|             Movie Type           |\n" +
@@ -223,6 +274,7 @@ public class ChangeMovieListing {
             System.out.format("| (%d) %-28s |\n",i, s);
             i++;
         }
+
         System.out.print( "====================================\n");
         System.out.println("Movie Type: " + movies.get(movieOption-1).getMovieType());
         System.out.print("Enter a selection: ");
@@ -250,53 +302,4 @@ public class ChangeMovieListing {
                             "====================================\n");
     }
 
-    public static void Remove() {
-        /**This method is used to remove a movie listing from the application
-         */
-        ArrayList<Movie> movies = dbController.getMovies();
-        int i = 1;
-        Scanner sc = new Scanner(System.in);
-            System.out.println( "\n====================================\n" +
-                                "|               Movies             |\n" +
-                                "====================================");
-        if (movies.size() == 0){
-            System.out.println( "| There is no movies currently...  |" );
-            System.out.println( "| (1) Back                         |");
-            System.out.println( "====================================");
-            if (backOption()) {
-                return;
-            }
-        }else {
-            for (Movie movie : movies) {
-                System.out.println("[" + i + "] " + movie.getTitle());
-                i++;
-            }
-            System.out.println("====================================");
-            System.out.print("Which movie do you want to remove?: ");
-
-            int option = sc.nextInt();
-            movies.remove(option - 1);
-        }
-    }
-
-    public static ArrayList<String> addCast(){
-        /**This method is used to edit the cast of the movie
-         * @return a list of cast that acts in the movie
-         */
-        ArrayList<String> movieCast = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
-        try {
-            System.out.print("Number Of Cast: ");
-            int n = sc.nextInt();
-            sc.nextLine();
-            for (int i = 0; i < n; i++) {
-                System.out.print("Movie's Cast " + (i+1) + " : ");
-                String cast = sc.nextLine();
-                movieCast.add(cast);
-            }
-        } catch (Exception e) {
-            System.out.println("[System: Invalid Input]");
-        }
-        return movieCast;
-    }
 }

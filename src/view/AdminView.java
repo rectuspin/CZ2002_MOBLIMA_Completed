@@ -12,12 +12,9 @@ import java.util.StringTokenizer;
 import static view.TicketPriceView.ticketPriceView;
 
 public class AdminView {
-
-
     public static void adminView() {
         Scanner sc = new Scanner(System.in);
-        int choice;
-
+        int choice, choice_main;
         //main page
         do {
             System.out.println( "\n======================================\n" +
@@ -29,8 +26,8 @@ public class AdminView {
                                 "| (4) Go back                        |\n" +
                                 "======================================");
             System.out.print("Option: ");
-            choice = sc.nextInt();
-            switch (choice) {
+            choice_main = sc.nextInt();
+            switch (choice_main) {
                 case 1:
                     //configure setting
                     try {
@@ -41,7 +38,6 @@ public class AdminView {
                     break;
                 case 2:
                     //change movie listing
-
                     do {
                         System.out.println( "\n======================================\n" +
                                             "|        Movie Listing Setting       |\n" +
@@ -85,7 +81,7 @@ public class AdminView {
                         choice = sc.nextInt();
                         switch (choice) {
                             case 1:
-                               // ChangeShowtimeListing.Create();
+                               ChangeShowtimeListing.Create();
                                 break;
                             case 2:
                               //  ChangeShowtimeListing.Update();
@@ -99,6 +95,6 @@ public class AdminView {
                     } while (choice < 4);
                     break;
             }
-        } while (choice < 4);
+        } while (choice_main < 4);
     }
 }

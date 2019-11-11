@@ -44,7 +44,7 @@ public class Booking implements Model {
         this.showTime = showTime;
         this.seats = seats;
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyyMMdd");
-        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("hhmm");
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HHmm");
         this.transactionID = "CUS" + this.dateOfBooking.format(dateFormat) + this.timeOfBooking.format(timeFormat);
         this.customer = customer;
         this.movie = this.showTime.getMovie();
