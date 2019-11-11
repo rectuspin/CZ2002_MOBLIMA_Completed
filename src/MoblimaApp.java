@@ -26,11 +26,6 @@ public class MoblimaApp {
             switch (choice) {
                 case 1:
                     adminLogin();
-                   /* try {
-                        ticketPriceView();
-                    }catch(Exception e){
-                        System.out.println("[System: Error in launching Ticket Price Menu]");
-                    }*/
                     break;
                 case 2:
                     customerLogin();

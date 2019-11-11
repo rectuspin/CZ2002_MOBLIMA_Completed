@@ -92,8 +92,6 @@ public class DBController {
     }
 
     public ArrayList<Customer> getCustomer() {
-
-        System.out.println(serializedDB.getCustomers());
         return serializedDB.getCustomers();
     }
 
