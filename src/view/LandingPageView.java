@@ -2,19 +2,49 @@ package view;
 
 import java.util.Scanner;
 
-import static service.AccountService.checkIfCustomerAccountExists;
-import static service.AccountService.createMovieGoerAccount;
+import static service.AccountService.*;
+import static view.AdminView.adminView;
 import static view.MovieGoerView.movieGoerView;
 
 public class LandingPageView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void adminLogin() {
-
+        System.out.print("Enter your username: ");
+        String username = scanner.next();
+        System.out.print("Enter your password: ");
+        String password = scanner.next();
+        while (!checkIfAdminAccountExists(username, password)) {
+            System.out.println("Sorry, that username or password is wrong. Please try again. (Enter 'q' to go back)");
+            System.out.print("Enter your username: ");
+            username = scanner.next();
+            if (username.equals("q")) return;
+            System.out.print("Enter your password: ");
+            password = scanner.next();
+        }
+        System.out.println("Welcome, " + username);
+        adminView();
     }
 
-    public static void createAdminAccount() {
 
+    public static void createAdmin() {
+        // create account - username, password, phone number, email address
+        System.out.print("Enter a username: ");
+        String username = scanner.next();
+
+        System.out.print("Enter a password: ");
+        String password = scanner.next();
+
+        while (checkIfAdminAccountExists(username, password)) {
+            System.out.println("Sorry, that username or password is already taken. Please try again. (Enter 'q' to go back)");
+            System.out.print("Enter your username: ");
+            username = scanner.next();
+            if (username.equals("q")) return;
+            System.out.print("Enter your password: ");
+            password = scanner.next();
+        }
+        createAdminAccount(username, password);
+        System.out.println("You have successfully created an user account");
     }
 
     public static void customerLogin() {

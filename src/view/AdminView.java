@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 public class AdminView {
 
 
-    public static void adminMainMenuView() {
+    public static void adminView() {
         Scanner sc = new Scanner(System.in);
         int choice, temp;
         int ticket_price;

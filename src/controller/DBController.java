@@ -95,6 +95,10 @@ public class DBController {
         return serializedDB.getCustomers();
     }
 
+    public void addAdmin(String username, String password) {
+        serializedDB.getAdmins().add(new Admin(username, password));
+    }
+
     public ArrayList<Admin> getAdmin() {
         return serializedDB.getAdmins();
     }

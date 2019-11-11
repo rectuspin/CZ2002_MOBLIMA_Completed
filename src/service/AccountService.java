@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class AccountService {
     private static DBController dbController = DBController.getInstance();
-    private static AccountService instance;
 
 
     public static boolean movieGoerLoginService(Customer customer) {
@@ -31,8 +30,8 @@ public class AccountService {
     }
 
     //to do
-    public void createAdminAccount(String username, String password) {
-
+    public static void createAdminAccount(String username, String password) {
+        dbController.addAdmin(username, password);
     }
 
 

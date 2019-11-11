@@ -28,7 +28,7 @@ public class MoblimaApp {
                     customerLogin();
                     break;
                 case 3:
-                    createAdminAccount();
+                    createAdmin();
                     break;
                 case 4:
                     createCustomerAccount();
