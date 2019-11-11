@@ -1,5 +1,6 @@
 package view;
 
+import controller.DBController;
 import model.account.Customer;
 import model.cinema.Cineplex;
 import model.cinema.ShowTime;
@@ -16,28 +17,31 @@ import java.util.Scanner;
 
 public class MovieGoerMainMenuView {
 
-    public MovieGoerMainMenuView() {
-
-    }
-
-    Scanner sc = new Scanner(System.in);
+    private static DBController dbController = DBController.getInstance();
+    private static final Scanner sc = new Scanner(System.in);
     //creating a dummy cineplex object to test class- real one from admin should be replaced
     //Cineplex [] cathay = new Cineplex[4];
-    MovieGoerCineplexService services = new MovieGoerCineplexService();
+    private static MovieGoerCineplexService services = new MovieGoerCineplexService();
 
-    public void printMovieList(Movie[] moviesList) {
-
-        if (Array.getLength(moviesList) < 0) {
-            System.out.println("Print no available movies at the moment");
-
-        } else {
-            for (int i = 0; i < Array.getLength(moviesList); i++) {
-                System.out.printf("[%d] %s\n", (i + 1), moviesList[i].getTitle());
+    public static void printMovieList() {
+        ArrayList<Movie> movies = dbController.getMovies();
+        int number = 1;
+        try {
+            for (Movie movie : movies) {
+                System.out.printf("[%d] %s\n", number, movie.getTitle());
             }
-        }
+        } catch (NullPointerException e) {
+//        if (Array.getLength(moviesList) < 0) {
+//            System.out.println("Print no available movies at the moment");
+//
+//        } else {
+//            for (int i = 0; i < Array.getLength(moviesList); i++) {
+//
+//            }
+//        }
     }
 
-    public void searchMovieList(Cineplex[] listCineplex, Movie[] moviesList) {
+        public static void searchMovieList () {
         System.out.println("Enter the name of the movie to be searched: ");
         String movieSearched = sc.nextLine();
         int i;
@@ -47,7 +51,6 @@ public class MovieGoerMainMenuView {
                 for (int j = 0; j < (services.getShowTimes(listCineplex, moviesList[i])).size(); j++) {
                     System.out.println(services.getShowTimes(listCineplex, moviesList[i]).get(j).toString());
                 }
-
                 break;
             }
         }
@@ -56,7 +59,7 @@ public class MovieGoerMainMenuView {
         }
     }
 
-    public void viewDetails(Movie[] moviesList) {
+        public static void viewDetails (Movie[]moviesList){
         printMovieList(moviesList);
         System.out.println("Enter number of movie you wish to view details for: ");
         int chosen = sc.nextInt();
@@ -68,7 +71,7 @@ public class MovieGoerMainMenuView {
 
     }
 
-    public void printCineplex(Cineplex[] listCineplex, Movie[] moviesList) {
+        public static void printCineplex (Cineplex[]listCineplex, Movie[]moviesList){
         int i;
         for (i = 0; i < Array.getLength(listCineplex); i++) {
             System.out.printf("[%d] %s\n", (i + 1), listCineplex[i].getName());
@@ -92,7 +95,7 @@ public class MovieGoerMainMenuView {
         }
     }
 
-    public void checkSeatAvailability(Cineplex[] cineplexList, Movie[] moviesList) {
+        public static void checkSeatAvailability (Cineplex[]cineplexList, Movie[]moviesList){
         System.out.println("Would you like to search by (1)Movie or by (2)Cineplex?- Enter choice 1 or 2");
         int searchBy = sc.nextInt();
         System.out.print("You have chosen choice " + searchBy);
@@ -161,7 +164,7 @@ public class MovieGoerMainMenuView {
     }
 
 
-    public void doBooking(Cineplex[] cineplexList, Movie[] moviesList, Customer user) {
+        public static void doBooking (Cineplex[]cineplexList, Movie[]moviesList, Customer user){
         printMovieList(moviesList);
         //Choose Movie first
         System.out.println("Enter number of movie you wish to view details for: ");
@@ -207,7 +210,7 @@ public class MovieGoerMainMenuView {
 
     }
 
-    public void printBookingHistory(Customer user) {
+        public static void printBookingHistory (Customer user){
         ArrayList<Booking> booked = user.getBookingHistory();
         for (int i = 0; i < booked.size(); i++) {
             System.out.println(booked.get(i).toString());

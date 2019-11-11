@@ -5,9 +5,12 @@ import model.account.Customer;
 import model.cinema.Cineplex;
 import model.movie.Movie;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import static view.MovieGoerMainMenuView.printMovieList;
 
 public class MovieGoerView {
     private static final DBController dbController = DBController.getInstance();
@@ -21,7 +24,8 @@ public class MovieGoerView {
 
 
     public static void movieGoerView() {
-        int choice;
+        int choice = 0;
+        boolean continueRunning = true;
         Scanner sc = new Scanner(System.in);
         MovieGoerMainMenuView movieListView = new MovieGoerMainMenuView();
         Customer[] users = new Customer[10];
@@ -30,7 +34,7 @@ public class MovieGoerView {
 //        ArrayList<Movie> moviesList = dbController.getMovies();
         Movie[] moviesList = new Movie[15];
         Cineplex[] cathay = new Cineplex[10];
-        do {
+        while (continueRunning) {
             System.out.println("(1) List movies available: ");    //done
             System.out.println("(2) Search movies available: ");  //done
             System.out.println("(3) View Movie Details: ");       //done
@@ -45,59 +49,59 @@ public class MovieGoerView {
             choice = sc.nextInt();
 
             switch (choice) {
-                case 1: {
-                    movieListView.printMovieList(moviesList);
-
-                }
-                case 2: {
-                    movieListView.searchMovieList(cathay, moviesList);
-                }
-                case 3: {
-                    movieListView.viewDetails(moviesList);
-                }
-                case 4: {
+                case 1:
+                    printMovieList(moviesList);
+                    break;
+                case 2:
+                    searchMovieList(cathay, moviesList);
+                    break;
+                case 3:
+                    viewDetails(moviesList);
+                    break;
+                case 4:
                     //list all cineplexes;
-                    movieListView.printCineplex(cathay, moviesList);
-                }
-                case 5: {
-                    //checks seat availablit
-                    movieListView.checkSeatAvailability(cathay, moviesList);
-                }
-                case 6: {
-//                    System.out.println("Please Enter your email address: " );
-//                    String custEmail = sc.nextLine();
-//                    for (int i=0;i<Array.getLength(users);i++) {
-//                        if (custEmail.equalsIgnoreCase(users[i].getEmail())) {
-//                            movieListView.doBooking(cathay, moviesList, users[i]);
-//                        }
-//                    }
-
-                }
-                case 7: {
+                    printCineplex(cathay, moviesList);
+                    break;
+                case 5:
+                    //checks seat availablity
+                    checkSeatAvailability(cathay, moviesList);
+                    break;
+                case 6:
+                    System.out.println("Please Enter your email address: ");
+                    String custEmail = sc.nextLine();
+                    for (int i = 0; i < Array.getLength(users); i++) {
+                        if (custEmail.equalsIgnoreCase(users[i].getEmailAddress())) {
+                            movieListView.doBooking(cathay, moviesList, users[i]);
+                        }
+                    }
+                    break;
+                case 7:
                     // View Top 5 movies ranked by ticket sales;
-                }
-                case 8: {
+                    break;
+                case 8:
                     // View Top 5 movies ranked by overall reviewers’ ratings;
-                }
-                case 9: {
-//                    System.out.println("Please Enter your email address: " );
-//                    String custEmail = sc.nextLine();
-//                    for (int i=0;i<Array.getLength(users);i++){
-//                        if (custEmail.equalsIgnoreCase(users[i].getEmail())) {
-//                            if (users[i].getBookingHistory().size() > 0) {
-//                                movieListView.printBookingHistory(users[i]);
-//                            } else {
-//                                System.out.println("Booking history is empty");
-//                            }
-//                        }
-//                    }
+                    break;
+                case 9:
+                    System.out.println("Please Enter your email address: ");
+                    custEmail = sc.nextLine();
+                    for (int i = 0; i < Array.getLength(users); i++) {
+                        if (custEmail.equalsIgnoreCase(users[i].getEmailAddress())) {
+                            if (users[i].getBookingHistory().size() > 0) {
+                                movieListView.printBookingHistory(users[i]);
+                            } else {
+                                System.out.println("Booking history is empty");
+                            }
+                        }
+                    }
+                    break;
 
+                case 10:
+                    continueRunning = false;
 
-                }
             }
         }
-        while (choice != 10);
+        }
 
 
-    }
 }
+

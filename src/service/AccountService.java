@@ -37,6 +37,7 @@ public class AccountService {
 
     public static boolean checkIfCustomerAccountExists(String username, String password) {
         ArrayList<Customer> customers = dbController.getCustomer();
+
         ArrayList<String> usernames = new ArrayList<>();
         ArrayList<String> passwords = new ArrayList<>();
 
