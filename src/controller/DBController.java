@@ -92,6 +92,8 @@ public class DBController {
     }
 
     public ArrayList<Customer> getCustomer() {
+
+        System.out.println(serializedDB.getCustomers());
         return serializedDB.getCustomers();
     }
 
@@ -197,24 +199,32 @@ public class DBController {
     }
 
 
-    public void loadTicketPriceInfoDatabase() throws ParseException, IOException {
+    public void load()  {
         /**This method is defined to load all the data from the database into the system
          * @throws IOException  If the file is not found
          */
         DBController dbController = DBController.getInstance();
+        try {
+            //Retrieve all the data from database to list
+            SerializedDB serializedDBObj = dbController.readDB("SerializedDB");
 
-        //Retrieve all the data from database to list
-        SerializedDB serializedDBObj = dbController.readDB("SerializedDB");
+            //Loads all the prices from the data into the system
+            serializedDB.setTicketPricing(serializedDBObj.getPublicHolidayDates(), serializedDBObj.getPublicHolidayCharges(), serializedDBObj.getWeekendCharges(), serializedDBObj.getBasePrice());
+            serializedDB.setCineplexes(serializedDBObj.getCineplexes());
+            serializedDB.setAdmins(serializedDBObj.getAdmins());
+            serializedDB.setBookings(serializedDBObj.getBookings());
+            serializedDB.setCustomers(serializedDBObj.getCustomers());
 
-        //Loads all the prices from the data into the system
-        serializedDB.setTicketPricing(serializedDBObj.getPublicHolidayDates(), serializedDBObj.getPublicHolidayCharges(), serializedDBObj.getWeekendCharges(), serializedDBObj.getBasePrice());
-        serializedDB.setCineplexes(serializedDBObj.getCineplexes());
-        serializedDB.setAdmins(serializedDBObj.getAdmins());
-        serializedDB.setBookings(serializedDBObj.getBookings());
-        serializedDB.setCustomers(serializedDBObj.getCustomers());
-        loadEnums(serializedDBObj);
-        setAllPrices();
-
+            try {
+                loadEnums(serializedDBObj);
+            }catch(Exception e){
+                System.out.println("[System: Error in loading enums]");
+            }
+            setAllPrices();
+        } catch(IOException e){
+            System.out.println("test");
+            serializedDB = new SerializedDB();
+        }
     }
 
     public void loadEnums(SerializedDB serializedDBObj){
@@ -251,14 +261,22 @@ public class DBController {
         serializedDB.setEnum();
     }
 
-    public void saveTicketPriceInfoDatabase() throws IOException {
+    public void save() {
         /**This method is defined to save all the data from the database into the system
          * @throws IOException  If the file is not found
          */
         DBController dbController = DBController.getInstance();
-
-        //Saves all the base/holiday/weekend pricing and holiday dates into the database
-        dbController.updateDB(serializedDB, "SerializedDB");
+        try {
+            //Saves all the base/holiday/weekend pricing and holiday dates into the database
+            dbController.updateDB(serializedDB, "SerializedDB");
+        }catch(IOException e){
+            try {
+                createDB("SerializedDB");
+                dbController.updateDB(serializedDB, "SerializedDB");
+            }catch (IOException i){
+                System.out.println("[System: Error in creating database]");
+            }
+        }
     }
 
     //
