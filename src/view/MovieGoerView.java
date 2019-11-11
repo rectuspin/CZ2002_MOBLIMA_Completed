@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static view.MovieGoerMainMenuView.printMovieList;
+import static view.MovieGoerMainMenuView.*;
 
 public class MovieGoerView {
     private static final DBController dbController = DBController.getInstance();
@@ -50,10 +50,10 @@ public class MovieGoerView {
 
             switch (choice) {
                 case 1:
-                    printMovieList(moviesList);
+                    printMovieList();
                     break;
                 case 2:
-                    searchMovieList(cathay, moviesList);
+                    searchMovieList();
                     break;
                 case 3:
                     viewDetails(moviesList);
@@ -71,7 +71,7 @@ public class MovieGoerView {
                     String custEmail = sc.nextLine();
                     for (int i = 0; i < Array.getLength(users); i++) {
                         if (custEmail.equalsIgnoreCase(users[i].getEmailAddress())) {
-                            movieListView.doBooking(cathay, moviesList, users[i]);
+                            doBooking(cathay, moviesList, users[i]);
                         }
                     }
                     break;
@@ -87,7 +87,7 @@ public class MovieGoerView {
                     for (int i = 0; i < Array.getLength(users); i++) {
                         if (custEmail.equalsIgnoreCase(users[i].getEmailAddress())) {
                             if (users[i].getBookingHistory().size() > 0) {
-                                movieListView.printBookingHistory(users[i]);
+                                printBookingHistory(users[i]);
                             } else {
                                 System.out.println("Booking history is empty");
                             }
