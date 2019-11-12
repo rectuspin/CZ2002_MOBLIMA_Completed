@@ -14,19 +14,13 @@ import static view.MovieGoerMainMenuView.*;
 
 public class MovieGoerView {
     private static final DBController dbController = DBController.getInstance();
+    private static final Scanner scanner = new Scanner(System.in);
 
-
-    //creating dummy movie, cineplex and users - have to actually obtain from the admin dept!
-    {
-
-        //Customer[] customer;
-    }
 
 
     public static void movieGoerView() {
         int choice = 0;
         boolean continueRunning = true;
-        Scanner sc = new Scanner(System.in);
         MovieGoerMainMenuView movieListView = new MovieGoerMainMenuView();
         Customer[] users = new Customer[10];
         HashMap<String, Cineplex> cineplexes = dbController.getCineplexes();
@@ -46,8 +40,7 @@ public class MovieGoerView {
             System.out.println("(9) Show booking history"); //to do - create an user class!
             System.out.println("(10) Quit");
             System.out.println("Enter your choice:");
-            choice = sc.nextInt();
-
+            choice = scanner.nextInt();
             switch (choice) {
                 case 1:
                     printMovieList();
@@ -56,19 +49,19 @@ public class MovieGoerView {
                     searchMovieList();
                     break;
                 case 3:
-                    viewDetails(moviesList);
+                    viewDetails();
                     break;
                 case 4:
                     //list all cineplexes;
-                    printCineplex(cathay, moviesList);
+                    printCineplex();
                     break;
                 case 5:
                     //checks seat availablity
-                    checkSeatAvailability(cathay, moviesList);
+                    checkSeatAvailability();
                     break;
                 case 6:
                     System.out.println("Please Enter your email address: ");
-                    String custEmail = sc.nextLine();
+                    String custEmail = scanner.nextLine();
                     for (int i = 0; i < Array.getLength(users); i++) {
                         if (custEmail.equalsIgnoreCase(users[i].getEmailAddress())) {
                             doBooking(cathay, moviesList, users[i]);
@@ -83,7 +76,7 @@ public class MovieGoerView {
                     break;
                 case 9:
                     System.out.println("Please Enter your email address: ");
-                    custEmail = sc.nextLine();
+                    custEmail = scanner.nextLine();
                     for (int i = 0; i < Array.getLength(users); i++) {
                         if (custEmail.equalsIgnoreCase(users[i].getEmailAddress())) {
                             if (users[i].getBookingHistory().size() > 0) {
@@ -97,10 +90,11 @@ public class MovieGoerView {
 
                 case 10:
                     continueRunning = false;
+                    break;
 
             }
         }
-        }
+    }
 
 
 }

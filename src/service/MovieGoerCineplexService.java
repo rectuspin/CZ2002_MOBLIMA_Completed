@@ -1,5 +1,6 @@
 package service;
 
+import controller.DBController;
 import model.cinema.Cinema;
 import model.cinema.Cineplex;
 import model.cinema.Seat;
@@ -20,7 +21,7 @@ public class MovieGoerCineplexService {
     }
 
     // returns showtimes for a certain movie for the next 3 days
-    public ArrayList<ShowTime> getShowTimes(Cineplex[] cineplexes, Movie movie) {
+    public ArrayList<ShowTime> getShowTimes(ArrayList<Cineplex> cineplexes, Movie movie) {
         LocalDate today = LocalDate.now();
         LocalDate threeDaysLater = today.plusDays(3);
 
@@ -30,6 +31,39 @@ public class MovieGoerCineplexService {
                 ArrayList<ShowTime> showTimes = cineplex.getShowTimes().get(today);
                 for (ShowTime showTime : showTimes) {
                     if (showTime.getMovie() == movie) {
+                        nextThreeDays.add(showTime);
+                    }
+                }
+            }
+        }
+        return nextThreeDays;
+    }
+
+    // returns showtimes for a cineplex for the next 3 days
+    public ArrayList<ShowTime> getShowTimes(Cineplex cineplex) {
+        LocalDate today = LocalDate.now();
+        LocalDate threeDaysLater = today.plusDays(3);
+        ArrayList<ShowTime> nextThreeDays = new ArrayList<>();
+        for (; !today.equals(threeDaysLater); today = today.plusDays(1)) {
+            ArrayList<ShowTime> showTimes = cineplex.getShowTimes().get(today);
+            for (ShowTime showTime : showTimes) {
+                nextThreeDays.add(showTime);
+            }
+        }
+        return nextThreeDays;
+    }
+
+    public ArrayList<ShowTime> getShowTimes(Movie movie) {
+        DBController dbController = DBController.getInstance();
+        LocalDate today = LocalDate.now();
+        LocalDate threeDaysLater = today.plusDays(3);
+        ArrayList<Cineplex> cineplexes = new ArrayList<>(dbController.getCineplexes().values());
+        ArrayList<ShowTime> nextThreeDays = new ArrayList<>();
+        for (; !today.equals(threeDaysLater); today = today.plusDays(1)) {
+            for (Cineplex cineplex : cineplexes) {
+                ArrayList<ShowTime> showTimes = cineplex.getShowTimes().get(today);
+                for (ShowTime showTime : showTimes) {
+                    if (showTime.getMovie().getTitle().toLowerCase().equals(movie.getTitle().toLowerCase())) {
                         nextThreeDays.add(showTime);
                     }
                 }

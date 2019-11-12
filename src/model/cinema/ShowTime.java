@@ -209,7 +209,7 @@ public class ShowTime implements Model {
                 "movie=" + movie +
                 ", dateOfMovie=" + dateOfMovie +
                 ", timeOfMovie=" + timeOfMovie +
-                ", seatLayout=" + seatLayout +
+//                ", seatLayout=" + seatLayout +
                 ", cinema=" + cinema +
                 ", cineplex=" + cineplex +
                 ", language=" + language +

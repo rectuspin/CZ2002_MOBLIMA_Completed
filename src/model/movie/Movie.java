@@ -131,14 +131,14 @@ public class Movie implements Model {
 
     @Override
     public String toString() {
-        return "Movie{" +
-                "title='" + title + '\'' +
-                ", director='" + director + '\'' +
-                ", cast=" + cast +
-                ", synopsis='" + synopsis + '\'' +
-                ", movieStatus=" + movieStatus +
-                ", overallRating=" + overallRating +
-                ", reviews=" + reviews +
-                '}';
+        return "Movie " +
+                "Title: '" + title + '\'' +
+                " Director: '" + director + '\'' +
+                " Cast: " + cast +
+                " Synopsis: '" + synopsis + '\'' +
+                " Movie Status: " + movieStatus +
+                " Overall Rating:" + overallRating;
+//                ", reviews=" + reviews +
+
     }
 }
