@@ -22,6 +22,7 @@ public class MoblimaApp {
             System.out.println("3. Create admin account");
             System.out.println("4. Create customer account");
             System.out.println("5. Quit");
+            System.out.print("Option: ");
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:

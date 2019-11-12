@@ -29,8 +29,10 @@ import static service.TicketPriceService.*;
  */
 
 public class DBController {
+
     private SerializedDB serializedDB = SerializedDB.getInstance();
     private static DBController dbController = null;
+    private DBController(){ }
 
     public void createDB(String DBName) throws IOException {
         /**This method is defined to create the .dat file
@@ -160,7 +162,7 @@ public class DBController {
     public void addShowTimes(Cineplex cineplex, LocalDate dateOfMovie, ShowTime newShowTime){
         /**This method is defined to add the showtime into the temporary database
          * @param movie         The type of movie
-         * @param dataOfMovie   The date of the showtime
+         * @param dateOfMovie   The date of the showtime
          * @param timeOfMovie   The time of the showtime
          */
         serializedDB.getCineplexes().get(cineplex.getName()).getShowTimes().get(dateOfMovie).add(newShowTime);
@@ -211,6 +213,7 @@ public class DBController {
             serializedDB.setAdmins(serializedDBObj.getAdmins());
             serializedDB.setBookings(serializedDBObj.getBookings());
             serializedDB.setCustomers(serializedDBObj.getCustomers());
+            serializedDB.setMovies(serializedDBObj.getMovies());
 
             try {
                 loadEnums(serializedDBObj);
@@ -299,8 +302,17 @@ public class DBController {
     }
 
     public void commitTicketDetails() {
+        /**This method is defined to confirm the changes of the ticket when exiting the configure system settings panel
+         */
         setEnums();
         serializedDB.setTicketPricing(getPublicHolidayDates(), getPublicHolidayCharges(), getWeekendCharges(), getBasePrice());
+    }
+
+    public void addMovies(Movie movie){
+        /**This method is defined to add movies into the temporary database when the application is running
+         * @param movie The movie created to be added into the database
+         */
+        serializedDB.addMovies(movie);
     }
 }
 

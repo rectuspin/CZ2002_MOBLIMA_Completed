@@ -250,4 +250,19 @@ public class SerializedDB implements Serializable {
          */
         return sales.get(movieName);
     }
+
+    public void addMovies(Movie movie){
+        /**This method is defined to add movies into the temporary database
+         * @param movie The movie created to be added into the database
+         */
+        this.movies.add(movie);
+    }
+
+    public void setMovies(ArrayList<Movie> movies){
+        /**This method is used to set the current list of movie database with another list of movies
+         * @param movies a list of movies created by the admin
+         */
+        this.movies = movies;
+    }
+
 }
