@@ -11,27 +11,23 @@ import static view.TicketPriceMenuView.backOption;
 
 public class ChangeMovieListingView {
     private static DBController dbController = DBController.getInstance();
-
+    private static final Scanner sc = new Scanner(System.in);
     public static void create() {
         /**This method is used to create a movie listing
          */
-        System.out.println("How many movies do you want to add?");
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+
         String movieTitle, movieDirector, movieSynopsis;
 
-        for (int i = 0; i < n; i++) {
-            System.out.print("Movie's Title: ");
-            movieTitle = sc.nextLine();
-            System.out.print("Movie's Director:");
-            movieDirector = sc.nextLine();
-            ArrayList<String> movieCast = addCast();
-            System.out.println("Movie's Synopsis:");
-            movieSynopsis = sc.nextLine();
-            System.out.println();
-            Movie movie = new Movie(movieTitle, movieDirector, movieCast, movieSynopsis);
-            dbController.addMovies(movie);
-        }
+        System.out.print("Movie's Title: ");
+        movieTitle = sc.nextLine();
+        System.out.print("Movie's Director:");
+        movieDirector = sc.nextLine();
+        ArrayList<String> movieCast = addCast();
+        System.out.println("Movie's Synopsis:");
+        movieSynopsis = sc.nextLine();
+        System.out.println();
+        Movie movie = new Movie(movieTitle, movieDirector, movieCast, movieSynopsis);
+        dbController.addMovies(movie);
         System.out.println("You created a new movie list.");
     }
 
@@ -59,7 +55,6 @@ public class ChangeMovieListingView {
             }
         }
         System.out.println("====================================");
-        Scanner sc = new Scanner(System.in);
         System.out.print("Select a movie: ");
         int movieOption = sc.nextInt();
         while (true) {
@@ -126,7 +121,6 @@ public class ChangeMovieListingView {
          */
         ArrayList<Movie> movies = dbController.getMovies();
         int i = 1;
-        Scanner sc = new Scanner(System.in);
             System.out.println( "\n====================================\n" +
                                 "|               Movies             |\n" +
                                 "====================================");
@@ -155,11 +149,10 @@ public class ChangeMovieListingView {
          * @return a list of cast that acts in the movie
          */
         ArrayList<String> movieCast = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
         try {
             System.out.print("Number Of Cast: ");
             int n = sc.nextInt();
-//            sc.nextLine();
+            sc.nextLine();
             for (int i = 0; i < n; i++) {
                 System.out.print("Movie's Cast " + (i+1) + " : ");
                 String cast = sc.nextLine();
@@ -176,7 +169,6 @@ public class ChangeMovieListingView {
          * @param movies The list that consist of all the movies
          * @param movieOption The selection of which language is for the movie
          */
-        Scanner sc = new Scanner(System.in);
         System.out.println();
         System.out.print(   "===================================\n" +
                             "|       Available Languages       |\n" +
@@ -198,7 +190,6 @@ public class ChangeMovieListingView {
          * @param movies The list that consist of all the movies
          * @param movieOption The selection of which subtitle is for the movie
          */
-        Scanner sc = new Scanner(System.in);
         System.out.println();
         System.out.print(   "===================================\n" +
                             "|       Available Subtitles       |\n" +
@@ -220,7 +211,6 @@ public class ChangeMovieListingView {
          * @param movies The list that consist of all the movies
          * @param movieOption The selection of which movie status is for the movie
          */
-        Scanner sc = new Scanner(System.in);
         System.out.println();
         System.out.print(   "====================================\n" +
                             "|            Movie Status          |\n" +
@@ -242,7 +232,6 @@ public class ChangeMovieListingView {
          * @param movies The list that consist of all the movies
          * @param movieOption The selection of which movie rating is for the movie
          */
-        Scanner sc = new Scanner(System.in);
         System.out.println();
         System.out.print(   "================================================\n" +
                             "|                  Movie Rating                |\n" +
@@ -264,8 +253,6 @@ public class ChangeMovieListingView {
          * @param movies The list that consist of all the movies
          * @param movieOption The selection of which movie type is for the movie
          */
-
-        Scanner sc = new Scanner(System.in);
         System.out.print(   "====================================\n" +
                             "|             Movie Type           |\n" +
                             "====================================\n");

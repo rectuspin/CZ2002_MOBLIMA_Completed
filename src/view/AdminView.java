@@ -10,16 +10,19 @@ public class AdminView {
         int choice, choice_main;
         //main page
         do {
+
             System.out.println( "\n======================================\n" +
                                 "|            Admin Setting           |\n" +
                                 "======================================\n" +
                                 "| (1) Configure setting              |\n" +
-                    "| (2) Movie listings                 |\n" +
+                                "| (2) Movie listings                 |\n" +
                                 "| (3) Change cinema showtime         |\n"+
                                 "| (4) Go back                        |\n" +
                                 "======================================");
             System.out.print("Option: ");
+
             choice_main = sc.nextInt();
+
             switch (choice_main) {
                 case 1:
                     //configure setting
@@ -41,6 +44,7 @@ public class AdminView {
                                             "| (4) Go back                        |\n" +
                                             "======================================");
                         System.out.print("Option: ");
+
                         choice = sc.nextInt();
                         switch (choice) {
                             case 1:
