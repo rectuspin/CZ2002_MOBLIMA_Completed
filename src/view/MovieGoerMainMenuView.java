@@ -5,10 +5,8 @@ import model.account.Customer;
 import model.cinema.Cineplex;
 import model.cinema.ShowTime;
 import model.movie.Movie;
-import model.transaction.Booking;
 import service.MovieGoerCineplexService;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,6 +23,7 @@ public class MovieGoerMainMenuView {
             for (Movie movie : movies) {
                 System.out.printf("[%d] %s\n", number++, movie.getTitle());
             }
+            System.out.println();
         } catch (NullPointerException e) {
             System.out.println("No movies available right now! Try again later");
         }
@@ -209,56 +208,56 @@ public class MovieGoerMainMenuView {
 
 
         public static void doBooking (Cineplex[]cineplexList, Movie[]moviesList, Customer user){
-//            printMovieList(moviesList);
-            //Choose Movie first
-            System.out.println("Enter number of movie you wish to view details for: ");
-            int chosen;
-            chosen = scanner.nextInt();
-            int i;
-            for (i = 0; i < Array.getLength(moviesList); i++) {
-                if (chosen == i + 1) {
-                    for (int j = 0; j < (services.getShowTimes(cineplexList, moviesList[i])).size(); j++) {
-                        System.out.println((j + 1) + services.getShowTimes(cineplexList, moviesList[i]).get(j).toString());
-                    }
-                }
-            }
-            //Choose showtime next
-            ShowTime selected = null;
-            System.out.println("Enter the number of the showtime you would like: ");
-            chosen = scanner.nextInt();
-            for (int m = 0; m < services.getShowTimes(cineplexList, moviesList[i]).size(); m++) {
-                if (chosen == (m + 1)) {
-                    selected = services.getShowTimes(cineplexList, moviesList[i]).get(m);
-                }
-            }
-            if (selected == null) {
-                System.out.println("You have entered a wrong invalid showtime");
-            }
-            //Print the available seats;
-            services.showAvailableSeats(selected);
-
-            //Booking process
-            System.out.println("How many seats would you like to book? ");
-            int numOfSeats;
-            numOfSeats = scanner.nextInt();
-            String[] seatSelection = new String[numOfSeats];
-            for (int j = 0; j < numOfSeats; j++) {
-                System.out.println("Enter the seat you would like to book ; For Eg: (A1): ");
-                seatSelection[j] = scanner.nextLine();
-            }
-            System.out.println("Enter the name you would like to book under: ");
-            String name;
-            name = scanner.nextLine();
-            services.makeBooking(selected, seatSelection, name);
-            //Should we call the method to add to the booking history?
+////            printMovieList(moviesList);
+//            //Choose Movie first
+//            System.out.println("Enter number of movie you wish to view details for: ");
+//            int chosen;
+//            chosen = scanner.nextInt();
+//            int i;
+//            for (i = 0; i < Array.getLength(moviesList); i++) {
+//                if (chosen == i + 1) {
+//                    for (int j = 0; j < (services.getShowTimes(cineplexList, moviesList[i])).size(); j++) {
+//                        System.out.println((j + 1) + services.getShowTimes(cineplexList, moviesList[i]).get(j).toString());
+//                    }
+//                }
+//            }
+//            //Choose showtime next
+//            ShowTime selected = null;
+//            System.out.println("Enter the number of the showtime you would like: ");
+//            chosen = scanner.nextInt();
+//            for (int m = 0; m < services.getShowTimes(cineplexList, moviesList[i]).size(); m++) {
+//                if (chosen == (m + 1)) {
+//                    selected = services.getShowTimes(cineplexList, moviesList[i]).get(m);
+//                }
+//            }
+//            if (selected == null) {
+//                System.out.println("You have entered a wrong invalid showtime");
+//            }
+//            //Print the available seats;
+//            services.showAvailableSeats(selected);
+//
+//            //Booking process
+//            System.out.println("How many seats would you like to book? ");
+//            int numOfSeats;
+//            numOfSeats = scanner.nextInt();
+//            String[] seatSelection = new String[numOfSeats];
+//            for (int j = 0; j < numOfSeats; j++) {
+//                System.out.println("Enter the seat you would like to book ; For Eg: (A1): ");
+//                seatSelection[j] = scanner.nextLine();
+//            }
+//            System.out.println("Enter the name you would like to book under: ");
+//            String name;
+//            name = scanner.nextLine();
+//            services.makeBooking(selected, seatSelection, name);
+//            //Should we call the method to add to the booking history?
 
         }
 
         public static void printBookingHistory (Customer user){
-            ArrayList<Booking> booked = user.getBookingHistory();
-            for (int i = 0; i < booked.size(); i++) {
-                System.out.println(booked.get(i).toString());
-            }
+//            ArrayList<Booking> booked = user.getBookingHistory();
+//            for (int i = 0; i < booked.size(); i++) {
+//                System.out.println(booked.get(i).toString());
+//            }
         }
 }
 

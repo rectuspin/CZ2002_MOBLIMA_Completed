@@ -1,13 +1,6 @@
 package view;
 
-import controller.ChangeMovieListing;
-import controller.ChangeShowtimeListing;
-
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 import static view.TicketPriceView.ticketPriceView;
 
@@ -21,7 +14,7 @@ public class AdminView {
                                 "|            Admin Setting           |\n" +
                                 "======================================\n" +
                                 "| (1) Configure setting              |\n" +
-                                "| (2) Change movie listing           |\n" +
+                    "| (2) Movie listings                 |\n" +
                                 "| (3) Change cinema showtime         |\n"+
                                 "| (4) Go back                        |\n" +
                                 "======================================");
@@ -51,13 +44,13 @@ public class AdminView {
                         choice = sc.nextInt();
                         switch (choice) {
                             case 1:
-                                ChangeMovieListing.Create();
+                                ChangeMovieListingView.create();
                                 break;
                             case 2:
-                                ChangeMovieListing.Update();
+                                ChangeMovieListingView.update();
                                 break;
                             case 3:
-                                ChangeMovieListing.Remove();
+                                ChangeMovieListingView.remove();
                                 break;
                             default:
                                 break;
@@ -67,7 +60,7 @@ public class AdminView {
                     break;
                 case 3:
                     //Change cinema showtimes
-                    ChangeShowtimeListing changeShowtimeListing = new ChangeShowtimeListing();
+                    ChangeShowtimeListingView changeShowtimeListingView = new ChangeShowtimeListingView();
                     do {
                         System.out.println( "\n=======================================\n" +
                                             "|       Showtime Listing Setting      |\n" +
@@ -81,10 +74,10 @@ public class AdminView {
                         choice = sc.nextInt();
                         switch (choice) {
                             case 1:
-                               ChangeShowtimeListing.Create();
+                                ChangeShowtimeListingView.create();
                                 break;
                             case 2:
-                              //  ChangeShowtimeListing.Update();
+                                ChangeShowtimeListingView.update();
                                 break;
                             case 3:
                               //  ChangeShowtimeListing.Remove();

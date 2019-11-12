@@ -159,6 +159,11 @@ public class DBController {
         serializedDB.setCineplexes(cineplexes);
     }
 
+
+    public void addShowTimes(ShowTime showTime) {
+        serializedDB.getCineplexes().get(showTime.getCineplex().getName()).getShowTimes().get(showTime.getDateOfMovie()).add(showTime);
+    }
+
     public void addShowTimes(Cineplex cineplex, LocalDate dateOfMovie, ShowTime newShowTime){
         /**This method is defined to add the showtime into the temporary database
          * @param movie         The type of movie
@@ -166,6 +171,11 @@ public class DBController {
          * @param timeOfMovie   The time of the showtime
          */
         serializedDB.getCineplexes().get(cineplex.getName()).getShowTimes().get(dateOfMovie).add(newShowTime);
+    }
+
+    public void removeShowTimes(ShowTime oldShowTime) {
+        removeShowTimes(oldShowTime.getMovie(), oldShowTime.getDateOfMovie(), oldShowTime.getTimeOfMovie(), oldShowTime.getCinema(),
+                oldShowTime.getCineplex());
     }
 
     public void removeShowTimes(Movie movie, LocalDate dateOfMovie, LocalTime timeOfMovie, Cinema cinema,
@@ -185,6 +195,7 @@ public class DBController {
             }
         }
     }
+
 
     public static DBController getInstance()
     {

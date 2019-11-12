@@ -1,7 +1,6 @@
 package service;
 
 import controller.DBController;
-import model.account.Admin;
 import model.cinema.Cinema;
 import model.cinema.Cineplex;
 import model.cinema.ShowTime;
@@ -13,22 +12,9 @@ import java.time.LocalTime;
 import java.util.HashMap;
 
 public class AdminCineplexService {
-    private Admin admin;
+
     private DBController dbController = DBController.getInstance();
 
-
-    public AdminCineplexService(Admin admin) {
-        this.admin = admin;
-    }
-
-
-    public Admin getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
 
     public void addCineplex(Cineplex cineplex) {
 //        dbController.getCineplexes().put(cineplex.getName(), cineplex);
@@ -45,6 +31,10 @@ public class AdminCineplexService {
 
     public void removeCinema(Cineplex cineplex, Cinema cinema) {
         dbController.removeCinema(cineplex, cinema);
+    }
+
+    public void addShowTime(ShowTime showTime) {
+        dbController.addShowTimes(showTime);
     }
 
     public void addShowTime(Movie movie, LocalDate dateOfMovie, LocalTime timeOfMovie, Cinema cinema,
@@ -64,9 +54,19 @@ public class AdminCineplexService {
         dbController.addShowTimes(cineplex, dateOfMovie, newShowTime);
     }
 
+    public void removeShowTime(ShowTime showTime) {
+        removeShowTime(showTime.getMovie(), showTime.getDateOfMovie(), showTime.getTimeOfMovie(), showTime.getCinema(),
+                showTime.getCineplex());
+    }
+
     public void removeShowTime(Movie movie, LocalDate dateOfMovie, LocalTime timeOfMovie, Cinema cinema,
                                Cineplex cineplex) {
         dbController.removeShowTimes(movie, dateOfMovie, timeOfMovie,cinema, cineplex);
+    }
+
+    public void updateShowTime(ShowTime oldShowTime, ShowTime newShowTime) {
+        removeShowTime(oldShowTime);
+        addShowTime(newShowTime);
     }
 
     public HashMap getCineplexes() {

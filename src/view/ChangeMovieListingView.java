@@ -1,18 +1,18 @@
-package controller;
+package view;
 
+import controller.DBController;
 import model.movie.Movie;
 import model.movie.MovieEnums;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import static view.TicketPriceMenuView.backOption;
 
-public class ChangeMovieListing {
+public class ChangeMovieListingView {
     private static DBController dbController = DBController.getInstance();
 
-    public static void Create() {
+    public static void create() {
         /**This method is used to create a movie listing
          */
         System.out.println("How many movies do you want to add?");
@@ -22,20 +22,20 @@ public class ChangeMovieListing {
 
         for (int i = 0; i < n; i++) {
             System.out.print("Movie's Title: ");
-            sc.nextLine();
             movieTitle = sc.nextLine();
-            System.out.print("Movie's Director: ");
+            System.out.print("Movie's Director:");
             movieDirector = sc.nextLine();
             ArrayList<String> movieCast = addCast();
-            System.out.print("Movie's Synopsis: ");
+            System.out.println("Movie's Synopsis:");
             movieSynopsis = sc.nextLine();
+            System.out.println();
             Movie movie = new Movie(movieTitle, movieDirector, movieCast, movieSynopsis);
             dbController.addMovies(movie);
         }
         System.out.println("You created a new movie list.");
     }
 
-    public static void Update() {
+    public static void update() {
         /**This method is used to update the movie data
          * @return goes back to the previous interface
          */
@@ -121,7 +121,7 @@ public class ChangeMovieListing {
         }
     }
 
-    public static void Remove() {
+    public static void remove() {
         /**This method is used to remove a movie listing from the application
          */
         ArrayList<Movie> movies = dbController.getMovies();
@@ -159,7 +159,7 @@ public class ChangeMovieListing {
         try {
             System.out.print("Number Of Cast: ");
             int n = sc.nextInt();
-            sc.nextLine();
+//            sc.nextLine();
             for (int i = 0; i < n; i++) {
                 System.out.print("Movie's Cast " + (i+1) + " : ");
                 String cast = sc.nextLine();
@@ -177,7 +177,7 @@ public class ChangeMovieListing {
          * @param movieOption The selection of which language is for the movie
          */
         Scanner sc = new Scanner(System.in);
-        System.out.println("");
+        System.out.println();
         System.out.print(   "===================================\n" +
                             "|       Available Languages       |\n" +
                             "===================================\n");
@@ -199,7 +199,7 @@ public class ChangeMovieListing {
          * @param movieOption The selection of which subtitle is for the movie
          */
         Scanner sc = new Scanner(System.in);
-        System.out.println("");
+        System.out.println();
         System.out.print(   "===================================\n" +
                             "|       Available Subtitles       |\n" +
                             "===================================\n");
@@ -221,7 +221,7 @@ public class ChangeMovieListing {
          * @param movieOption The selection of which movie status is for the movie
          */
         Scanner sc = new Scanner(System.in);
-        System.out.println("");
+        System.out.println();
         System.out.print(   "====================================\n" +
                             "|            Movie Status          |\n" +
                             "====================================\n");
@@ -243,7 +243,7 @@ public class ChangeMovieListing {
          * @param movieOption The selection of which movie rating is for the movie
          */
         Scanner sc = new Scanner(System.in);
-        System.out.println("");
+        System.out.println();
         System.out.print(   "================================================\n" +
                             "|                  Movie Rating                |\n" +
                             "================================================\n");
@@ -285,7 +285,7 @@ public class ChangeMovieListing {
     public static void UpdateMenu(){
         /**This method is used to display the menu for editing the movie
          */
-        System.out.println("");
+        System.out.println();
         System.out.format(  "====================================\n" +
                             "|           Select Option          |\n" +
                             "====================================\n" +
