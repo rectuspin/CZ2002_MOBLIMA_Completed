@@ -54,7 +54,7 @@ public class ChangeShowtimeListingView {
         ArrayList<String> cineplexNames = new ArrayList<>(dbController.getCineplexes().keySet());
         HashMap<String, Cineplex> cineplexes = dbController.getCineplexes();
         printCineplex();
-        System.out.println("Which cineplexes do you want to update show times?");
+        System.out.println("Which cineplex do you want to update show times?");
         int choice = scanner.nextInt();
         Cineplex cineplexOfChoice = cineplexes.get(cineplexNames.get(choice - 1));
         printShowTimes(cineplexOfChoice);
