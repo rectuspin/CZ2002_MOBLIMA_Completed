@@ -170,7 +170,12 @@ public class DBController {
          * @param dateOfMovie   The date of the showtime
          * @param timeOfMovie   The time of the showtime
          */
-        serializedDB.getCineplexes().get(cineplex.getName()).getShowTimes().get(dateOfMovie).add(newShowTime);
+        try {
+            serializedDB.getCineplexes().get(cineplex.getName()).getShowTimes().get(dateOfMovie).add(newShowTime);
+        } catch (NullPointerException e) {
+            serializedDB.getCineplexes().get(cineplex.getName()).getShowTimes().put(dateOfMovie, new ArrayList<ShowTime>());
+            addShowTimes(cineplex, dateOfMovie, newShowTime);
+        }
     }
 
     public void removeShowTimes(ShowTime oldShowTime) {

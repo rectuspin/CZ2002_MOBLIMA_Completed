@@ -3,6 +3,7 @@ package view;
 import java.util.Scanner;
 
 import static view.TicketPriceView.ticketPriceView;
+import static view.UpdateCineplexOrCinemaView.updateCineplexOrCinemaView;
 
 public class AdminView {
     public static void adminView() {
@@ -12,13 +13,14 @@ public class AdminView {
         do {
 
             System.out.println( "\n======================================\n" +
-                                "|            Admin Setting           |\n" +
-                                "======================================\n" +
-                                "| (1) Configure setting              |\n" +
-                                "| (2) Movie listings                 |\n" +
-                                "| (3) Change cinema showtime         |\n"+
-                                "| (4) Go back                        |\n" +
-                                "======================================");
+                    "|            Admin Setting           |\n" +
+                    "======================================\n" +
+                    "| (1) Configure setting              |\n" +
+                    "| (2) Movie listings                 |\n" +
+                    "| (3) Change cinema showtime         |\n" +
+                    "| (4) Create/Remove cineplex/cinema  |\n" +
+                    "| (5) Go back                        |\n" +
+                    "======================================");
             System.out.print("Option: ");
 
             choice_main = sc.nextInt();
@@ -36,13 +38,13 @@ public class AdminView {
                     //change movie listing
                     do {
                         System.out.println( "\n======================================\n" +
-                                            "|        Movie Listing Setting       |\n" +
-                                            "======================================\n" +
-                                            "| (1) Create Movie listing           |\n" +
-                                            "| (2) Update Movie listing           |\n" +
-                                            "| (3) Remove Movie listing           |\n"+
-                                            "| (4) Go back                        |\n" +
-                                            "======================================");
+                                "|        Movie Listing Setting       |\n" +
+                                "======================================\n" +
+                                "| (1) Create Movie listing           |\n" +
+                                "| (2) Update Movie listing           |\n" +
+                                "| (3) Remove Movie listing           |\n" +
+                                "| (4) Go back                        |\n" +
+                                "======================================");
                         System.out.print("Option: ");
 
                         choice = sc.nextInt();
@@ -67,13 +69,13 @@ public class AdminView {
                     ChangeShowtimeListingView changeShowtimeListingView = new ChangeShowtimeListingView();
                     do {
                         System.out.println( "\n=======================================\n" +
-                                            "|       Showtime Listing Setting      |\n" +
-                                            "=======================================\n" +
-                                            "| (1) Create Showtime listing         |\n" +
-                                            "| (2) Update Showtime listing         |\n" +
-                                            "| (3) Remove Showtime listing         |\n"+
-                                            "| (4) Go back                         |\n" +
-                                            "=======================================");
+                                "|       Showtime Listing Setting      |\n" +
+                                "=======================================\n" +
+                                "| (1) Create Showtime listing         |\n" +
+                                "| (2) Update Showtime listing         |\n" +
+                                "| (3) Remove Showtime listing         |\n" +
+                                "| (4) Go back                         |\n" +
+                                "=======================================");
                         System.out.print("Option: ");
                         choice = sc.nextInt();
                         switch (choice) {
@@ -84,14 +86,17 @@ public class AdminView {
                                 ChangeShowtimeListingView.update();
                                 break;
                             case 3:
-                              //  ChangeShowtimeListing.Remove();
+                                //  ChangeShowtimeListing.Remove();
                                 break;
                             default:
                                 break;
                         }
                     } while (choice < 4);
                     break;
+                case 4:
+                    updateCineplexOrCinemaView();
+                    break;
             }
-        } while (choice_main < 4);
+        } while (choice_main < 5);
     }
 }

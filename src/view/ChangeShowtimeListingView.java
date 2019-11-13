@@ -41,9 +41,9 @@ public class ChangeShowtimeListingView {
             System.out.print("\nEnter your choice of cinema: ");
             choiceOfCinema = scanner.nextInt() - 1;
             System.out.print("\nEnter the date: (YYYY-MM-DD)");
-            date = scanner.nextLine();
+            date = scanner.next();
             System.out.print("\nEnter the time: (HH:mm:ss)");
-            time = scanner.nextLine();
+            time = scanner.next();
             Cineplex cineplexOfChoice = dbController.getCineplexes().get(cineplexes.get(choiceOfCineplex));
             Cinema cinemaOfChoice = cineplexOfChoice.getCinemas().get(choiceOfCinema);
             adminCineplexService.addShowTime(movies.get(choiceOfMovie), stringToDate(date), stringToTime(time), cinemaOfChoice, cineplexOfChoice);                             //Movie LocalDate LocalTime Cineplex Cinema
@@ -59,7 +59,7 @@ public class ChangeShowtimeListingView {
         Cineplex cineplexOfChoice = cineplexes.get(cineplexNames.get(choice - 1));
         printShowTimes(cineplexOfChoice);
         System.out.println("What is the date of the show time you wish to update?");
-        LocalDate dateOfChoice = stringToDate(scanner.nextLine());
+        LocalDate dateOfChoice = stringToDate(scanner.next());
         ArrayList<ShowTime> showTimes = cineplexOfChoice.getShowTimes().get(dateOfChoice);
         System.out.println("Which show time do you wish to update?");
         int count = 0;

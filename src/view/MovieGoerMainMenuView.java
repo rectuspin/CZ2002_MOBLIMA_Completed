@@ -53,21 +53,8 @@ public class MovieGoerMainMenuView {
     public static void viewDetails() {
         try {
             ArrayList<Movie> movies = dbController.getMovies();
-            System.out.println("Enter number of movies displayed on each page: ");
-            int page = scanner.nextInt();
-            for (int i = 0; i < (movies.size() / page) + 1; i++) {
-                for (int j = i * page; j < i * (page + 1); j++) {
-                    if (j == movies.size() - 1) return;
-                    System.out.println(movies.get(j));
-                }
-                System.out.println();
-                System.out.println("Next page (Y) Back (B)");
-                char choice = scanner.next().toLowerCase().charAt(0);
-                while (choice != 'y' && choice != 'b') {
-                    System.out.println("Next page (Y) Back (B)");
-                    choice = scanner.next().toLowerCase().charAt(0);
-                }
-                if (choice == 'b') return;
+            for (Movie movie : movies) {
+                System.out.println(movie);
             }
 
         } catch (NullPointerException e) {
