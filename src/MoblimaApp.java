@@ -1,10 +1,8 @@
 import controller.DBController;
 
-import java.security.spec.ECField;
 import java.util.Scanner;
 
 import static view.LandingPageView.*;
-import static view.TicketPriceView.ticketPriceView;
 
 public class MoblimaApp {
     private static final Scanner scanner = new Scanner(System.in);
@@ -15,6 +13,7 @@ public class MoblimaApp {
         DBController dbController = DBController.getInstance();
         dbController.load();
         while (stillRunning) {
+            System.out.println("=====================================================================");
             System.out.println("Welcome to MOvie Booking and LIsting Management Application (MOBLIMA)\n");
             System.out.println("Enter your options: ");
             System.out.println("1. Login as admin");
@@ -24,6 +23,15 @@ public class MoblimaApp {
             System.out.println("5. Quit");
             System.out.print("Option: ");
             choice = scanner.nextInt();
+
+//            "\n=======================================\n" +
+//                    "|       Showtime Listing Setting      |\n" +
+//                    "=======================================\n" +
+//                    "| (1) Create Showtime listing         |\n" +
+//                    "| (2) Update Showtime listing         |\n" +
+//                    "| (3) Remove Showtime listing         |\n" +
+//                    "| (4) Go back                         |\n" +
+//                    "======================================="
             switch (choice) {
                 case 1:
                     adminLogin();

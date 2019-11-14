@@ -205,16 +205,15 @@ public class ShowTime implements Model {
         /**This method will return the format of how the showtime will be displayed
          * @return the format of how the details of the showtime will be displayed
          */
-        return "ShowTime{" +
-                "movie=" + movie +
-                ", dateOfMovie=" + dateOfMovie +
-                ", timeOfMovie=" + timeOfMovie +
+        return "ShowTime: \n" +
+                "Movie Title: " + movie.getTitle() +
+                "\n Date Of Movie: " + dateOfMovie +
+                "\n Time Of Movie: " + timeOfMovie +
 //                ", seatLayout=" + seatLayout +
-                ", cinema=" + cinema +
-                ", cineplex=" + cineplex +
-                ", language=" + language +
-                ", subtitle=" + subtitle +
-                ", movieType=" + movieType +
-                '}';
+                "\n Cinema: " + cinema.getName() +
+                "\n Cineplex: " + cineplex.getName() +
+                "\n Language: " + language +
+                "\n Subtitle: " + subtitle +
+                "\n Movie Type: " + movieType + "\n\n";
     }
 }

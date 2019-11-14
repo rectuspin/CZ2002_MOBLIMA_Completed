@@ -26,16 +26,21 @@ public class MovieGoerCineplexService {
         LocalDate threeDaysLater = today.plusDays(3);
 
         ArrayList<ShowTime> nextThreeDays = new ArrayList<>();
+
         for (; !today.equals(threeDaysLater); today = today.plusDays(1)) {
             for (Cineplex cineplex : cineplexes) {
-                ArrayList<ShowTime> showTimes = cineplex.getShowTimes().get(today);
-                for (ShowTime showTime : showTimes) {
-                    if (showTime.getMovie() == movie) {
-                        nextThreeDays.add(showTime);
+                // check for null to prevent NullPointerException
+                if (!(cineplex.getShowTimes().get(today) == null)) {
+                    ArrayList<ShowTime> showTimes = cineplex.getShowTimes().get(today);
+                    for (ShowTime showTime : showTimes) {
+                        if (showTime.getMovie() == movie) {
+                            nextThreeDays.add(showTime);
+                        }
+                    }
                     }
                 }
             }
-        }
+
         return nextThreeDays;
     }
 
@@ -45,9 +50,11 @@ public class MovieGoerCineplexService {
         LocalDate threeDaysLater = today.plusDays(3);
         ArrayList<ShowTime> nextThreeDays = new ArrayList<>();
         for (; !today.equals(threeDaysLater); today = today.plusDays(1)) {
-            ArrayList<ShowTime> showTimes = cineplex.getShowTimes().get(today);
-            for (ShowTime showTime : showTimes) {
-                nextThreeDays.add(showTime);
+            if (!(cineplex.getShowTimes().get(today) == null)) {
+                ArrayList<ShowTime> showTimes = cineplex.getShowTimes().get(today);
+                for (ShowTime showTime : showTimes) {
+                    nextThreeDays.add(showTime);
+                }
             }
         }
         return nextThreeDays;
@@ -61,10 +68,12 @@ public class MovieGoerCineplexService {
         ArrayList<ShowTime> nextThreeDays = new ArrayList<>();
         for (; !today.equals(threeDaysLater); today = today.plusDays(1)) {
             for (Cineplex cineplex : cineplexes) {
-                ArrayList<ShowTime> showTimes = cineplex.getShowTimes().get(today);
-                for (ShowTime showTime : showTimes) {
-                    if (showTime.getMovie().getTitle().toLowerCase().equals(movie.getTitle().toLowerCase())) {
-                        nextThreeDays.add(showTime);
+                if (!(cineplex.getShowTimes().get(today) == null)) {
+                    ArrayList<ShowTime> showTimes = cineplex.getShowTimes().get(today);
+                    for (ShowTime showTime : showTimes) {
+                        if (showTime.getMovie().getTitle().toLowerCase().equals(movie.getTitle().toLowerCase())) {
+                            nextThreeDays.add(showTime);
+                        }
                     }
                 }
             }

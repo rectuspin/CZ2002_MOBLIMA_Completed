@@ -131,14 +131,26 @@ public class Movie implements Model {
 
     @Override
     public String toString() {
-        return "Movie " +
-                "Title: '" + title + '\'' +
-                " Director: '" + director + '\'' +
-                " Cast: " + cast +
-                " Synopsis: '" + synopsis + '\'' +
-                " Movie Status: " + movieStatus +
-                " Overall Rating:" + overallRating;
+        return "Movie Title: " + title +
+                "\nDirector: " + director +
+                "\nCast: " + printCast(cast) +
+                "\nSynopsis: " + synopsis +
+                "\nMovie Status: " + movieStatus +
+                "\nOverall Rating: " + overallRating + "\n\n";
 //                ", reviews=" + reviews +
 
+    }
+
+    public String printCast(ArrayList<String> casts) {
+        if (casts.isEmpty()) {
+            return "None";
+        }
+        String castString = "";
+        for (String cast : casts) {
+            if (!casts.get(cast.length() - 1).equals(cast))
+                castString += cast + ", ";
+            else castString += cast;
+        }
+        return castString;
     }
 }

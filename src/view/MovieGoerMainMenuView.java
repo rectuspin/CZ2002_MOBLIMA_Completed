@@ -56,6 +56,7 @@ public class MovieGoerMainMenuView {
             for (Movie movie : movies) {
                 System.out.println(movie);
             }
+            System.out.println();
 
         } catch (NullPointerException e) {
             System.out.println("There are no cineplexes available right now! Sorry!");
@@ -112,7 +113,7 @@ public class MovieGoerMainMenuView {
                 //exception handling ADD
                 System.out.println("Enter the movie you wish to view seat availablity for (1, 2 and so on): ");
                 int choice = scanner.nextInt();
-                while (choice < movies.size()) {
+                while (choice >= movies.size() + 1) {
                     System.out.println("Enter the movie you wish to view seat availablity for (1, 2 and so on): ");
                     choice = scanner.nextInt();
                 }
@@ -137,9 +138,9 @@ public class MovieGoerMainMenuView {
 
                     while (true) {
                         int selected = showTimeIndex + 1;
-                        System.out.println("Enter choice of show time to show available seats (enter b to go back)");
+                        System.out.println("Enter choice of show time to show available seats (enter -1 to go back)");
                         selected = scanner.nextInt();
-                        if (selected == (int) ('b')) return;
+                        if (selected == -1) return;
                         while (selected - 1 >= showTimeIndex) {
                             System.out.println("Enter choice of show time to show available seats");
                             selected = scanner.nextInt();
