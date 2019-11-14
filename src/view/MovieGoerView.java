@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import static view.MovieGoerMainMenuView.*;
+import static view.Top5MoviesView.printTop5Movies;
 
 public class MovieGoerView {
     private static final DBController dbController = DBController.getInstance();
@@ -68,7 +69,7 @@ public class MovieGoerView {
                     break;
                 case 7:
                     //View Top 5 movies ranked by ticket sales;
-                    Top5MoviesView.printTop5Movies();
+                    printTop5Movies();
                     break;
                 case 8:
                     // View Top 5 movies ranked by overall reviewers’ ratings;

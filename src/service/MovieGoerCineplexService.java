@@ -103,6 +103,7 @@ public class MovieGoerCineplexService {
             booking.makeBooking();
         }
         customer.getBookingHistory().add(booking);
+        dbController.addSales(booking);
     }
 
     public void cancelBooking(ShowTime showTime, String[] seatPos, String name) {
