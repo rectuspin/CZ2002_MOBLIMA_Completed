@@ -175,5 +175,7 @@ public class Booking implements Model {
          */
         return transactionID;
     }
-
-}
+    public ShowTime getShowTime(){
+        return showTime;
+    }
+    }

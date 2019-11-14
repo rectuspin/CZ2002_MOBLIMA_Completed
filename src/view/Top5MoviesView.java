@@ -1,12 +1,40 @@
 package view;
 
 import controller.DBController;
+import model.movie.Movie;
+import model.movie.Review;
 
 import java.util.*;
 import java.util.Map.Entry;
 
 public class Top5MoviesView {
     private static DBController dbController = DBController.getInstance();
+
+    public static void printTop5MoviesByRatings() {
+        ArrayList<Movie> movies = dbController.getMovies();
+        HashMap<String, Float> ratings = new HashMap<>();
+
+        for(Movie movie : movies) {
+            ratings.put(movie.getTitle(), getRating(movie));
+        }
+
+        Object[] a = ratings.entrySet().toArray();
+        Arrays.sort(a, new Comparator() {
+            public int compare(Object o1, Object o2) {
+                int i = ((Map.Entry<String, Float>) o2).getValue()
+                        .compareTo(((Map.Entry<String, Float>) o1).getValue());
+                return i;
+            }
+        });
+
+        List<Entry<String, Float>> top5Movies = findGreatest(ratings, 5);
+        Collections.reverse(top5Movies);
+        System.out.println("Top 5 Movies:");
+
+        for (Entry<String, Float> entry : top5Movies) {
+            System.out.println(entry.getKey());
+        }
+    }
 
     public static void printTop5Movies() {
 
@@ -121,5 +149,13 @@ public class Top5MoviesView {
             result.add(highest.poll());
         }
         return result;
+    }
+    public static float getRating(Movie movie) {
+        ArrayList<Review> reviews = movie.getReviews();
+        float total = 0;
+        for(Review review : reviews) {
+            total += review.getRating();
+        }
+        return (reviews.size()==0) ? 0 : total / reviews.size();
     }
 }

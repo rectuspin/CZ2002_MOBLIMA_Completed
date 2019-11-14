@@ -9,6 +9,7 @@ import model.cinema.Cineplex;
 import model.cinema.ShowTime;
 import model.movie.Movie;
 import model.movie.MovieEnums;
+import model.movie.Review;
 import model.transaction.Booking;
 
 import java.io.File;
@@ -302,6 +303,10 @@ public class DBController {
         serializedDB.addSales(booking.getMovie().getTitle(), booking.getTickets().size());
     }
 
+    public void addReview(Movie movie, Review review) {
+        serializedDB.addReview(movie, review);
+    }
+
     public HashMap<String, Integer> getSales(){
         /**This method is defined to get the array of the sales
          * @return An array list of sales for each movie
@@ -330,6 +335,7 @@ public class DBController {
          */
         serializedDB.addMovies(movie);
     }
+
 }
 
 

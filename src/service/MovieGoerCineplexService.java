@@ -84,9 +84,8 @@ public class MovieGoerCineplexService {
         return nextThreeDays;
     }
 
-    public void makeBooking(ShowTime showTime, String[] seatPos, String name) {
+    public void makeBooking(ShowTime showTime, String[] seatPos, Customer customer) {
         HashMap<Character, Seat[]> layout = showTime.getSeatLayout();
-        Customer customer = getCustomerByName(name);
         Seat[] seats = new Seat[seatPos.length];
 
 

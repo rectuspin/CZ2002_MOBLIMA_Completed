@@ -63,7 +63,7 @@ public class LandingPageView {
             password = scanner.next();
         }
         System.out.println("Welcome, " + username);
-        movieGoerView();
+        movieGoerView(getCustomer(username));
     }
 
     public static void createCustomerAccount() {

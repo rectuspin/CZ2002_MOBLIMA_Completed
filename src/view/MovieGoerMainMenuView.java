@@ -5,10 +5,12 @@ import model.account.Customer;
 import model.cinema.Cineplex;
 import model.cinema.ShowTime;
 import model.movie.Movie;
+import model.movie.Review;
 import model.transaction.Booking;
 import service.MovieGoerCineplexService;
 
 import java.lang.reflect.Array;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -159,7 +161,7 @@ public class MovieGoerMainMenuView {
 
                 System.out.println("Enter the cineplex you wish to view seat availablity for: ");
                 int choice = scanner.nextInt();   //choice2 - 1 = index required
-                while (choice > cineplexes.size() - 1) {
+                while (choice > cineplexes.size()) {
                     System.out.println("Enter the cineplex you wish to view seat availablity for: ");
                     choice = scanner.nextInt();
                 }
@@ -180,14 +182,14 @@ public class MovieGoerMainMenuView {
                     }
 
                     while (true) {
-                        System.out.println("Select the show time to check seat availability (enter b to go back)");
+                        System.out.println("Select the show time to check seat availability (enter -1 to go back)");
                         int showTimeIndex = scanner.nextInt();
-                        while (showTimeIndex != (int) ('b') && showTimeIndex - 1 >= i) {
-                            System.out.println("Select the show time to check seat availability (enter b to go back)");
+                        while (showTimeIndex != -1 && showTimeIndex - 1 >= i) {
+                            System.out.println("Select the show time to check seat availability (enter -1 to go back)");
                             showTimeIndex = scanner.nextInt();
                         }
-                        if (showTimeIndex == (int) ('b')) return;
-                        services.showAvailableSeats(showTimes.get(showTimeIndex));
+                        if (showTimeIndex == -1) return;
+                        services.showAvailableSeats(showTimes.get(showTimeIndex-1));
                     }
                 }
             }
@@ -196,7 +198,7 @@ public class MovieGoerMainMenuView {
         }
         }
 
-    public static void doBooking() {
+    public static void doBooking(Customer customer) {
         try {
             System.out.println("Would you like to book by (1) Movie or by (2) Cineplex ? - Enter choice 1 or 2");
             int searchBy = scanner.nextInt();
@@ -256,10 +258,9 @@ public class MovieGoerMainMenuView {
                         System.out.println("Enter the seat you would like to book ; For Eg: (A1): ");
                         seatSelection[j] = scanner.nextLine();
                     }
-                    System.out.println("Enter the name you would like to book under: ");
-                    String name;
-                    name = scanner.nextLine();
-                    services.makeBooking(thisMovieShows.get(showTimeIndex - 1), seatSelection, name);
+
+                    services.makeBooking(thisMovieShows.get(selected - 1), seatSelection, customer);
+                    System.out.println("Booking successful!");
 
                     //Should we call the method to add to the booking history?
 
@@ -274,7 +275,7 @@ public class MovieGoerMainMenuView {
 
                 System.out.println("Enter the cineplex you wish to book in: ");
                 int choice = scanner.nextInt();   //choice2 - 1 = index required
-                while (choice > cineplexes.size() - 1) {
+                while (choice > cineplexes.size()) {
                     System.out.println("Enter the cineplex you wish to book in: ");
                     choice = scanner.nextInt();
                 }
@@ -294,7 +295,6 @@ public class MovieGoerMainMenuView {
                         System.out.println((++i) + ": " + showTime);
                     }
 
-                    while (true) {
                         System.out.println("Select the show time to book tickets (enter b to go back)");
                         int showTimeIndex = scanner.nextInt();
                         while (showTimeIndex != (int) ('b') && showTimeIndex - 1 >= i) {
@@ -305,19 +305,19 @@ public class MovieGoerMainMenuView {
                         System.out.println("How many seats would you like to book? ");
                         int numOfSeats;
                         numOfSeats = scanner.nextInt();
+                        String dummy = scanner.nextLine();
                         String[] seatSelection = new String[numOfSeats];
                         for (int j = 0; j < numOfSeats; j++) {
                             System.out.println("Enter the seat you would like to book ; For Eg: (A1): ");
                             seatSelection[j] = scanner.nextLine();
                         }
-                        System.out.println("Enter the name you would like to book under: ");
-                        String name;
-                        name = scanner.nextLine();
-                        services.makeBooking(showTimes.get(showTimeIndex), seatSelection, name);
+
+                        services.makeBooking(showTimes.get(showTimeIndex-1), seatSelection, customer);
+                        System.out.println("Booking successful!");
                         //Should we call the method to add to the booking history?
                     }
                 }
-            }
+
         } catch (NullPointerException e) {
             System.out.println("No movies or cineplexes are available! Sorry!");
         }
@@ -327,17 +327,22 @@ public class MovieGoerMainMenuView {
         ArrayList<Customer> users = dbController.getCustomer();
         String custEmail;
         Boolean userRight = Boolean.FALSE;
-        System.out.println("Please Enter your email address: ");
+        System.out.println("Please Enter your email address associated with this account: ");
         custEmail = scanner.nextLine();
-        for (int i = 0; i < Array.getLength(users); i++) {
+        for (int i = 0; i < users.size() ; i++) {
             if (custEmail.equalsIgnoreCase(users.get(i).getEmailAddress())) {
                 userRight = Boolean.TRUE;
                 if (users.get(i).getBookingHistory().size() > 0) {
                     ArrayList<Booking> booked = users.get(i).getBookingHistory();
                     if (booked.size() == 0)
-                        System.out.println("No bookings have been done");
+                        System.out.println("No bookings have been done for this user");
                     for (int j = 0; j < booked.size(); j++) {
-                        System.out.println(booked.get(j).toString());
+                        System.out.println();
+                        System.out.println("Date of Booking: " + booked.get(j).getDateOfBooking());
+                        System.out.println("Time of Booking: " + booked.get(j).getTimeOfBooking());
+                        System.out.println("Transaction ID Details : " + booked.get(j).getTransactionID());
+                        System.out.println("ShowTime Details : " + booked.get(j).getShowTime().toString());
+
                     }
                     break;
                 }
@@ -346,6 +351,25 @@ public class MovieGoerMainMenuView {
         if (!userRight)
             System.out.println("Invalid email ID entered!");
     }
+    public static void leaveReview(Customer customer) {
+        int rating = 0;
+        String reviewContent = "";
+        ArrayList<Movie> movies = dbController.getMovies();
+        int movieIndex = movies.size();
+        printMovieList();
+        do {
+            System.out.println("Enter the index of the movie you're leaving a review for");
+            movieIndex = scanner.nextInt();
+        } while(movieIndex-1>=movies.size());
+        do {
+            System.out.println("Enter your rating for the movie (1 to 5)");
+            rating = scanner.nextInt();
+        } while(rating < 1  || rating > 5);
+        Movie movie = movies.get(movieIndex-1);
+        Review review = new Review(LocalDateTime.now(), rating, reviewContent, customer.getUserName(), movie);
+        dbController.addReview(movie, review);
+    }
+
 }
 
 

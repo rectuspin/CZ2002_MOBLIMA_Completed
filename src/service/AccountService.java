@@ -47,7 +47,15 @@ public class AccountService {
         }
         return usernames.contains(username) && passwords.contains(password);
     }
-
+    public static Customer getCustomer(String username){
+        ArrayList<Customer> customers = dbController.getCustomer();
+        for(Customer customer : customers) {
+            if(customer.getUserName().equals(username)) {
+                return customer;
+            }
+        }
+        return null;
+    }
     public static boolean checkIfAdminAccountExists(String username, String password) {
         ArrayList<Admin> admins = dbController.getAdmin();
         ArrayList<String> usernames = new ArrayList<>();

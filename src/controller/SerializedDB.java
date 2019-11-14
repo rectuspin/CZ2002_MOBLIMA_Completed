@@ -8,6 +8,7 @@ import model.cinema.CinemaType;
 import model.cinema.Cineplex;
 import model.movie.Movie;
 import model.movie.MovieEnums;
+import model.movie.Review;
 import model.transaction.Booking;
 
 import java.io.Serializable;
@@ -234,6 +235,14 @@ public class SerializedDB implements Serializable {
          * @param numOfTickets  The number of tickets sold for the movie
          */
         sales.put(movieName, numOfTickets);
+    }
+
+    public void addReview(Movie movieOfChoice, Review review) {
+        for(Movie movie : movies) {
+            if(movie.equals(movieOfChoice)) {
+                movie.getReviews().add(review);
+            }
+        }
     }
 
     public HashMap<String, Integer> getSales(){

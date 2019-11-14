@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import static view.MovieGoerMainMenuView.*;
-import static view.Top5MoviesView.printTop5Movies;
+import static view.Top5MoviesView.*;
 
 public class MovieGoerView {
     private static final DBController dbController = DBController.getInstance();
@@ -18,7 +18,7 @@ public class MovieGoerView {
 
 
 
-    public static void movieGoerView() {
+    public static void movieGoerView(Customer customer) {
         int choice = 0;
         boolean continueRunning = true;
         MovieGoerMainMenuView movieListView = new MovieGoerMainMenuView();
@@ -35,11 +35,12 @@ public class MovieGoerView {
             System.out.println("(3) View Movie Details: ");       //done
             System.out.println("(4) List cineplexes available: ");  //done
             System.out.println("(5) Check seat availability: ");    //done
-            System.out.println("(6) Book and purchase ticket: ");   //yet to do
-            System.out.println("(7) View Top 5 movies ranked by ticket sales: ");   //haven't started
-            System.out.println("(8) View Top 5 movies ranked by overall reviewers’ ratings: ");  //haven't started
-            System.out.println("(9) Show booking history"); //to do - create an user class!
-            System.out.println("(10) Quit");
+            System.out.println("(6) Book and purchase ticket: ");   //done
+            System.out.println("(7) View Top 5 movies ranked by ticket sales: ");   //done
+            System.out.println("(8) View Top 5 movies ranked by overall reviewers’ ratings: ");  //yet to do
+            System.out.println("(9) Show booking history"); //done
+            System.out.println("(10) Leave Rating"); //done
+            System.out.println("(11) Quit");
             System.out.println("Enter your choice:");
             choice = scanner.nextInt();
             switch (choice) {
@@ -65,7 +66,7 @@ public class MovieGoerView {
                     break;
                 case 6:
                     //Does Booking
-                    doBooking();
+                    doBooking(customer);
                     break;
                 case 7:
                     //View Top 5 movies ranked by ticket sales;
@@ -73,12 +74,15 @@ public class MovieGoerView {
                     break;
                 case 8:
                     // View Top 5 movies ranked by overall reviewers’ ratings;
+                    printTop5MoviesByRatings();
                     break;
                 case 9:
                     printBookingHistory();
                     break;
-
                 case 10:
+                    leaveReview(customer);
+                    break;
+                case 11:
                     continueRunning = false;
                     break;
 
