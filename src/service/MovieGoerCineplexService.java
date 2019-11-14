@@ -1,20 +1,23 @@
 package service;
 
 import controller.DBController;
+import model.account.Customer;
 import model.cinema.Cinema;
 import model.cinema.Cineplex;
 import model.cinema.Seat;
 import model.cinema.ShowTime;
 import model.movie.Movie;
+import model.transaction.Booking;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.TreeSet;
 
 public class MovieGoerCineplexService {
-
+    private static DBController dbController = DBController.getInstance();
     // returns showtimes at a cineplex on a certain day
     public ArrayList<ShowTime> getShowTimes(Cineplex cineplex, LocalDate localDate) {
         return cineplex.getShowTimes().get(localDate);
@@ -83,11 +86,23 @@ public class MovieGoerCineplexService {
 
     public void makeBooking(ShowTime showTime, String[] seatPos, String name) {
         HashMap<Character, Seat[]> layout = showTime.getSeatLayout();
+        Customer customer = getCustomerByName(name);
+        Seat[] seats = new Seat[seatPos.length];
+
+
+        int count = 0;
         for (String seat : seatPos) {
             char row = Character.toUpperCase(seat.charAt(0));
-            int col = seat.charAt(1);
+            int col = Character.digit(seat.charAt(1), 10);
+//            int col = Integer.parseInt(seat, 1, 1, 10);
             layout.get(row)[col - 1].makeBooking();
+            seats[count++] = layout.get(row)[col - 1];
         }
+        Booking booking = new Booking(LocalDate.now(), LocalTime.now(), showTime, seats, customer);
+        for (int i = 0; i < seats.length; i++) {
+            booking.makeBooking();
+        }
+        customer.getBookingHistory().add(booking);
     }
 
     public void cancelBooking(ShowTime showTime, String[] seatPos, String name) {
@@ -99,6 +114,16 @@ public class MovieGoerCineplexService {
         }
     }
 
+    public Customer getCustomerByName(String name) {
+        ArrayList<Customer> customers = dbController.getCustomer();
+        for (Customer customer : customers) {
+            if (customer.getUserName().equals(name)) {
+                return customer;
+            }
+        }
+        return null; // assume customer always present
+
+    }
     public void showAvailableSeats(ShowTime showTime) {
         HashMap<Character, Seat[]> layout = showTime.getSeatLayout();
         TreeSet<Character> rows = new TreeSet<>(layout.keySet());
