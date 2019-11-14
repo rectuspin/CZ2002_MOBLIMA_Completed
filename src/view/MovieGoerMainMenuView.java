@@ -313,6 +313,7 @@ public class MovieGoerMainMenuView {
                         }
 
                         services.makeBooking(showTimes.get(showTimeIndex-1), seatSelection, customer);
+
                         System.out.println("Booking successful!");
                         //Should we call the method to add to the booking history?
                     }

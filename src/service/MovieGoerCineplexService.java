@@ -103,6 +103,7 @@ public class MovieGoerCineplexService {
         }
         customer.getBookingHistory().add(booking);
         dbController.addSales(booking);
+        System.out.println("Total Price: " + booking.getPrice(booking.getDateOfBooking()));
     }
 
     public void cancelBooking(ShowTime showTime, String[] seatPos, String name) {
