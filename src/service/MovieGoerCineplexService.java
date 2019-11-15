@@ -1,6 +1,7 @@
 package service;
 
 import controller.DBController;
+import model.AgeGroup;
 import model.account.Customer;
 import model.cinema.Cinema;
 import model.cinema.Cineplex;
@@ -84,7 +85,7 @@ public class MovieGoerCineplexService {
         return nextThreeDays;
     }
 
-    public void makeBooking(ShowTime showTime, String[] seatPos, Customer customer) {
+    public void makeBooking(ShowTime showTime, String[] seatPos, Customer customer, AgeGroup ageGroup) {
         HashMap<Character, Seat[]> layout = showTime.getSeatLayout();
         Seat[] seats = new Seat[seatPos.length];
 
@@ -99,12 +100,13 @@ public class MovieGoerCineplexService {
         }
         Booking booking = new Booking(LocalDate.now(), LocalTime.now(), showTime, seats, customer);
         for (int i = 0; i < seats.length; i++) {
-            booking.makeBooking();
+            booking.makeBooking(ageGroup);
         }
         customer.getBookingHistory().add(booking);
         dbController.addSales(booking);
         System.out.println("Total Price: " + booking.getPrice(booking.getDateOfBooking()));
     }
+
 
     public void cancelBooking(ShowTime showTime, String[] seatPos, String name) {
         HashMap<Character, Seat[]> layout = showTime.getSeatLayout();

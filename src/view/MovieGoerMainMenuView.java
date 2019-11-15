@@ -1,6 +1,7 @@
 package view;
 
 import controller.DBController;
+import model.AgeGroup;
 import model.account.Customer;
 import model.cinema.Cineplex;
 import model.cinema.ShowTime;
@@ -258,8 +259,14 @@ public class MovieGoerMainMenuView {
                         System.out.println("Enter the seat you would like to book ; For Eg: (A1): ");
                         seatSelection[j] = scanner.nextLine();
                     }
-
-                    services.makeBooking(thisMovieShows.get(selected - 1), seatSelection, customer);
+                    int i = 1;
+                    for (AgeGroup a : AgeGroup.values()){
+                        System.out.println("(" + i + ") " + a.getGroupType());
+                        i++;
+                    }
+                    System.out.print("Select citizen type: ");
+                    int opt = scanner.nextInt();
+                    services.makeBooking(thisMovieShows.get(selected - 1), seatSelection, customer, AgeGroup.values()[opt-1]);
                     System.out.println("Booking successful!");
 
                     //Should we call the method to add to the booking history?
@@ -311,10 +318,16 @@ public class MovieGoerMainMenuView {
                             System.out.println("Enter the seat you would like to book ; For Eg: (A1): ");
                             seatSelection[j] = scanner.nextLine();
                         }
+                        i = 1;
+                    for (AgeGroup a : AgeGroup.values()){
+                        System.out.println("(" + i + ") " + a.getGroupType());
+                        i++;
+                    }
+                    System.out.print("Select citizen type: ");
+                    int opt = scanner.nextInt();
+                    services.makeBooking(showTimes.get(showTimeIndex-1), seatSelection, customer, AgeGroup.values()[opt-1]);
 
-                        services.makeBooking(showTimes.get(showTimeIndex-1), seatSelection, customer);
-
-                        System.out.println("Booking successful!");
+                    System.out.println("Booking successful!");
                         //Should we call the method to add to the booking history?
                     }
                 }
