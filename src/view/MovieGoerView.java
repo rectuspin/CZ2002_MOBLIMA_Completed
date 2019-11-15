@@ -30,6 +30,9 @@ public class MovieGoerView {
         //Movie[] moviesList = new Movie[15];
         Cineplex[] cathay = new Cineplex[10];
         while (continueRunning) {
+            System.out.println("--------------------------------------------------------------------");
+            System.out.println("                           Booking Menu                             ");
+            System.out.println("--------------------------------------------------------------------");
             System.out.println("(1) List movies available: ");    //done
             System.out.println("(2) Search movies available: ");  //done
             System.out.println("(3) View Movie Details: ");       //done
@@ -41,7 +44,9 @@ public class MovieGoerView {
             System.out.println("(9) Show booking history"); //done
             System.out.println("(10) Leave Rating"); //done
             System.out.println("(11) Quit");
+            System.out.println("--------------------------------------------------------------------");
             System.out.println("Enter your choice:");
+
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:

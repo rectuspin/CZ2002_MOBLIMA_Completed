@@ -59,9 +59,21 @@ public class MovieGoerMainMenuView {
         try {
             ArrayList<Movie> movies = dbController.getMovies();
             for (Movie movie : movies) {
-                System.out.println(movie);
+                System.out.println(" ------------------------");
+                System.out.println(" Movie: " + movie.getTitle());
+                System.out.println(" Director: " + movie.getDirector());
+                System.out.println(" Cast: ");
+                int i = 1;
+                for (String cast: movie.getCast()){
+                    System.out.println(" (" + i + ") " + cast);
+                    i++;
+                }
+                for (Review review : movie.getReviews()){
+                    System.out.println(" ------------------------");
+                    System.out.println(" Rating: " + review.getRating() + "\n Review: " + review.getReview());
+                }
+                System.out.println(" ------------------------\n");
             }
-            System.out.println();
 
         } catch (NullPointerException e) {
             System.out.println("There are no cineplexes available right now! Sorry!");
@@ -219,12 +231,12 @@ public class MovieGoerMainMenuView {
                 //exception handling ADD
                 System.out.println("Enter the movie you wish to book (1, 2 and so on): ");
                 int choice = scanner.nextInt();
-                while (choice < movies.size()) {
+                while (choice > movies.size()) {
                     System.out.println("Enter the movie you wish to book (1, 2 and so on): ");
                     choice = scanner.nextInt();
                 }
                 String movieCheckSeats = movies.get(choice - 1).getTitle();
-                System.out.printf("You have chosen (%d) %s", choice, movieCheckSeats);
+                System.out.printf("You have chosen (%d) %s\n", choice, movieCheckSeats);
 
                 if (cineplexes.isEmpty()) {
                     System.out.println("There are no cineplexes open");
@@ -241,14 +253,12 @@ public class MovieGoerMainMenuView {
                         System.out.println((++showTimeIndex) + ". " + showTime);
                     }
 
-
-                    int selected = showTimeIndex + 1;
                     System.out.println("Enter choice of show time you wish to book seats for (enter b to go back)");
-                    selected = scanner.nextInt();
-                    if (selected == (int) ('b')) return;
-                    while (selected - 1 >= showTimeIndex) {
+                    String selected = scanner.next();
+                    if (selected.equals("b")) return;
+                    while (Integer.parseInt(selected) - 1 >= showTimeIndex) {
                         System.out.println("Enter choice of show time to book available seats");
-                        selected = scanner.nextInt();
+                        selected = scanner.next();
                     }
                     System.out.println("How many seats would you like to book? ");
                     int numOfSeats;
@@ -266,7 +276,7 @@ public class MovieGoerMainMenuView {
                     }
                     System.out.print("Select citizen type: ");
                     int opt = scanner.nextInt();
-                    services.makeBooking(thisMovieShows.get(selected - 1), seatSelection, customer, AgeGroup.values()[opt-1]);
+                    services.makeBooking(thisMovieShows.get(Integer.parseInt(selected) - 1), seatSelection, customer, AgeGroup.values()[opt-1]);
                     System.out.println("Booking successful!");
 
                     //Should we call the method to add to the booking history?
@@ -376,8 +386,11 @@ public class MovieGoerMainMenuView {
             movieIndex = scanner.nextInt();
         } while(movieIndex-1>=movies.size());
         do {
-            System.out.println("Enter your rating for the movie (1 to 5)");
+            System.out.print("Enter your rating for the movie (1 to 5): ");
             rating = scanner.nextInt();
+            System.out.println("Enter your review: ");
+            scanner.nextLine();
+            reviewContent = scanner.nextLine();
         } while(rating < 1  || rating > 5);
         Movie movie = movies.get(movieIndex-1);
         Review review = new Review(LocalDateTime.now(), rating, reviewContent, customer.getUserName(), movie);
