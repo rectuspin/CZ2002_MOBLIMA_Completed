@@ -211,6 +211,8 @@ public class TicketPriceService {
     }
 
     public static void commit(){
+        /**This method is defined to confirm the changes of the ticket when exiting the configure system settings panel
+         */
         DBController dbController = DBController.getInstance();
         dbController.commitTicketDetails();
     }
