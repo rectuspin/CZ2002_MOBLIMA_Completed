@@ -32,34 +32,58 @@ public class Customer implements Model {
     }
 
     public String getUserName() {
+        /**This method is used to obtain the username
+         * @return the username of the customer
+         */
         return userName;
     }
 
     public void setUserName(String userName) {
+        /**This method is used to set the username
+         * @param the username of the customer
+         */
         this.userName = userName;
     }
 
     public String getPassword() {
+        /**This method is used to obtain the password
+         * @return the password of the customer
+         */
         return password;
     }
 
     public void setPassword(String password) {
+        /**This method is used to set the password
+         * @param the password of the customer
+         */
         this.password = password;
     }
 
     public String getMobileNumber() {
+        /**This method is used to obtain the mobile number
+         * @return the mobile number of the customer
+         */
         return mobileNumber;
     }
 
     public void setMobileNumber(String mobileNumber) {
+        /**This method is used to set the mobile number
+         * @param the mobile number of the customer
+         */
         this.mobileNumber = mobileNumber;
     }
 
     public String getEmailAddress() {
+        /**This method is used to obtain the email
+         * @return the email of the customer
+         */
         return emailAddress;
     }
 
     public void setEmailAddress(String emailAddress) {
+        /**This method is used to set the email
+         * @param the email of the customer
+         */
         this.emailAddress = emailAddress;
     }
 
@@ -72,6 +96,9 @@ public class Customer implements Model {
     }
 
     public ArrayList<Booking> getBookingHistory() {
+        /**This method will get the bookings into the customer's booking history
+         * @return The customer's booking history
+         */
         return bookingHistory;
     }
 

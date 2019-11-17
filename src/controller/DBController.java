@@ -27,7 +27,7 @@ import static service.TicketPriceService.*;
   - add/remove cineplex
   - add/remove showtimes
   - add/get sales
- */
+*/
 
 public class DBController {
 
