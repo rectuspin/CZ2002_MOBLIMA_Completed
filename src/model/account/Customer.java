@@ -5,43 +5,65 @@ import model.transaction.Booking;
 
 import java.util.ArrayList;
 
-/*This is the customer class where it would consist the information of the customers such as
+/**This is the customer class where it would consist the information of the customers such as
     - customer name
     - mobile number
     - email address
- */
+ **/
 public class Customer implements Model {
+    /**
+     * username of Customer
+     */
     private String userName;
+    /**
+     * password of Customer
+     */
     private String password;
+    /**
+     * mobile number of Customer
+     */
     private String mobileNumber;
+    /**
+     * email address of Customer
+     */
     private String emailAddress;
     //    private int mobileNumber;
+    /**
+     * an arraylist of bookings of the customer
+     */
     private ArrayList<Booking> bookingHistory = new ArrayList<Booking>();
 
+    /**
+     * This constructor for Customer
+     *
+     * @param userName     The username of the customer
+     * @param password     The password of the customer
+     * @param mobileNumber The mobileNumber of the customer
+     * @param emailAddress The emailAddress of the customer
+     */
     public Customer(String userName, String password, String mobileNumber, String emailAddress) {
-        /**This constructor for Customer
-         * @param username    The username of the customer
-         * @param password         The password of the customer
-         * @param mobileNumber  The mobileNumber of the customer
-         * @param emailAddress  The emailAddress of the customer
-         */
+
         this.userName = userName;
         this.password = password;
         this.mobileNumber = mobileNumber;
         this.emailAddress = emailAddress;
     }
 
+    /**
+     * This method is used to obtain the username
+     *
+     * @return the username of the customer
+     */
     public String getUserName() {
-        /**This method is used to obtain the username
-         * @return the username of the customer
-         */
+
         return userName;
     }
 
+    /**This method is used to set the username
+     * @param  userName the username of the customer
+     */
     public void setUserName(String userName) {
-        /**This method is used to set the username
-         * @param the username of the customer
-         */
+
         this.userName = userName;
     }
 
