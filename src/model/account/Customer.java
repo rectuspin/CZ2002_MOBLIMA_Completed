@@ -67,60 +67,78 @@ public class Customer implements Model {
         this.userName = userName;
     }
 
+    /**
+     * This method is used to obtain the password
+     *
+     * @return the password of the customer
+     */
     public String getPassword() {
-        /**This method is used to obtain the password
-         * @return the password of the customer
-         */
+
         return password;
     }
 
+    /**This method is used to set the password
+     * @param password the password of the customer
+     */
     public void setPassword(String password) {
-        /**This method is used to set the password
-         * @param the password of the customer
-         */
+
         this.password = password;
     }
 
+    /**
+     * This method is used to obtain the mobile number
+     *
+     * @return the mobile number of the customer
+     */
     public String getMobileNumber() {
-        /**This method is used to obtain the mobile number
-         * @return the mobile number of the customer
-         */
+
         return mobileNumber;
     }
 
+    /**This method is used to set the mobile number
+     * @param mobileNumber the mobile number of the customer
+     */
     public void setMobileNumber(String mobileNumber) {
-        /**This method is used to set the mobile number
-         * @param the mobile number of the customer
-         */
+
         this.mobileNumber = mobileNumber;
     }
 
+    /**
+     * This method is used to obtain the email
+     *
+     * @return the email of the customer
+     */
     public String getEmailAddress() {
-        /**This method is used to obtain the email
-         * @return the email of the customer
-         */
+
         return emailAddress;
     }
 
+    /**This method is used to set the email
+     * @param emailAddress the email of the customer
+     */
     public void setEmailAddress(String emailAddress) {
-        /**This method is used to set the email
-         * @param the email of the customer
-         */
+
         this.emailAddress = emailAddress;
     }
 
+    /**
+     * This method will add the bookings into the customer's booking history for the customer to view later in the
+     * future
+     *
+     * @param booking The booking to be added into the customer's booking history
+     */
     public void addBookingHistory(Booking booking) {
-        /**This method will add the bookings into the customer's booking history for the customer to view later in the
-         * future
-         * @param booking           The booking to be added into the customer's booking history
-         */
+
         bookingHistory.add(booking);
     }
 
+    /**
+     * This method will get the bookings into the customer's booking history
+     *
+     * @return The customer's booking history
+     */
     public ArrayList<Booking> getBookingHistory() {
-        /**This method will get the bookings into the customer's booking history
-         * @return The customer's booking history
-         */
+
         return bookingHistory;
     }
 

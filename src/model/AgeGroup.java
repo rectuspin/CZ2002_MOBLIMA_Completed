@@ -1,8 +1,8 @@
 
 package model;
 
-/*This consist of the different age group for the customer to select
-  If their eligible they would be offered discounts
+/** This consist of the different age group for the customer to select
+ * If their eligible they would be offered discounts
  */
 public enum AgeGroup {
     STANDARD("STANDARD", 0),
@@ -19,24 +19,29 @@ public enum AgeGroup {
     }
 
 
+    /**
+     * This method would return the name for the specific age group
+     *
+     * @return The name of the specific group type
+     */
     public String getGroupType() {
-        /**This method would return the name for the specific age group
-         * @return The name of the specific group type
-         */
+
         return this.groupType;
     }
 
+    /**This method would return the amount of the discount for the specific age group
+     * @return The amount of the discount for the specific age group
+     */
     public double getTicketPrice(){
-        /**This method would return the amount of the discount for the specific age group
-         * @return The amount of the discount for the specific age group
-         */
+
         return this.price;
     }
 
+    /**This method would set the amount of the discount for the specific age group
+     * @param price         The amount of the discount for the specific age group
+     */
     public void setTicketPrice(double price){
-        /**This method would set the amount of the discount for the specific age group
-         * @param price         The amount of the discount for the specific age group
-         */
+
         this.price = price;
     }
 }

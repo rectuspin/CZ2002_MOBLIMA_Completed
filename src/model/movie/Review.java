@@ -4,13 +4,40 @@ import model.Model;
 
 import java.time.LocalDateTime;
 
+/**
+ * Contains information about the Movie being reviewed
+ */
 public class Review implements Model {
+    /**
+     * Contains datetime information on when the review is made
+     */
     LocalDateTime timestamp;
+    /**
+     * rating of movie from 1 to 5
+     */
     Integer rating;
+    /**
+     * review of the movie
+     */
     String review = null;
+    /**
+     * name of the reviewer
+     */
     String nameOfReviewer;
+    /**
+     * movie being reviewed
+     */
     Movie movie;
 
+    /**
+     * Constructor for Review
+     *
+     * @param timestamp
+     * @param rating
+     * @param review
+     * @param nameOfReviewer
+     * @param movie
+     */
     public Review(LocalDateTime timestamp, Integer rating, String review, String nameOfReviewer, Movie movie) {
         this.timestamp = timestamp;
         this.rating = rating;
@@ -19,6 +46,10 @@ public class Review implements Model {
         this.movie = movie;
     }
 
+    /**
+     * toString method for Review
+     * @return
+     */
     @Override
     public String toString() {
         return "Review{" +

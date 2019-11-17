@@ -11,32 +11,68 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
 
+/**
+ * Service class to provide services for admin
+ */
 public class AdminCineplexService {
 
+    /**
+     * static variable for DBController to access DB
+     */
     private DBController dbController = DBController.getInstance();
 
-
+    /**
+     * Method to add a cineplex into the database
+     *
+     * @param cineplex
+     */
     public void addCineplex(Cineplex cineplex) {
-//        dbController.getCineplexes().put(cineplex.getName(), cineplex);
+
         dbController.addCineplex(cineplex);
     }
 
+    /**
+     * Method to add cineplex by name
+     * @param name
+     */
     public void removeCineplex(String name) {
         dbController.removeCineplex(name);
     }
 
+    /**
+     * Method to add cinema to a cineplex
+     * @param cineplex
+     * @param cinema
+     */
     public void addCinema(Cineplex cineplex, Cinema cinema) {
         dbController.addCinema(cineplex, cinema);
     }
 
+    /**
+     * Method to remove cinema from a cineplex
+     * @param cineplex
+     * @param cinema
+     */
     public void removeCinema(Cineplex cineplex, Cinema cinema) {
         dbController.removeCinema(cineplex, cinema);
     }
 
+    /**
+     * Method to add show time
+     * @param showTime
+     */
     public void addShowTime(ShowTime showTime) {
         dbController.addShowTimes(showTime);
     }
 
+    /**
+     * overloaded method to add show time
+     * @param movie
+     * @param dateOfMovie
+     * @param timeOfMovie
+     * @param cinema
+     * @param cineplex
+     */
     public void addShowTime(Movie movie, LocalDate dateOfMovie, LocalTime timeOfMovie, Cinema cinema,
                             Cineplex cineplex) {
         ShowTime newShowTime = new ShowTime(movie, dateOfMovie, timeOfMovie, cinema.copyCinemaLayout(),
@@ -45,6 +81,17 @@ public class AdminCineplexService {
 
     }
 
+    /**
+     * overloaded method to add show time
+     * @param movie
+     * @param dateOfMovie
+     * @param timeOfMovie
+     * @param cinema
+     * @param cineplex
+     * @param language
+     * @param subtitle
+     * @param movieType
+     */
     public void addShowTime(Movie movie, LocalDate dateOfMovie, LocalTime timeOfMovie, Cinema cinema,
                             Cineplex cineplex, MovieEnums.Language language, MovieEnums.Subtitle subtitle, MovieEnums.MovieType movieType) {
 

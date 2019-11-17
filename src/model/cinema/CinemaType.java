@@ -1,7 +1,8 @@
 package model.cinema;
 
-import controller.SerializedDB;
-
+/**
+ * enum that contains the different types of cinema
+ */
 public enum CinemaType {
     STANDARD("Standard", 0),
     PLATINUM_MOVIE_SUITES("Suites", 0),
@@ -15,24 +16,31 @@ public enum CinemaType {
         this.prices = prices;
     }
 
+    /**
+     * This method would return the name for the specific movie type
+     *
+     * @return The name for the specific movie type
+     */
     public String getName() {
-        /**This method would return the name for the specific movie type
-         * @return The name for the specific movie type
-         */
+
         return name;
     }
 
+    /**
+     * This method would return the extra charges for the specific cinema type
+     *
+     * @return The extra charges for the specific cinema type
+     */
     public double getTicketPrice() {
-        /**This method would return the extra charges for the specific cinema type
-         * @return The extra charges for the specific cinema type
-         */
+
         return prices;
     }
 
+    /**This method would set the extra charges for the specific cinema type
+     * @param prices          The extra charges for the specific cinema type
+     */
     public void setTicketPrice(double prices) {
-        /**This method would set the extra charges for the specific cinema type
-         * @param price          The extra charges for the specific cinema type
-         */
+
         this.prices = prices;
     }
 

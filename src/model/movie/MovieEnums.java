@@ -2,6 +2,9 @@ package model.movie;
 
 import model.Model;
 
+/**
+ * Class containing enums for Movies
+ */
 public class MovieEnums implements Model {
     public enum MovieRating {
         G("General"),
@@ -17,10 +20,13 @@ public class MovieEnums implements Model {
             this.description = description;
         }
 
+        /**
+         * This method would return the description of each movie rating
+         *
+         * @return The description of each movie rating
+         */
         public String toString() {
-            /**This method would return the description of each movie rating
-             * @return The description of each movie rating
-             */
+
             return description;
         }
     }
@@ -53,17 +59,19 @@ public class MovieEnums implements Model {
             this.prices = prices;
         }
 
+        /**This method would return the extra charges for the specific movie type
+         * @return The extra charges for the specific movie type
+         */
         public double getTicketPrice() {
-            /**This method would return the extra charges for the specific movie type
-             * @return The extra charges for the specific movie type
-             */
+
             return prices;
         }
 
+        /**This method would set the extra charges for the specific movie type
+         * @param prices         The extra charges for the specific movie type
+         */
         public void setTicketPrice(double prices) {
-            /**This method would set the extra charges for the specific movie type
-             * @param price          The extra charges for the specific movie type
-             */
+
             this.prices = prices;
         }
     }
