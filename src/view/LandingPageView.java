@@ -1,16 +1,20 @@
 package view;
 
-import controller.SerializedDB;
-
 import java.util.Scanner;
 
 import static service.AccountService.*;
 import static view.AdminView.adminView;
 import static view.MovieGoerView.movieGoerView;
 
+/**
+ * Class to show the landing page
+ */
 public class LandingPageView {
     private static final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Method to display login for admin
+     */
     public static void adminLogin() {
         System.out.print("Enter your username: ");
         String username = scanner.next();
@@ -29,6 +33,9 @@ public class LandingPageView {
     }
 
 
+    /**
+     * Method to display menu for creating admin
+     */
     public static void createAdmin() {
         // create account - username, password, phone number, email address
         System.out.print("Enter a username: ");
@@ -49,6 +56,9 @@ public class LandingPageView {
         System.out.println("You have successfully created an user account");
     }
 
+    /**
+     * Method to display options for customer login
+     */
     public static void customerLogin() {
         System.out.print("Enter your username: ");
         String username = scanner.next();
@@ -66,6 +76,9 @@ public class LandingPageView {
         movieGoerView(getCustomer(username));
     }
 
+    /**
+     * Method to display creating of Customer Account
+     */
     public static void createCustomerAccount() {
         // create account - username, password, phone number, email address
         System.out.print("Enter a username: ");

@@ -132,9 +132,9 @@ public class Booking implements Model {
      * @return The date when the booking is made
      */
     public LocalDate getDateOfBooking() {
-
         return dateOfBooking;
     }
+
 
     /**This method will set/ update the date of booking
      * @param dateOfBooking               The date when the booking is made

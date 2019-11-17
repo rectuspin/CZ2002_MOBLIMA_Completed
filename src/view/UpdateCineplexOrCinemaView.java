@@ -13,9 +13,15 @@ import java.util.Scanner;
 import static view.ChangeShowtimeListingView.printCinema;
 import static view.ChangeShowtimeListingView.printCineplex;
 
+/**
+ * class to display options for adding/removing/updating cineplex and cinema
+ */
 public class UpdateCineplexOrCinemaView {
     public static AdminCineplexService adminCineplexService = new AdminCineplexService();
 
+    /**
+     * Prints the menu to update,create and remove cineplex and cinemas
+     */
     public static void updateCineplexOrCinemaView() {
         Scanner sc = new Scanner(System.in);
         Scanner sc1 = new Scanner(System.in);
@@ -102,6 +108,11 @@ public class UpdateCineplexOrCinemaView {
 
     }
 
+    /**
+     * Method to list all exisiting cineplexes
+     *
+     * @return Cineplex
+     */
     public static Cineplex displayCineplexes() {
         Scanner scanner = new Scanner(System.in);
         DBController dbController = DBController.getInstance();
@@ -122,6 +133,11 @@ public class UpdateCineplexOrCinemaView {
         return null;
     }
 
+    /**
+     * Method to print all the exsiting cinemas in a particular cineplex
+     * @param cineplex
+     * @return Cineplex
+     */
     public static Cinema displayCinemas(Cineplex cineplex) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Cinema> cinemas = cineplex.getCinemas();

@@ -5,7 +5,13 @@ import java.util.Scanner;
 import static view.TicketPriceView.ticketPriceView;
 import static view.UpdateCineplexOrCinemaView.updateCineplexOrCinemaView;
 
+/**
+ * Class to display Admin View
+ */
 public class AdminView {
+    /**
+     * Method to display view for admin
+     */
     public static void adminView() {
         Scanner sc = new Scanner(System.in);
         int choice, choice_main;

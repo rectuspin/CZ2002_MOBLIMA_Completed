@@ -13,6 +13,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/**
+ * Class to display view for changing a show time listing
+ */
 public class ChangeShowtimeListingView {
 
     public static List list = new ArrayList();
@@ -20,6 +23,9 @@ public class ChangeShowtimeListingView {
     private static Scanner scanner = new Scanner(System.in);
     private static AdminCineplexService adminCineplexService = new AdminCineplexService();
 
+    /**
+     * display view for creating a show time
+     */
     public static void create() {
         System.out.println("How many showtimes do you want to add?");
         int n = scanner.nextInt();
@@ -50,6 +56,9 @@ public class ChangeShowtimeListingView {
         }
     }
 
+    /**
+     * view for updating a showtime
+     */
     public static void update() {
         ArrayList<String> cineplexNames = new ArrayList<>(dbController.getCineplexes().keySet());
         HashMap<String, Cineplex> cineplexes = dbController.getCineplexes();
@@ -166,17 +175,15 @@ public class ChangeShowtimeListingView {
         adminCineplexService.updateShowTime(oldShowTime, newShowTime);
     }
 
-    public static List Remove(List list) {
-        list.clear();
-        System.out.println("You cleared the showtime list.");
-        return list;
-    }
 
     public static void delete() {
         System.out.println("Which cineplex do you want to delete show time from?");
         printCineplex();
     }
 
+    /**
+     * Method for viewing all movies
+     */
     public static void printMovies() {
         ArrayList<Movie> movies = dbController.getMovies();
         int count = 1;
@@ -185,6 +192,9 @@ public class ChangeShowtimeListingView {
         }
     }
 
+    /**
+     * Method for viewing all cineplexes
+     */
     public static void printCineplex() {
         ArrayList<String> cineplexes = new ArrayList<>(dbController.getCineplexes().keySet());
         int count = 1;
@@ -194,6 +204,11 @@ public class ChangeShowtimeListingView {
 
     }
 
+    /**
+     * Method for viewing all Cinemas in a Cineplex
+     *
+     * @param cineplex
+     */
     public static void printCinema(Cineplex cineplex) {
         ArrayList<Cinema> cinemas = cineplex.getCinemas();
         int count = 1;
@@ -202,6 +217,10 @@ public class ChangeShowtimeListingView {
         }
     }
 
+    /**
+     * Method for viewing all Show Times
+     * @param cineplex
+     */
     public static void printShowTimes(Cineplex cineplex) {
         HashMap<LocalDate, ArrayList<ShowTime>> showTimes = cineplex.getShowTimes();
         ArrayList<LocalDate> dates = new ArrayList<>(showTimes.keySet());
@@ -215,6 +234,9 @@ public class ChangeShowtimeListingView {
         }
     }
 
+    /**
+     * Method for showing all languages
+     */
     public static void printLanguages() {
         MovieEnums.Language[] languages = MovieEnums.Language.values();
         int count = 0;
@@ -223,6 +245,9 @@ public class ChangeShowtimeListingView {
         }
     }
 
+    /**
+     * Method for showing all subtitle options
+     */
     public static void printSubtitles() {
         MovieEnums.Subtitle[] subtitles = MovieEnums.Subtitle.values();
         int count = 0;
@@ -231,6 +256,9 @@ public class ChangeShowtimeListingView {
         }
     }
 
+    /**
+     * Method for showing all movie type options
+     */
     public static void printMovieType() {
         MovieEnums.MovieType[] movieTypes = MovieEnums.MovieType.values();
         int count = 0;
@@ -239,10 +267,20 @@ public class ChangeShowtimeListingView {
         }
     }
 
+    /**
+     * Method to parse a string into a LocalDate
+     * @param string
+     * @return LocalDate
+     */
     public static LocalDate stringToDate(String string) {
         return LocalDate.parse(string, DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
+    /**
+     * Method to parse a string into a LocalTime
+     * @param string
+     * @return LocalTime
+     */
     public static LocalTime stringToTime(String string) {
         return LocalTime.parse(string, DateTimeFormatter.ISO_LOCAL_TIME);
     }

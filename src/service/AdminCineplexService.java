@@ -101,21 +101,43 @@ public class AdminCineplexService {
         dbController.addShowTimes(cineplex, dateOfMovie, newShowTime);
     }
 
+    /**
+     * Method to remove Show Time
+     *
+     * @param showTime
+     */
     public void removeShowTime(ShowTime showTime) {
         removeShowTime(showTime.getMovie(), showTime.getDateOfMovie(), showTime.getTimeOfMovie(), showTime.getCinema(),
                 showTime.getCineplex());
     }
 
+    /**
+     * Overloaded method to remove Show Time
+     * @param movie
+     * @param dateOfMovie
+     * @param timeOfMovie
+     * @param cinema
+     * @param cineplex
+     */
     public void removeShowTime(Movie movie, LocalDate dateOfMovie, LocalTime timeOfMovie, Cinema cinema,
                                Cineplex cineplex) {
         dbController.removeShowTimes(movie, dateOfMovie, timeOfMovie,cinema, cineplex);
     }
 
+    /**
+     * Method to update show time
+     * @param oldShowTime
+     * @param newShowTime
+     */
     public void updateShowTime(ShowTime oldShowTime, ShowTime newShowTime) {
         removeShowTime(oldShowTime);
         addShowTime(newShowTime);
     }
 
+    /**
+     * method to get the hashmap of cineplexes from the database
+     * @return HashMap
+     */
     public HashMap getCineplexes() {
         return dbController.getCineplexes();
     }

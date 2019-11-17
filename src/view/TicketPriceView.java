@@ -12,20 +12,24 @@ import java.util.Scanner;
 import static service.TicketPriceService.*;
 import static view.TicketPriceMenuView.*;
 
-
+/**
+ * Class to display the ticket prices
+ */
 public class TicketPriceView {
 
-    //This is the main control view
+    /**
+     * This method is basically an interface that consist of a menu which would accept an input from the admin based
+     * one the available option which allows the user to set what they want to set. The available options are:
+     * 1. Setting the base price
+     * 2. Setting the movie type charges
+     * 3. Setting the cinema type charges
+     * 4. Setting the charges for different citizen that are different age
+     * 5. Setting public holiday dates/ public holiday and weekend charges
+     *
+     * @throws ParseException
+     */
     public static void ticketPriceView() throws ParseException {
-        /**This method is basically an interface that consist of a menu which would accept an input from the admin based
-         * one the available option which allows the user to set what they want to set. The available options are:
-         * 1. Setting the base price
-         * 2. Setting the movie type charges
-         * 3. Setting the cinema type charges
-         * 4. Setting the charges for different citizen that are different age
-         * 5. Setting public holiday dates/ public holiday & weekend charges
-         * @throws ParseException
-         */
+
         while (true) {
             TicketPriceMenuView.systemConfigurationMenu();
             try {
@@ -37,7 +41,7 @@ public class TicketPriceView {
                     System.out.println("Current Base Price: SGD " + String.format("%.2f", getBasePrice()));
                     System.out.print("New Base Price: ");
                     double price = in.nextDouble();
-                    System.out.println("");
+                    System.out.println();
                     setBasePrice(price);
                 }
                 else if (opt == 2) {
@@ -60,13 +64,13 @@ public class TicketPriceView {
         }
     }
 
-    //Movie Type Settings
-    //Settings function for different movie type charges
+    /**
+     * This method is basically an interface that consist of a menu which would accept an input from the admin based
+     * one the available options. A list of different movie types would be shown here and selecting it would allow
+     * the admin to change the charges for that specific movie type.
+     */
     public static void movieTypeSettings(){
-        /**This method is basically an interface that consist of a menu which would accept an input from the admin based
-         * one the available options. A list of different movie types would be shown here and selecting it would allow
-         * the admin to change the charges for that specific movie type.
-         */
+
         while (true) {
             movieTypeChargesMenu();   //Display each movie type to set additional charges
             Scanner in = new Scanner(System.in);
@@ -77,7 +81,7 @@ public class TicketPriceView {
                 System.out.println("Movie Type: " + MovieEnums.MovieType.values()[opt-1]);
                 System.out.print("New Charges: ");
                 double charges = in.nextDouble();   //Input the amount for the extra charges
-                System.out.println("");
+                System.out.println();
                 setMovieTypeCharges(opt, charges);   //Sets the charges for each movie type
             }
             else if (opt == MovieEnums.MovieType.values().length+1){
@@ -89,13 +93,13 @@ public class TicketPriceView {
         }
     }
 
-    //Cinema Type Settings
-    //Settings function for different cinema type charges
+    /**
+     * This method is basically an interface that consist of a menu which would accept an input from the admin based
+     * one the available options. A list of different cinema types would be shown here and selecting it would allow
+     * the admin to change the charges for that specific cinema type.
+     */
     public static void cinemaTypeSettings(){
-        /**This method is basically an interface that consist of a menu which would accept an input from the admin based
-         * one the available options. A list of different cinema types would be shown here and selecting it would allow
-         * the admin to change the charges for that specific cinema type.
-         */
+
         while (true) {
             cinemaTypeChargesMenu();   //Display each cinema type to set additional charges
             Scanner in = new Scanner(System.in);
@@ -106,7 +110,7 @@ public class TicketPriceView {
                 System.out.println("Cinema Type: " + CinemaType.values()[opt-1]);
                 System.out.print("New Charges: ");
                 double charges = in.nextDouble();   //Input the amount for the extra charges
-                System.out.println("");
+                System.out.println();
                 setCinemaTypeCharges(opt, charges);   //Sets the charges for each cinema type
             }
             else if (opt == CinemaType.values().length+1){
@@ -118,14 +122,14 @@ public class TicketPriceView {
         }
     }
 
-    //Age Group Settings
-    //Settings function for different age group charges
+    /**
+     * This method is basically an interface that consist of a menu which would accept an input from the admin based
+     * one the available options. A list of categories that applies to different citizen for special discounts would
+     * be shown here and selecting it would allow the admin to change the charges for that specific category. (e.g.
+     * Student Price, Senior Citizen, Child)
+     */
     public static void citizenCategorySettings(){
-        /**This method is basically an interface that consist of a menu which would accept an input from the admin based
-         * one the available options. A list of categories that applies to different citizen for special discounts would
-         * be shown here and selecting it would allow the admin to change the charges for that specific category. (e.g.
-         * Student Price, Senior Citizen, Child)
-         */
+
         while (true) {
             citizenCategoryMenu();   //Display each citizen category to set discounts
             Scanner in = new Scanner(System.in);
@@ -136,7 +140,7 @@ public class TicketPriceView {
                 System.out.println("Citizen Type: " + AgeGroup.values()[opt]);
                 System.out.print("Discount Amount: ");
                 double discount = in.nextDouble();   //Input the amount of discount
-                System.out.println("");
+                System.out.println();
                 setAgeGroupCharges(opt, discount);   //Sets the discount amount for each citizen category
             }
             else if (opt == AgeGroup.values().length){
@@ -148,13 +152,13 @@ public class TicketPriceView {
         }
     }
 
-    //Public Holiday Settings
-    //Settings function for adding public holiday dates
+    /**
+     * This method is basically an interface that consist of a menu which would accept an input from the admin based
+     * one the available options. A list of options would be shown here such as adding public holiday dates and
+     * setting the charges for public holiday and weekend.
+     */
     public static void publicHolidaySettings() throws ParseException {
-        /**This method is basically an interface that consist of a menu which would accept an input from the admin based
-         * one the available options. A list of options would be shown here such as adding public holiday dates and
-         * setting the charges for public holiday and weekend.
-         */
+
         Scanner in = new Scanner(System.in);
         int opt;
         while (true){
@@ -176,7 +180,7 @@ public class TicketPriceView {
                     String Date = in.next();
                     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate date = LocalDate.parse(Date, dateFormat);            //Adds the date into the array for reference
-                    System.out.println("");
+                    System.out.println();
                     addPublicHolidayDates(name, date);
                     TicketPriceMenuView.publicHolidayList(true);
                 }catch (Exception e){
@@ -190,7 +194,7 @@ public class TicketPriceView {
                     System.out.println("Remove a Public Holiday");
                     System.out.print("Public Holiday's date (e.g. DD/MM/YYYY): ");
                     String Date = in.next();
-                    System.out.println("");
+                    System.out.println();
                     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate date = LocalDate.parse(Date, dateFormat);            //Adds the date into the array for reference
                     if (removePublicHolidayDates(date)){
@@ -208,7 +212,7 @@ public class TicketPriceView {
                 System.out.println("Current Public Holiday Charges: SGD " + String.format("%.2f", getPublicHolidayCharges()));
                 System.out.print("New Additional Charges: ");
                 double charges = in.nextDouble();
-                System.out.println("");
+                System.out.println();
                 setPublicHolidayCharges(charges);
             }
             else if (opt == 5){
@@ -216,7 +220,7 @@ public class TicketPriceView {
                 System.out.println("Current Weekend Charges: SGD " + String.format("%.2f", getWeekendCharges()));
                 System.out.print("New Additional Charges: ");
                 double charges = in.nextDouble();
-                System.out.println("");
+                System.out.println();
                 setWeekendCharges(charges);
             }
             else if (opt == 6){

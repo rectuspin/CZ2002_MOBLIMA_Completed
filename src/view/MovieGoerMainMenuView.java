@@ -10,17 +10,29 @@ import model.movie.Review;
 import model.transaction.Booking;
 import service.MovieGoerCineplexService;
 
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class to display main menu for movie goer module
+ */
 public class MovieGoerMainMenuView {
 
+    /**
+     * Static instance of DBController
+     */
     private static DBController dbController = DBController.getInstance();
+
     private static final Scanner scanner = new Scanner(System.in);
+    /**
+     * Static instance of MovieGoerCineplexService
+     */
     private static MovieGoerCineplexService services = new MovieGoerCineplexService();
 
+    /**
+     * Method to show all movies
+     */
     public static void printMovieList() {
         try {
             ArrayList<Movie> movies = dbController.getMovies();
@@ -34,6 +46,9 @@ public class MovieGoerMainMenuView {
         }
     }
 
+    /**
+     * Method to search by movie
+     */
     public static void searchMovieList() {
         try {
             System.out.println("Enter the name of the movie to be searched: ");
@@ -54,7 +69,9 @@ public class MovieGoerMainMenuView {
         }
     }
 
-
+    /**
+     * Method to view all details of movies
+     */
     public static void viewDetails() {
         try {
             ArrayList<Movie> movies = dbController.getMovies();
@@ -80,6 +97,9 @@ public class MovieGoerMainMenuView {
         }
     }
 
+    /**
+     * Method to show all cineplexes
+     */
     public static void printCineplex() {
         try {
             ArrayList<Cineplex> cineplexes = new ArrayList<>(dbController.getCineplexes().values());
@@ -108,8 +128,11 @@ public class MovieGoerMainMenuView {
         } catch (NullPointerException e) {
             System.out.println("There are no cineplexes available right now! Sorry!");
         }
-        }
+    }
 
+    /**
+     * Method to check seat availability
+     */
     public static void checkSeatAvailability() {
         try {
             System.out.println("Would you like to search by (1) Movie or by (2) Cineplex ? - Enter choice 1 or 2");
@@ -209,8 +232,13 @@ public class MovieGoerMainMenuView {
         } catch (NullPointerException e) {
             System.out.println("No movies or cineplexes are available! Sorry!");
         }
-        }
+    }
 
+    /**
+     * Method to display booking menu for customer
+     *
+     * @param customer
+     */
     public static void doBooking(Customer customer) {
         try {
             System.out.println("Would you like to book by (1) Movie or by (2) Cineplex ? - Enter choice 1 or 2");
@@ -312,23 +340,23 @@ public class MovieGoerMainMenuView {
                         System.out.println((++i) + ": " + showTime);
                     }
 
+                    System.out.println("Select the show time to book tickets (enter b to go back)");
+                    int showTimeIndex = scanner.nextInt();
+                    while (showTimeIndex != (int) ('b') && showTimeIndex - 1 >= i) {
                         System.out.println("Select the show time to book tickets (enter b to go back)");
-                        int showTimeIndex = scanner.nextInt();
-                        while (showTimeIndex != (int) ('b') && showTimeIndex - 1 >= i) {
-                            System.out.println("Select the show time to book tickets (enter b to go back)");
-                            showTimeIndex = scanner.nextInt();
-                        }
-                        if (showTimeIndex == (int) ('b')) return;
-                        System.out.println("How many seats would you like to book? ");
-                        int numOfSeats;
-                        numOfSeats = scanner.nextInt();
-                        String dummy = scanner.nextLine();
-                        String[] seatSelection = new String[numOfSeats];
-                        for (int j = 0; j < numOfSeats; j++) {
-                            System.out.println("Enter the seat you would like to book ; For Eg: (A1): ");
-                            seatSelection[j] = scanner.nextLine();
-                        }
-                        i = 1;
+                        showTimeIndex = scanner.nextInt();
+                    }
+                    if (showTimeIndex == (int) ('b')) return;
+                    System.out.println("How many seats would you like to book? ");
+                    int numOfSeats;
+                    numOfSeats = scanner.nextInt();
+                    String dummy = scanner.nextLine();
+                    String[] seatSelection = new String[numOfSeats];
+                    for (int j = 0; j < numOfSeats; j++) {
+                        System.out.println("Enter the seat you would like to book ; For Eg: (A1): ");
+                        seatSelection[j] = scanner.nextLine();
+                    }
+                    i = 1;
                     for (AgeGroup a : AgeGroup.values()){
                         System.out.println("(" + i + ") " + a.getGroupType());
                         i++;
@@ -338,15 +366,18 @@ public class MovieGoerMainMenuView {
                     services.makeBooking(showTimes.get(showTimeIndex-1), seatSelection, customer, AgeGroup.values()[opt-1]);
 
                     System.out.println("Booking successful!");
-                        //Should we call the method to add to the booking history?
-                    }
+                    //Should we call the method to add to the booking history?
                 }
+            }
 
         } catch (NullPointerException e) {
             System.out.println("No movies or cineplexes are available! Sorry!");
         }
     }
 
+    /**
+     * Method to show booking history of a customer
+     */
     public static void printBookingHistory() {
         ArrayList<Customer> users = dbController.getCustomer();
         String custEmail;
@@ -375,6 +406,11 @@ public class MovieGoerMainMenuView {
         if (!userRight)
             System.out.println("Invalid email ID entered!");
     }
+
+    /**
+     * Method to display options for a customer to leave review
+     * @param customer
+     */
     public static void leaveReview(Customer customer) {
         int rating = 0;
         String reviewContent = "";

@@ -10,19 +10,29 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import static view.MovieGoerMainMenuView.*;
-import static view.Top5MoviesView.*;
+import static view.Top5MoviesView.printTop5Movies;
+import static view.Top5MoviesView.printTop5MoviesByRatings;
 
+/**
+ * Class to display main menu for customer
+ */
 public class MovieGoerView {
+    /**
+     * static instance of DBController
+     */
     private static final DBController dbController = DBController.getInstance();
     private static final Scanner scanner = new Scanner(System.in);
 
 
-
+    /**
+     * Method to display main menu view for customer
+     *
+     * @param customer
+     */
     public static void movieGoerView(Customer customer) {
         int choice = 0;
         boolean continueRunning = true;
         MovieGoerMainMenuView movieListView = new MovieGoerMainMenuView();
-        //why are we creating these objects here? -Ahkshara
         Customer[] users = new Customer[10];
         HashMap<String, Cineplex> cineplexes = dbController.getCineplexes();
         ArrayList<Cineplex> cineplex = new ArrayList<>(cineplexes.values());

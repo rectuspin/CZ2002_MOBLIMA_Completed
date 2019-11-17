@@ -9,9 +9,21 @@ import java.util.Scanner;
 
 import static view.TicketPriceMenuView.backOption;
 
+/**
+ * Class to view menu to change movie listings
+ */
 public class ChangeMovieListingView {
+    /**
+     * Static instance variable of DBController
+     */
     private static DBController dbController = DBController.getInstance();
+
+
     private static final Scanner sc = new Scanner(System.in);
+
+    /**
+     * Method to display options for creating Movie Listing
+     */
     public static void create() {
         /**This method is used to create a movie listing
          */
@@ -31,6 +43,9 @@ public class ChangeMovieListingView {
         System.out.println("You created a new movie list.");
     }
 
+    /**
+     * Method to show options to update Movie Listings
+     */
     public static void update() {
         /**This method is used to update the movie data
          * @return goes back to the previous interface
@@ -38,9 +53,9 @@ public class ChangeMovieListingView {
         System.out.println("Which movie do you want to update?");
         ArrayList<Movie> movies = dbController.getMovies();
         int i = 1;
-            System.out.println("\n====================================\n" +
-                                "|               Movies             |\n" +
-                                "====================================");
+        System.out.println("\n====================================\n" +
+                "|               Movies             |\n" +
+                "====================================");
         if (movies.size() == 0){
             System.out.println( "| There is no movies currently...  |" );
             System.out.println( "| (1) Back                         |");
@@ -116,14 +131,17 @@ public class ChangeMovieListingView {
         }
     }
 
+    /**
+     * Method to display removing a movie
+     */
     public static void remove() {
         /**This method is used to remove a movie listing from the application
          */
         ArrayList<Movie> movies = dbController.getMovies();
         int i = 1;
-            System.out.println( "\n====================================\n" +
-                                "|               Movies             |\n" +
-                                "====================================");
+        System.out.println( "\n====================================\n" +
+                "|               Movies             |\n" +
+                "====================================");
         if (movies.size() == 0){
             System.out.println( "| There is no movies currently...  |" );
             System.out.println( "| (1) Back                         |");
@@ -144,10 +162,12 @@ public class ChangeMovieListingView {
         }
     }
 
+    /**
+     * Method to display adding cast
+     *
+     * @return
+     */
     public static ArrayList<String> addCast(){
-        /**This method is used to edit the cast of the movie
-         * @return a list of cast that acts in the movie
-         */
         ArrayList<String> movieCast = new ArrayList<>();
         try {
             System.out.print("Number Of Cast: ");
@@ -164,15 +184,18 @@ public class ChangeMovieListingView {
         return movieCast;
     }
 
+    /**
+     * This method is used to display the available languages and select the language for the movie
+     *
+     * @param movies      The list that consist of all the movies
+     * @param movieOption The selection of which language is for the movie
+     */
     public static void movieLanguageSettings(ArrayList<Movie> movies, int movieOption){
-        /**This method is used to display the available languages and select the language for the movie
-         * @param movies The list that consist of all the movies
-         * @param movieOption The selection of which language is for the movie
-         */
+
         System.out.println();
         System.out.print(   "===================================\n" +
-                            "|       Available Languages       |\n" +
-                            "===================================\n");
+                "|       Available Languages       |\n" +
+                "===================================\n");
         int i = 1;
         for (MovieEnums.Language l : MovieEnums.Language.values()){
             System.out.format("| (%d) %-27s |\n",i, l);
@@ -182,18 +205,21 @@ public class ChangeMovieListingView {
         System.out.println("Movie Language: " + movies.get(movieOption-1).getLanguage());
         System.out.print("Enter a selection: ");
         int opt = sc.nextInt();
-        movies.get(movieOption - 1).setLanguage(MovieEnums.Language.values()[opt-1]);
+        movies.get(movieOption - 1).setLanguage(MovieEnums.Language.values()[opt - 1]);
     }
 
+    /**
+     * This method is used to display the available subtitle and select the language for the movie
+     *
+     * @param movies      The list that consist of all the movies
+     * @param movieOption The selection of which subtitle is for the movie
+     */
     public static void movieSubtitleSettings(ArrayList<Movie> movies, int movieOption){
-        /**This method is used to display the available subtitle and select the language for the movie
-         * @param movies The list that consist of all the movies
-         * @param movieOption The selection of which subtitle is for the movie
-         */
+
         System.out.println();
         System.out.print(   "===================================\n" +
-                            "|       Available Subtitles       |\n" +
-                            "===================================\n");
+                "|       Available Subtitles       |\n" +
+                "===================================\n");
         int i = 1;
         for (MovieEnums.Subtitle s : MovieEnums.Subtitle.values()){
             System.out.format("| (%d) %-27s |\n",i, s);
@@ -203,18 +229,21 @@ public class ChangeMovieListingView {
         System.out.println("Movie Subtitle: " + movies.get(movieOption-1).getSubtitle());
         System.out.print("Enter a selection: ");
         int opt = sc.nextInt();
-        movies.get(movieOption - 1).setSubtitle(MovieEnums.Subtitle.values()[opt-1]);
+        movies.get(movieOption - 1).setSubtitle(MovieEnums.Subtitle.values()[opt - 1]);
     }
 
+    /**
+     * This method is used to display the available movie status and select the language for the movie
+     *
+     * @param movies      The list that consist of all the movies
+     * @param movieOption The selection of which movie status is for the movie
+     */
     public static void movieStatusSettings(ArrayList<Movie> movies, int movieOption){
-        /**This method is used to display the available movie status and select the language for the movie
-         * @param movies The list that consist of all the movies
-         * @param movieOption The selection of which movie status is for the movie
-         */
+
         System.out.println();
         System.out.print(   "====================================\n" +
-                            "|            Movie Status          |\n" +
-                            "====================================\n");
+                "|            Movie Status          |\n" +
+                "====================================\n");
         int i = 1;
         for (MovieEnums.MovieStatus s : MovieEnums.MovieStatus.values()){
             System.out.format("| (%d) %-28s |\n",i, s);
@@ -224,18 +253,21 @@ public class ChangeMovieListingView {
         System.out.println("Movie Status: " + movies.get(movieOption-1).getMovieStatus());
         System.out.print("Enter a selection: ");
         int opt = sc.nextInt();
-        movies.get(movieOption - 1).setMovieStatus(MovieEnums.MovieStatus.values()[opt-1]);
+        movies.get(movieOption - 1).setMovieStatus(MovieEnums.MovieStatus.values()[opt - 1]);
     }
 
+    /**
+     * This method is used to display the available movie rating and select the language for the movie
+     *
+     * @param movies      The list that consist of all the movies
+     * @param movieOption The selection of which movie rating is for the movie
+     */
     public static void movieRatingSettings(ArrayList<Movie> movies, int movieOption){
-        /**This method is used to display the available movie rating and select the language for the movie
-         * @param movies The list that consist of all the movies
-         * @param movieOption The selection of which movie rating is for the movie
-         */
+
         System.out.println();
         System.out.print(   "================================================\n" +
-                            "|                  Movie Rating                |\n" +
-                            "================================================\n");
+                "|                  Movie Rating                |\n" +
+                "================================================\n");
         int i = 1;
         for (MovieEnums.MovieRating s : MovieEnums.MovieRating.values()){
             System.out.format("| (%d) %-40s |\n",i, s);
@@ -245,17 +277,18 @@ public class ChangeMovieListingView {
         System.out.println("Movie Rating: " + movies.get(movieOption-1).getMovieRating());
         System.out.print("Enter a selection: ");
         int opt = sc.nextInt();
-        movies.get(movieOption - 1).setMovieRating(MovieEnums.MovieRating.values()[opt-1]);
+        movies.get(movieOption - 1).setMovieRating(MovieEnums.MovieRating.values()[opt - 1]);
     }
 
+    /**This method is used to display the available movie type and select the language for the movie
+     * @param movies The list that consist of all the movies
+     * @param movieOption The selection of which movie type is for the movie
+     */
     public static void movieTypeSettings(ArrayList<Movie> movies, int movieOption){
-        /**This method is used to display the available movie type and select the language for the movie
-         * @param movies The list that consist of all the movies
-         * @param movieOption The selection of which movie type is for the movie
-         */
+
         System.out.print(   "====================================\n" +
-                            "|             Movie Type           |\n" +
-                            "====================================\n");
+                "|             Movie Type           |\n" +
+                "====================================\n");
         int i = 1;
         for (MovieEnums.MovieType s : MovieEnums.MovieType.values()){
             System.out.format("| (%d) %-28s |\n",i, s);
@@ -266,27 +299,28 @@ public class ChangeMovieListingView {
         System.out.println("Movie Type: " + movies.get(movieOption-1).getMovieType());
         System.out.print("Enter a selection: ");
         int opt = sc.nextInt();
-        movies.get(movieOption - 1).setMovieType(MovieEnums.MovieType.values()[opt-1]);
+        movies.get(movieOption - 1).setMovieType(MovieEnums.MovieType.values()[opt - 1]);
     }
 
+    /**This method is used to display the menu for editing the movie
+     */
     public static void UpdateMenu(){
-        /**This method is used to display the menu for editing the movie
-         */
+
         System.out.println();
         System.out.format(  "====================================\n" +
-                            "|           Select Option          |\n" +
-                            "====================================\n" +
-                            "| (1) Edit Title                   |\n" +
-                            "| (2) Edit Director                |\n" +
-                            "| (3) Edit Cast                    |\n" +
-                            "| (4) Edit Synopsis                |\n" +
-                            "| (5) Edit Language                |\n" +
-                            "| (6) Edit Subtitle                |\n" +
-                            "| (7) Edit Movie Status            |\n" +
-                            "| (8) Edit Movie Rating            |\n" +
-                            "| (9) Edit Movie Type              |\n" +
-                            "|(10) Back                         |\n" +
-                            "====================================\n");
+                "|           Select Option          |\n" +
+                "====================================\n" +
+                "| (1) Edit Title                   |\n" +
+                "| (2) Edit Director                |\n" +
+                "| (3) Edit Cast                    |\n" +
+                "| (4) Edit Synopsis                |\n" +
+                "| (5) Edit Language                |\n" +
+                "| (6) Edit Subtitle                |\n" +
+                "| (7) Edit Movie Status            |\n" +
+                "| (8) Edit Movie Rating            |\n" +
+                "| (9) Edit Movie Type              |\n" +
+                "|(10) Back                         |\n" +
+                "====================================\n");
     }
 
 }
